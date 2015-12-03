@@ -9,8 +9,8 @@ int main()
 
 	for (int i = 0; i < 10; i++)
 	{
-	Sleep(250);
-	cout << ".";
+		Sleep(250);
+		cout << ".";
 	}
 
 	cout << "\nDone!" << endl;
@@ -18,11 +18,11 @@ int main()
 	system("pause");
 	return 0;
 
-  int trans, items;
+	int trans, items;
 
-  parseFileName(trans, items, "T20.N0.5K.D1K.txt");
+	parseFileName(trans, items, "T20.N0.5K.D1K.txt");
 
-  cout << trans << '\t' << items;
+	cout << trans << '\t' << items;
 	*/
 
 	system("pause");

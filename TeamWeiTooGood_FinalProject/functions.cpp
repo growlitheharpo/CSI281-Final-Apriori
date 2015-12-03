@@ -47,30 +47,30 @@ void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int
 
 void parseFileName(int &transactions, int &items, const string &filename)
 {
-  //Values in title
-  string transactionsStr = "";   //D value
-  string itemsStr = "";          //N value
+	//Values in title
+	string transactionsStr = "";   //D value
+	string itemsStr = "";          //N value
 
-  //Track what to store from filename string
-  bool readN = false;
-  bool readD = false;
+	//Track what to store from filename string
+	bool readN = false;
+	bool readD = false;
 
-  for (int i = 0; i < filename.size(); i++)
-  {
-    if (toupper(filename[i]) == toupper('k'))
-      readN = readD = false;
+	for (int i = 0; i < filename.size(); i++)
+	{
+		if (toupper(filename[i]) == toupper('k'))
+			readN = readD = false;
 
-    if (readN)
-      itemsStr += filename[i];
-    else if (readD)
-      transactionsStr += filename[i];
+		if (readN)
+			itemsStr += filename[i];
+		else if (readD)
+			transactionsStr += filename[i];
 
-    if (toupper(filename[i]) == toupper('n'))
-      readN = true;
-    else if (toupper(filename[i]) == toupper('d'))
-      readD = true;
-  }
-  
-  transactions = (int)(stof(transactionsStr) * 1000);
-  items = (int)(stof(itemsStr) * 1000);
+		if (toupper(filename[i]) == toupper('n'))
+			readN = true;
+		else if (toupper(filename[i]) == toupper('d'))
+			readD = true;
+	}
+
+	transactions = (int)(stof(transactionsStr) * 1000);
+	items = (int)(stof(itemsStr) * 1000);
 }
