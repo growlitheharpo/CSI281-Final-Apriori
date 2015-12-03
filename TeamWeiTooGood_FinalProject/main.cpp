@@ -1,5 +1,4 @@
-#include <iostream>
-#include <Windows.h>
+#include "main.h"
 
 int main()
 {
@@ -18,9 +17,13 @@ int main()
 
 	system("pause");
 	return 0;
+
+  int trans, items;
+
+  parseFileName(trans, items, "T20.N0.5K.D1K.txt");
+
+  cout << trans << '\t' << items;
 	*/
-
-
 
 	system("pause");
 	return 0;
