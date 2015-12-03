@@ -71,6 +71,6 @@ void parseFileName(int &transactions, int &items, const string &filename)
 			readD = true;
 	}
 
-	transactions = (int)(stof(transactionsStr) * 1000);
-	items = (int)(stof(itemsStr) * 1000);
+	transactions = static_cast<int>(stof(transactionsStr) * 1000);
+	items = static_cast<int>(stof(itemsStr) * 1000);
 }
