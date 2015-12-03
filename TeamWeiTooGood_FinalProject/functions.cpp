@@ -1,0 +1,52 @@
+#include "main.h"
+#include <fstream>
+
+bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filename)
+{
+	ifstream fin;
+
+	fin.open(filename);
+	if (!fin.good())
+		return false;
+
+	int currentTransaction, currentItem;
+	int numTransactions, numItems;
+
+	//Determine the size of our array and initialize it
+	parseFileName(numTransactions, numItems, filename);
+	initializeTransactionArray(transactions, arrayInfo, numTransactions, numItems);
+
+	//Actually load the data
+	fin >> currentTransaction >> currentItem;
+	while (!fin.eof())
+	{
+		transactions[currentTransaction][currentItem] = true;
+		fin >> currentTransaction >> currentItem;
+	}
+
+	return true;
+}
+
+void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
+{
+	transactions = new bool*[sizeI];
+	for (int i = 0; i < sizeI; i++)
+	{
+		transactions[i] = new bool[sizeJ];
+
+		for (int j = 0; j < sizeJ; j++)
+		{
+			transactions[i][j] = false;
+		}
+	}
+
+	arrayInfo.sizeI = sizeI;
+	arrayInfo.sizeJ = sizeJ;
+}
+
+void parseFileName(int &transactions, int &items, const string &filename)
+{
+	//TODO: Make this actually parse the filename
+	transactions = 100;
+	items = 100;
+}

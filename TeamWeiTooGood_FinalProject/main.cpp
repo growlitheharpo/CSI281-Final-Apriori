@@ -1,6 +1,5 @@
 #include <iostream>
 #include <Windows.h>
-#include "transaction.h"
 
 int main()
 {
@@ -11,8 +10,8 @@ int main()
 
 	for (int i = 0; i < 10; i++)
 	{
-		Sleep(250);
-		cout << ".";
+	Sleep(250);
+	cout << ".";
 	}
 
 	cout << "\nDone!" << endl;
@@ -21,14 +20,7 @@ int main()
 	return 0;
 	*/
 
-	int counter = 0;
 
-	Transaction** myArrayOfTransactions = new Transaction*[100000];
-
-	system("pause");
-
-	delete[] myArrayOfTransactions;
-	++counter;
 
 	system("pause");
 	return 0;
