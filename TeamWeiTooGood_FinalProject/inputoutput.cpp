@@ -9,7 +9,21 @@
 *********************************************************************************************/
 bool getContinue()
 {
-	return true;
+	string input;
+
+	do
+	{
+		cout << "Continue? (Y/N): ";
+		getline(cin, input);
+
+		if (input.length() > 1 || (tolower(input[0]) != 'y' && tolower(input[0]) != 'n'))
+			continue;
+		else if (tolower(input[0]) == 'y')
+			return true;
+		else
+			return false;
+
+	} while (true);
 }
 
 
@@ -20,7 +34,12 @@ bool getContinue()
 *********************************************************************************************/
 string getFileName()
 {
-	return "";
+	string filename;
+
+	cout << "Enter the name of the transaction file: ";
+	getline(cin, filename);
+
+	return filename;
 }
 
 
@@ -31,6 +50,19 @@ string getFileName()
 *********************************************************************************************/
 int	getMinimumSupport(int totalTransactionCount)
 {
+	cout << "Enter the desired transactions for minimum support.\n"
+		<< "This can either be an exact number of transactions, or a percentage\n"
+		<< "of all transactions if you begin with a % sign.";
+	
+	string input;
+	int support = -1;
+
+	do
+	{
+		cout << "Enter minimum support: ";
+
+	} while (support < 0 || support > totalTransactionCount);
+
 	return 0;
 }
 
@@ -95,10 +127,10 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 *     Pre: 
 *	 Post: 
 *********************************************************************************************/
-void outputResults(double time, const Trie& largeItemsets)
-{
+//void outputResults(double time, const Trie& largeItemsets)
+//{
 
-}
+//}
 
 
 /*********************************************************************************************
