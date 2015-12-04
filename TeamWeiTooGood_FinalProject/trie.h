@@ -39,7 +39,7 @@ class Trie
 
 		Node *mRootNode;
 
-		bool isLeaf(Node node);
+		bool isLeaf(Node *node);
 		void traverseTrie(int path[], Node *&someNode);
 
 	public:
@@ -50,7 +50,7 @@ class Trie
     bool getHasMinSupport(int path[]);
 
 		bool addNode(int path[]);
-		void emptyTrie();
+		void destroySubtrie(Node *node);
 		bool isEmpty();
 		bool removeNode(int path[]);
 
