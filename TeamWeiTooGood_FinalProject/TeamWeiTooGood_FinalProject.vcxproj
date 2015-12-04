@@ -64,12 +64,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="functions.cpp" />
+    <ClCompile Include="apriori.cpp" />
+    <ClCompile Include="basefunctions.cpp" />
+    <ClCompile Include="inputoutput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="trie.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="base.h" />
-    <ClInclude Include="main.h" />
+    <ClInclude Include="apriori.h" />
+    <ClInclude Include="basefunctions.h" />
+    <ClInclude Include="dynamicarray.h" />
+    <ClInclude Include="inputoutput.h" />
+    <ClInclude Include="trie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

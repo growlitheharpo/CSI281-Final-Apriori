@@ -1,5 +1,5 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef BASE_FUNCTIONS_H
+#define BASE_FUNCTIONS_H
 
 #include <iostream>
 
@@ -16,7 +16,7 @@ struct ArrayInfo2D
 	}
 };
 
-void clearScreen(bool alsoPause = false);
+void clearScreen(bool pauseFirst = false);
 void pause();
 
 #endif

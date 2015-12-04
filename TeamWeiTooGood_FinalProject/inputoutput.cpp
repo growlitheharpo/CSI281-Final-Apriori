@@ -1,7 +1,13 @@
-#include "main.h"
+#include "inputoutput.h"
 #include <fstream>
 #include <string>
 
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
 bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filename)
 {
 	ifstream fin;
@@ -28,6 +34,12 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 	return true;
 }
 
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
 void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
 {
 	transactions = new bool*[sizeI];
@@ -45,6 +57,12 @@ void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int
 	arrayInfo.sizeJ = sizeJ;
 }
 
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
 void parseFileName(int &transactions, int &items, const string &filename)
 {
 	//Values in title
