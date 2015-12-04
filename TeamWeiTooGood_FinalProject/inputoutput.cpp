@@ -2,6 +2,61 @@
 #include <fstream>
 #include <string>
 
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+bool getContinue()
+{
+	return true;
+}
+
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+string getFileName()
+{
+	return "";
+}
+
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+int	getMinimumSupport(int totalTransactionCount)
+{
+	return 0;
+}
+
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
+{
+	transactions = new bool*[sizeI];
+	for (int i = 0; i < sizeI; i++)
+	{
+		transactions[i] = new bool[sizeJ];
+
+		for (int j = 0; j < sizeJ; j++)
+		{
+			transactions[i][j] = false;
+		}
+	}
+
+	arrayInfo.sizeI = sizeI;
+	arrayInfo.sizeJ = sizeJ;
+}
+
 
 /*********************************************************************************************
 * Purpose: 
@@ -40,21 +95,9 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 *     Pre: 
 *	 Post: 
 *********************************************************************************************/
-void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
+void outputResults(double time, const Trie& largeItemsets)
 {
-	transactions = new bool*[sizeI];
-	for (int i = 0; i < sizeI; i++)
-	{
-		transactions[i] = new bool[sizeJ];
 
-		for (int j = 0; j < sizeJ; j++)
-		{
-			transactions[i][j] = false;
-		}
-	}
-
-	arrayInfo.sizeI = sizeI;
-	arrayInfo.sizeJ = sizeJ;
 }
 
 
