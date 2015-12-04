@@ -116,7 +116,7 @@ void parseFileName(int &transactions, int &items, const string &filename)
 	bool readN = false;
 	bool readD = false;
 
-	for (int i = 0; i < filename.size(); i++)
+	for (size_t i = 0; i < filename.size(); i++)
 	{
 		if (toupper(filename[i]) == toupper('k'))
 			readN = readD = false;
