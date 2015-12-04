@@ -20,7 +20,6 @@ class DynamicArray
 		~DynamicArray();
 		
 		int count() const;
-		int size() const;
 
 		void insert(const T& item);
 		bool remove(const T& item);
@@ -137,13 +136,6 @@ template <typename T>
 int DynamicArray<T>::count() const
 {
 	return numIndexesFilled;
-}
-
-
-template <typename T>
-int DynamicArray<T>::size() const
-{
-	return mArraySize;
 }
 
 
