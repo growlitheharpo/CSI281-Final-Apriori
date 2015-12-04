@@ -11,6 +11,16 @@ Trie::~Trie()
   emptyTrie();
 }
 
+void Trie::setMinSupport(int path[], bool hasMinSupport)
+{
+
+}
+
+bool Trie::getHasMinSupport(int path[])
+{
+
+}
+
 bool Trie::addNode(int path[])
 {
 
@@ -24,12 +34,12 @@ void Trie::emptyTrie()
 
 bool Trie::isEmpty()
 {
-  //if(mRootNode->mChildren)
+  return mRootNode->mChildren->size() == 0;
 }
 
 bool Trie::isLeaf(Node node)
 {
-
+  return 
 }
 
 bool Trie::removeNode(int path[])

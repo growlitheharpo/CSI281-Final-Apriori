@@ -9,8 +9,10 @@ class Trie
 	private:
 		struct Node
 		{
-			int                 mItemId;
 			DynamicArray<Node*> *mChildren;
+      bool                mHasMinSupport;
+      int                 mItemId;
+
 
 			/*     Pre:  None
 			*     Post:  This object is initialized using default values
@@ -18,8 +20,9 @@ class Trie
 			*************************************************************************/
 			Node()
 			{
-				mItemId = int();
 				mChildren = new DynamicArray<Node*>();
+				mItemId = int();
+        mHasMinSupport = false;
 			}
 
 			/*     Pre:  None
@@ -28,18 +31,23 @@ class Trie
 			*************************************************************************/
 			Node(int itemId)
 			{
-				mItemId = itemId;
 				mChildren = new DynamicArray<Node*>();
+				mItemId = itemId;
+        mHasMinSupport = false;
 			}
 		};
 
 		Node *mRootNode;
+
 		bool isLeaf(Node node);
 		void traverseTrie(int path[], Node *&someNode);
 
 	public:
 		Trie();
 		~Trie();
+
+    void setMinSupport(int path[], bool hasMinSupport);
+    bool getHasMinSupport(int path[]);
 
 		bool addNode(int path[]);
 		void emptyTrie();
