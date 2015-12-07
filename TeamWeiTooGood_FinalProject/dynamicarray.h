@@ -210,7 +210,7 @@ bool DynamicArray<T>::removeAt(int index)
 *	 Post:
 *********************************************************************************************/
 template <typename T>
-bool operator== (DynamicArray<T>& otherArray)
+bool DynamicArray<T>::operator== (DynamicArray<T>& otherArray)
 {
 	if (this->numIndexesFilled != otherArray.numIndexesFilled)
 		return false;
