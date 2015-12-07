@@ -8,7 +8,18 @@
 *********************************************************************************************/
 void addCandidatesToLTree(Trie& candidates, Trie& largeItemsets, int depth)
 {
+	DynamicArray<DynamicArray<int>> itemsets;
+	DynamicArray<int> currentNewPath;
+	largeItemsets.getAllPathsAtDepth(itemsets, depth - 1);
 
+	//{{ a, b }, { a, c }}
+	int currentItem;
+	for (int currentItemset = 0; currentItemset < itemsets.count(); currentItemset++)
+	{
+		currentItem = itemsets[currentItemset][0];
+
+		
+	}
 }
 
 
@@ -77,5 +88,22 @@ void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSu
 *********************************************************************************************/
 bool pruneCandidates(Trie& candidates, int depth)
 {
+	
+}
 
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+void unionTwoArrays(const DynamicArray<int>& array1, const DynamicArray<int> &array2, DynamicArray<int>& output)
+{
+	output.clear();
+
+	int i = 0, j = 0;
+	while (i < array1.count() && j < array2.count())
+	{
+		cout << "END IT NOW PLEAES";
+	}
 }

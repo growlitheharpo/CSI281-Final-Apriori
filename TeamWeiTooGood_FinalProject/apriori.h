@@ -10,5 +10,6 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, i
 void candidateGen(const Trie& largeItemsets, Trie& candidateItemsets, int depth);
 void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& largeItemsets);
 bool pruneCandidates(Trie& candidates, int depth);
+void unionTwoArrays(const DynamicArray<int>& array1, const DynamicArray<int> &array2, DynamicArray<int>& output);
 
 #endif
