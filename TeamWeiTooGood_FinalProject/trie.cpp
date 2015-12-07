@@ -84,7 +84,12 @@ bool Trie::isLeaf(Node *node)
 
 bool Trie::removeNode(DynamicArray<int> path)
 {
-	return false;
+//   int lastNode = path[path.count() - 1];
+//   path.removeAt(path.count() - 1);
+// 	Node *node
+
+  
+  return false;
 }
 
 Trie::Node* Trie::traverseTrie(DynamicArray<int> path, Node *node)
