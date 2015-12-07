@@ -1,4 +1,5 @@
 #include "trie.h"
+#include "simpleQueue.h"
 
 Trie::Trie()
 {
@@ -45,7 +46,17 @@ void Trie::destroySubtrie(Node *node)
 
 void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
 {
+	SimpleQueue<Node *> nodeQueue;
+	Node *currentNode;
+	nodeQueue.enqueue(mRootNode);
 
+	while (nodeQueue.getCount() > 0)
+	{
+		currentNode = nodeQueue.dequeue();
+
+		for (int i = 0; i < currentNode->mChildren->count(); i++)
+			nodeQueue.enqueue((currentNode->mChildren[i]));
+	}
 }
 
 

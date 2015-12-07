@@ -127,10 +127,10 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 *     Pre: 
 *	 Post: 
 *********************************************************************************************/
-//void outputResults(double time, const Trie& largeItemsets)
-//{
+void outputResults(double time, const Trie& largeItemsets)
+{
 
-//}
+}
 
 
 /*********************************************************************************************
