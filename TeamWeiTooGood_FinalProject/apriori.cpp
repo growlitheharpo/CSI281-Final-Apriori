@@ -88,7 +88,8 @@ void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSu
 *********************************************************************************************/
 bool pruneCandidates(Trie& candidates, int depth)
 {
-	
+
+	return false;
 }
 
 
@@ -106,4 +107,5 @@ void unionTwoArrays(const DynamicArray<int>& array1, const DynamicArray<int> &ar
 	{
 		cout << "END IT NOW PLEAES";
 	}
+
 }
