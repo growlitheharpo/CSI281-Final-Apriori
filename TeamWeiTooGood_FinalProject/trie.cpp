@@ -8,7 +8,7 @@ Trie::Trie()
 
 Trie::~Trie()
 {
-  emptyTrie(mRootNode);
+  destroySubtrie(mRootNode);
 }
 
 void Trie::setMinSupport(int path[], bool hasMinSupport)
@@ -36,12 +36,18 @@ void Trie::destroySubtrie(Node *node)
   {
     while (node->mChildren->count() > 0)
     {
-      destroySubtrie(node->mChildren[0]);
+      //destroySubtrie(node->mChildren[0]);
       //delete node->mChildren[0];
       //node->mChildren[0]->mItemId = 5;
     }
   }
 }
+
+void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
+{
+
+}
+
 
 
 bool Trie::isEmpty()

@@ -6,7 +6,8 @@
 
 class Trie
 {
-	private:
+	//private:
+  public:
 		struct Node
 		{
 			DynamicArray<Node*> *mChildren;
@@ -63,9 +64,11 @@ class Trie
         mPath = path;
       }
 		};
+  private:
 
 		Node *mRootNode;
 
+		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node);
 		void traverseTrie(int path[], Node *&someNode);
 
@@ -76,8 +79,9 @@ class Trie
     void setMinSupport(int path[], bool hasMinSupport);
     bool getHasMinSupport(int path[]);
 
+    void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths); 
+
 		bool addNode(int path[]);
-		void destroySubtrie(Node *node);
 		bool isEmpty();
 		bool removeNode(int path[]);
 
