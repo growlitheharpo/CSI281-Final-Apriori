@@ -129,7 +129,24 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 *********************************************************************************************/
 void outputResults(double time, const Trie& largeItemsets)
 {
+	DynamicArray<DynamicArray<int>> itemsets;
+	const_cast<Trie&>(largeItemsets).getAllPaths(itemsets);
 
+	for (int i = 0; i < itemsets.count(); i++)
+	{
+		//ex: "Set 1: 4 5
+		//	   Set 2: 4 7"
+		cout << "Set " << i + 1 << ": ";
+
+		for (int j = 0; j < itemsets[i].count(); j++)
+		{
+			cout << j << " ";
+		}
+
+		cout << endl;
+	}
+
+	cout << "All sets found in " << time << " seconds.";
 }
 
 
