@@ -10,6 +10,7 @@ class Trie
 		struct Node
 		{
 			DynamicArray<Node*> *mChildren;
+      DynamicArray<int>   *mPath;
       bool                mHasMinSupport;
       int                 mItemId;
 
@@ -23,6 +24,7 @@ class Trie
 				mChildren = new DynamicArray<Node*>();
 				mItemId = int();
         mHasMinSupport = false;
+        mPath = NULL;
 			}
 
 			/*     Pre:  None
@@ -34,7 +36,32 @@ class Trie
 				mChildren = new DynamicArray<Node*>();
 				mItemId = itemId;
         mHasMinSupport = false;
+        mPath = NULL;
 			}
+
+      /*     Pre:  None
+      *     Post:  This object is initialized using specified data
+      *  Purpose:  To initialize date object
+      *************************************************************************/
+      Node(DynamicArray<int> *path)
+      {
+        mChildren = new DynamicArray<Node*>();
+        mItemId = int();
+        mHasMinSupport = false;
+        mPath = path;
+      }
+
+      /*     Pre:  None
+      *     Post:  This object is initialized using specified data
+      *  Purpose:  To initialize date object
+      *************************************************************************/
+      Node(int itemId, DynamicArray<int> *path)
+      {
+        mChildren = new DynamicArray<Node*>();
+        mItemId = itemId;
+        mHasMinSupport = false;
+        mPath = path;
+      }
 		};
 
 		Node *mRootNode;
