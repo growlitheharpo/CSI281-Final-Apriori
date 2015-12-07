@@ -21,10 +21,12 @@ class DynamicArray
 		
 		int count() const;
 
+		void clear();
 		void insert(const T& item);
 		bool remove(const T& item);
 		bool removeAt(int index);
 
+		DynamicArray<T> operator= (DynamicArray<T>& otherArray);
 		bool operator== (DynamicArray<T>& otherArray);
 		T& operator[] (int index);
 };
@@ -141,6 +143,23 @@ int DynamicArray<T>::count() const
 
 
 /*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+void DynamicArray<T>::clear()
+{
+	delete[] mData;
+
+	mData = new T[GROW_SHRINK_SIZE];
+
+	mArraySize = GROW_SHRINK_SIZE;
+	numIndexesFilled = 0;
+}
+
+
+/*********************************************************************************************
 * Purpose: 
 *     Pre: 
 *	 Post: 
@@ -201,6 +220,24 @@ bool DynamicArray<T>::removeAt(int index)
 		contractArray();
 
 	return true;
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+DynamicArray<T> DynamicArray<T>::operator= (DynamicArray<T>& otherArray)
+{
+	this->clear();
+
+	while (this->mArraySize < otherArray.mArraySize)
+		this->expandArray();
+
+	for (this->numIndexesFilled = 0; i < otherArray.numIndexesFilled; numIndexesFilled++)
+		this->mData[i] = otherArray.mData[i];
 }
 
 

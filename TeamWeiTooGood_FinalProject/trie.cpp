@@ -62,9 +62,12 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
   {
     currentNode = nodeQueue.dequeue();
 
-    for (int i = 0; i < currentNode->mChildren->count(); i++)
-      nodeQueue.enqueue((currentNode->mChildren[i]));
-  }
+		DynamicArray<int> thisNodesChildren = currentNode->mPath;
+		allPaths.insert(thisNodesChildren);
+
+		for (int i = 0; i < currentNode->mChildren.count(); i++)
+			nodeQueue.enqueue((currentNode->mChildren[i]));
+	}
 }
 
 
