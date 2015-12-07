@@ -25,6 +25,7 @@ class DynamicArray
 		bool remove(const T& item);
 		bool removeAt(int index);
 
+		bool operator== (DynamicArray<T>& otherArray);
 		T& operator[] (int index);
 };
 
@@ -198,6 +199,27 @@ bool DynamicArray<T>::removeAt(int index)
 
 	if (mArraySize - GROW_SHRINK_SIZE - 2 > numIndexesFilled) //if we're removing a lot of items, shrink
 		contractArray();
+
+	return true;
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+bool operator== (DynamicArray<T>& otherArray)
+{
+	if (this->numIndexesFilled != otherArray.numIndexesFilled)
+		return false;
+
+	for (int i = 0; i < numIndexesFilled; i++)
+	{
+		if (this->mData[i] != otherArray.mData[i])
+			return false;
+	}
 
 	return true;
 }
