@@ -12,19 +12,27 @@ Trie::~Trie()
   destroySubtrie(mRootNode);
 }
 
-void Trie::setMinSupport(int path[], bool hasMinSupport)
+void Trie::setMinSupport(DynamicArray<int> path, bool hasMinSupport)
 {
 
 }
 
-bool Trie::getHasMinSupport(int path[])
+bool Trie::getHasMinSupport(DynamicArray<int> path)
 {
   return false;
 }
 
-bool Trie::addNode(int path[])
+bool Trie::addNode(DynamicArray<int> path, int itemId)
 {
-  return false;
+  Node *node = traverseTrie(path, mRootNode);
+
+  if (node->mItemId == path[path.count() - 1])
+  {
+    node->mChildren.insert(new Node(itemId));
+    return true;
+  }
+  else
+    return false;
 }
 
 void Trie::destroySubtrie(Node *node)
@@ -46,17 +54,17 @@ void Trie::destroySubtrie(Node *node)
 
 void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
 {
-	SimpleQueue<Node *> nodeQueue;
-	Node *currentNode;
-	nodeQueue.enqueue(mRootNode);
+  SimpleQueue<Node *> nodeQueue;
+  Node *currentNode;
+  nodeQueue.enqueue(mRootNode);
 
-	while (nodeQueue.getCount() > 0)
-	{
-		currentNode = nodeQueue.dequeue();
+  while (nodeQueue.getCount() > 0)
+  {
+    currentNode = nodeQueue.dequeue();
 
-		for (int i = 0; i < currentNode->mChildren->count(); i++)
-			nodeQueue.enqueue((currentNode->mChildren[i]));
-	}
+    for (int i = 0; i < currentNode->mChildren->count(); i++)
+      nodeQueue.enqueue((currentNode->mChildren[i]));
+  }
 }
 
 
@@ -71,12 +79,22 @@ bool Trie::isLeaf(Node *node)
   return node->mChildren.count() == 0;
 }
 
-bool Trie::removeNode(int path[])
+bool Trie::removeNode(DynamicArray<int> path)
 {
   return false;
 }
 
-void Trie::traverseTrie(int path[], Node *&someNode)
-{
-
-}
+ Trie::Node* Trie::traverseTrie(DynamicArray<int> path, Node *node)
+ {
+   for (int i = 0; i < path.count(); i++)
+   {
+     for (int j = 0; j < node->mChildren.count(); j++)
+     {
+       if (node->mChildren[j]->mItemId == path[i])
+       {
+         node = node->mChildren[j];
+         break;
+       }
+     }
+   }
+ }
