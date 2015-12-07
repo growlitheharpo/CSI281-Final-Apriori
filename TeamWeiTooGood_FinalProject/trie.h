@@ -10,9 +10,9 @@ class Trie
 		struct Node
 		{
 			DynamicArray<Node*> mChildren;
-      DynamicArray<int>   mPath;
-      bool                mHasMinSupport;
-      int                 mItemId;
+			DynamicArray<int>   mPath;
+			bool                mHasMinSupport;
+			int                 mItemId;
 
 
 			/*     Pre:  None
@@ -22,7 +22,7 @@ class Trie
 			Node()
 			{
 				mItemId = int();
-        mHasMinSupport = false;
+				mHasMinSupport = false;
 			}
 
 			/*     Pre:  None
@@ -32,7 +32,7 @@ class Trie
 			Node(int itemId)
 			{
 				mItemId = itemId;
-        mHasMinSupport = false;
+				mHasMinSupport = false;
 			}
 		};
 
@@ -46,14 +46,15 @@ class Trie
 		Trie();
 		~Trie();
 
-    void setMinSupport(DynamicArray<int> path, bool hasMinSupport);
-    bool getHasMinSupport(DynamicArray<int> path);
+		void setMinSupport(DynamicArray<int> path, bool hasMinSupport);
+		bool getHasMinSupport(DynamicArray<int> path);
 
-    void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths); 
+		void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths);
+		void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth);
 
-    bool addNode(DynamicArray<int> path, int itemId);
+		bool addNode(DynamicArray<int> path, int itemId);
 		bool isEmpty();
-    bool removeNode(DynamicArray<int> path);
+		bool removeNode(DynamicArray<int> path);
 
 };
 
