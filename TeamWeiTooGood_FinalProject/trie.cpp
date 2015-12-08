@@ -17,9 +17,9 @@ void Trie::setMinSupport(DynamicArray<int> path, bool hasMinSupport)
 
 }
 
-bool Trie::getHasMinSupport(DynamicArray<int> path)
+bool Trie::getHasMinSupport(DynamicArray<int> path) const
 {
-	return false;
+
 }
 
 bool Trie::addNode(DynamicArray<int> path, int itemId)
@@ -60,7 +60,7 @@ void Trie::destroySubtrie(Node *node)
 	}
 }
 
-void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
+void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 {
 	SimpleQueue<Node *> nodeQueue;
 	Node *currentNode;
@@ -78,14 +78,18 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths)
 	}
 }
 
+void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>>& pathsAtDepth, int depth) const
+{
+
+}
 
 
-bool Trie::isEmpty()
+bool Trie::isEmpty() const
 {
 	return mRootNode->mChildren.count() == 0;
 }
 
-bool Trie::isLeaf(Node *node)
+bool Trie::isLeaf(Node *node) const
 {
 	return node->mChildren.count() == 0;
 }

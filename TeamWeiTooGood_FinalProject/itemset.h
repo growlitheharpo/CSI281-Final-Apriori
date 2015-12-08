@@ -6,24 +6,24 @@
 struct Itemset
 {
 	DynamicArray<int> thisSet;
-	int support;
+	bool hasMinSupport;
 
 	Itemset()
 	{
 		this->thisSet.clear();
-		this->support = 0;
+		this->hasMinSupport = false;
 	}
 
 	Itemset(DynamicArray<int> &set)
 	{
 		this->thisSet = set;
-		this->support = 0;
+		this->hasMinSupport = false;
 	}
 
-	Itemset(DynamicArray<int> &set, int support)
+	Itemset(DynamicArray<int> &set, bool support)
 	{
 		this->thisSet = set;
-		this->support = support;
+		this->hasMinSupport = support;
 	}
 };
 

@@ -4,39 +4,43 @@
 template <typename T>
 class DynamicArray
 {
-	private:
-		const int GROW_SHRINK_SIZE = 5;
+private:
+	const int GROW_SHRINK_SIZE = 5;
 
-		T *mData;
-		int mArraySize, numIndexesFilled;
-		
-		void copyArray(const T* array1, T* array2, int size1, int size2);
-		void contractArray();
-		void expandArray();
+	T *mData;
+	int mArraySize, numIndexesFilled;
 
-	public:
-		DynamicArray();
-		DynamicArray(int size);
-		~DynamicArray();
-		
-		int count() const;
+	void copyArray(const T* array1, T* array2, int size1, int size2);
+	void contractArray();
+	void expandArray();
 
-		void clear();
-		void insert(const T& item);
-		bool remove(const T& item);
-		bool removeAt(int index);
+public:
+	DynamicArray();
+	DynamicArray(int size);
+	~DynamicArray();
 
-		DynamicArray<T>& operator= (DynamicArray<T>& otherArray);
-		DynamicArray<T>& operator= (const DynamicArray<T>& otherArray);
-		bool operator== (DynamicArray<T>& otherArray);
-		T& operator[] (int index);
+	int count() const;
+	void display() const;
+
+	void clear();
+	void insert(const T& item);
+	bool remove(const T& item);
+	bool removeAt(int index);
+
+	DynamicArray<T>& operator= (const DynamicArray<T>& otherArray);
+
+	bool operator== (DynamicArray<T>& otherArray);
+	bool operator== (DynamicArray<T>& otherArray) const;
+
+	T& operator[] (int index);
+	T operator[] (int index) const;
 };
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::copyArray(const T* array1, T* array2, int size1, int size2)
@@ -90,9 +94,9 @@ void DynamicArray<T>::expandArray()
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::DynamicArray()
@@ -105,9 +109,9 @@ DynamicArray<T>::DynamicArray()
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::DynamicArray(int size)
@@ -120,9 +124,9 @@ DynamicArray<T>::DynamicArray(int size)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::~DynamicArray()
@@ -149,6 +153,21 @@ int DynamicArray<T>::count() const
 *	 Post:
 *********************************************************************************************/
 template <typename T>
+void DynamicArray<T>::display() const
+{
+	for (int i = 0; i < numIndexesFilled; i++)
+		cout << mData[i] << " ";
+
+	cout << endl;
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
 void DynamicArray<T>::clear()
 {
 	delete[] mData;
@@ -161,9 +180,9 @@ void DynamicArray<T>::clear()
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::insert(const T& item)
@@ -177,9 +196,9 @@ void DynamicArray<T>::insert(const T& item)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::remove(const T& item)
@@ -202,9 +221,9 @@ bool DynamicArray<T>::remove(const T& item)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::removeAt(int index)
@@ -230,26 +249,6 @@ bool DynamicArray<T>::removeAt(int index)
 *	 Post:
 *********************************************************************************************/
 template <typename T>
-DynamicArray<T>& DynamicArray<T>::operator= (DynamicArray<T>& otherArray)
-{
-	this->clear();
-
-	while (this->mArraySize < otherArray.mArraySize)
-		this->expandArray();
-
-  for (this->numIndexesFilled = 0; this->numIndexesFilled < otherArray.numIndexesFilled; numIndexesFilled++)
-    this->mData[numIndexesFilled] = otherArray.mData[numIndexesFilled];
-
-  return *this;
-}
-
-
-/*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
-*********************************************************************************************/
-template <typename T>
 DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
 {
 	this->clear();
@@ -257,10 +256,10 @@ DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
 	while (this->mArraySize < otherArray.mArraySize)
 		this->expandArray();
 
-  for (this->numIndexesFilled = 0; this->numIndexesFilled < otherArray.numIndexesFilled; numIndexesFilled++)
-    this->mData[numIndexesFilled] = otherArray.mData[numIndexesFilled];
+	for (this->numIndexesFilled = 0; this->numIndexesFilled < otherArray.numIndexesFilled; numIndexesFilled++)
+		this->mData[numIndexesFilled] = otherArray.mData[numIndexesFilled];
 
-  return *this;
+	return *this;
 }
 
 
@@ -271,6 +270,18 @@ DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::operator== (DynamicArray<T>& otherArray)
+{
+	return this->operator==(const_cast<const DynamicArray<T>&>(otherArray));
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+bool DynamicArray<T>::operator==(DynamicArray<T>& otherArray) const
 {
 	if (this->numIndexesFilled != otherArray.numIndexesFilled)
 		return false;
@@ -286,8 +297,8 @@ bool DynamicArray<T>::operator== (DynamicArray<T>& otherArray)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
+* Purpose:
+*     Pre:
 *	 Post: Return the item at the index. Throws exception (std::out_of_range) if out of range.
 *********************************************************************************************/
 template <typename T>
@@ -298,5 +309,21 @@ T& DynamicArray<T>::operator[](int index)
 
 	return mData[index];
 }
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post: Return the item at the index. Throws exception (std::out_of_range) if out of range.
+*********************************************************************************************/
+template <typename T>
+T DynamicArray<T>::operator[](int index) const
+{
+	if (index < 0 || index >= numIndexesFilled)
+		throw std::out_of_range("DynamicArray<T> access out of range");
+
+	return mData[index];
+}
+
 
 #endif
