@@ -2,7 +2,7 @@
 #define TRIE_H
 
 #include "basefunctions.h"
-#include "dynamicarray.h"
+#include "itemset.h"
 
 class Trie
 {
@@ -10,8 +10,7 @@ class Trie
 		struct Node
 		{
 			DynamicArray<Node*> mChildren;
-			DynamicArray<int>   mPath;
-			bool                mHasMinSupport;
+			Itemset				thisSet;
 			int                 mItemId;
 
 
@@ -22,7 +21,6 @@ class Trie
 			Node()
 			{
 				mItemId = int();
-				mHasMinSupport = false;
 			}
 
 			/*     Pre:  None
@@ -32,7 +30,6 @@ class Trie
 			Node(int itemId)
 			{
 				mItemId = itemId;
-				mHasMinSupport = false;
 			}
 		};
 
