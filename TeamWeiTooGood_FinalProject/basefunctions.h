@@ -9,6 +9,12 @@ struct ArrayInfo2D
 {
 	int sizeI, sizeJ;
 
+	ArrayInfo2D()
+	{
+		this->sizeI = 0;
+		this->sizeJ = 0;
+	}
+
 	ArrayInfo2D(int i, int j)
 	{
 		this->sizeI = i;

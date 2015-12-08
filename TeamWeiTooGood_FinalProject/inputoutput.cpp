@@ -3,9 +3,9 @@
 #include <string>
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Determine if the user would like to continue.
+*     Pre: None
+*	 Post: Returns true if the user enters yes to continue, false otherwise.
 *********************************************************************************************/
 bool getContinue()
 {
@@ -28,9 +28,9 @@ bool getContinue()
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Get the filename from the user
+*     Pre: None
+*	 Post: Returns the name of the transaction file that the user entered (no validation)
 *********************************************************************************************/
 string getFileName()
 {
@@ -44,33 +44,54 @@ string getFileName()
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Get the value of minimum support from the user
+*     Pre: Have the total number of transactions in this itemset.
+*	 Post: Returns the minimum number of items necessary
 *********************************************************************************************/
 int	getMinimumSupport(int totalTransactionCount)
 {
 	cout << "Enter the desired transactions for minimum support.\n"
-		<< "This can either be an exact number of transactions, or a percentage\n"
-		<< "of all transactions if you begin with a % sign.";
+		<< "This can either be an exact number of transactions, \n"
+		<< "or a percentage of all transactions if you begin with\n"
+		<< "a % sign.\n";
 	
 	string input;
 	int support = -1;
+	bool enteredPercent, valid;
 
 	do
 	{
+		enteredPercent = false;
+		valid = true;
+
 		cout << "Enter minimum support: ";
+		getline(cin, input);
+
+		if (input[0] == '%')
+		{
+			enteredPercent = true;
+			input.erase(0, 1);
+		}
+
+		for (size_t i = 0; i < input.size() && valid; i++)
+		{
+			if (input[i] < '0' || input[i] > '9')
+				valid = false;
+		}
+
+		if (valid)
+			support = (enteredPercent) ? (stoi(input) * 0.01 * totalTransactionCount) : stoi(input);
 
 	} while (support < 0 || support > totalTransactionCount);
 
-	return 0;
+	return support;
 }
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Initialize the array of transactions with the proper size, and "false" values
+*     Pre: Handed the transaction pointer, the array info, and the sizes.
+*	 Post: Transactions is initializes and arrayInfo is set to proper values.
 *********************************************************************************************/
 void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
 {
@@ -91,9 +112,9 @@ void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Load the transaction data from the disk.
+*     Pre: The necessary variables are declared, and filename is initialized.
+*	 Post: Returns true if the file could be opened, otherwise false.
 *********************************************************************************************/
 bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filename)
 {
@@ -123,9 +144,9 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Output the results of apriori to the console.
+*     Pre: largeItemsets is properly determined, and time is calculated.
+*	 Post: Information is outputed.
 *********************************************************************************************/
 void outputResults(double time, const Trie& largeItemsets)
 {
@@ -137,13 +158,7 @@ void outputResults(double time, const Trie& largeItemsets)
 		//ex: "Set 1: 4 5
 		//	   Set 2: 4 7"
 		cout << "Set " << i + 1 << ": ";
-
-		for (int j = 0; j < itemsets[i].count(); j++)
-		{
-			cout << j << " ";
-		}
-
-		cout << endl;
+		itemsets[i].display();
 	}
 
 	cout << "All sets found in " << time << " seconds.";
@@ -151,9 +166,9 @@ void outputResults(double time, const Trie& largeItemsets)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Turn a filename into the number of items and transactions.
+*     Pre: Handed the filename, and references to transactions and items.
+*	 Post: Transactions and items are updated to the correct value.
 *********************************************************************************************/
 void parseFileName(int &transactions, int &items, const string &filename)
 {
