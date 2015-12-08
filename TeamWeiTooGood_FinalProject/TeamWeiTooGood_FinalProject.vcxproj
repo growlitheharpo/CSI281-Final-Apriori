@@ -69,6 +69,7 @@
     <ClCompile Include="basefunctions.cpp" />
     <ClCompile Include="inputoutput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="timerSystem.cpp" />
     <ClCompile Include="trie.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +78,7 @@
     <ClInclude Include="dynamicarray.h" />
     <ClInclude Include="inputoutput.h" />
     <ClInclude Include="itemset.h" />
+    <ClInclude Include="timerSystem.h" />
     <ClInclude Include="trie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

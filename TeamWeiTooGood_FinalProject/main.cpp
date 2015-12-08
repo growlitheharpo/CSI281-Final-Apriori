@@ -1,8 +1,42 @@
 //#include "inputoutput.h"
 //#include "apriori.h"
 #include "inputoutput.h"
-#include "dynamicarray.h"
 #include "apriori.h"
+#include "timerSystem.h"
+
+//Name this main once we're ready to start
+int actualMain()
+{
+	TimerSystem timer;
+	Trie largeItemsets;
+	ArrayInfo2D transactionSizeInfo;
+	bool **transactions = NULL;
+
+	string filename = "";
+	bool keepRunning = true;
+	int minimumSupport = 0;
+	double time;
+
+	while (keepRunning)
+	{
+		filename = getFileName();
+
+		if (!loadData(transactions, transactionSizeInfo, filename))
+			continue;
+
+		minimumSupport = getMinimumSupport(transactionSizeInfo.sizeJ);
+
+		timer.startClock();
+		runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
+		time = timer.getTime();
+
+		outputResults(time, largeItemsets);
+
+		keepRunning = getContinue();
+	}
+
+	return 0;
+}
 
 int main()
 {
@@ -15,6 +49,7 @@ int main()
 
 	trie.addNode(path, 5);*/
 
+	/*
 	DynamicArray<int> array1, array2, output;
 
 	array1.insert(2);
@@ -34,8 +69,9 @@ int main()
 
 	array1.display();
 	array2.display();
-	output.display();
+	output.display();*/
 
+	
 	system("pause");
 	return 0;
 }
