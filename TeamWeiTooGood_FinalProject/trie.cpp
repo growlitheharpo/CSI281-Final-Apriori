@@ -231,11 +231,10 @@ Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
     {
       if (node->mChildren[j]->mItemId == path[i])
       {
-        node = node->mChildren[j];
-        break;
+        return node->mChildren[j];
       }
     }
   }
 
-  return node;
+  return NULL;
 }

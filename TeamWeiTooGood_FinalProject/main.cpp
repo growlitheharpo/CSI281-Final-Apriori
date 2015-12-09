@@ -36,6 +36,8 @@ int actualMain()
   return 0;
 }
 
+#include <iostream>
+
 int main()
 {
   //bool keepRunning = getContinue();
@@ -61,7 +63,8 @@ int main()
   trie.getAllPaths(allPaths);
 
   for (int i = 0; i < allPaths.count(); i++)
-    allPaths[i].display();
+  for (int j = 0; j < allPaths[i].count(); j++)
+    cout << allPaths[i][j];
 
   /*
   DynamicArray<int> array1, array2, output;
