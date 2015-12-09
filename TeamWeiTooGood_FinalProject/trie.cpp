@@ -207,10 +207,22 @@ bool Trie::isLeaf(Node *node) const
 *********************************************************************************************/
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
-  //   int lastNode = path[path.count() - 1];
-  //   path.removeAt(path.count() - 1);
-  // 	Node *node
+  DynamicArray<int> deletionPath = path;
+  int lastNode = path[path.count() - 1];
+  deletionPath.removeAt(path.count() - 1);
+  Node *node = traverseTrie(deletionPath),
+       *currentNode;
 
+  for (int i = 0; i < node->mChildren.count(); i++)
+  {
+    currentNode = node->mChildren[i];
+    if (currentNode->mItemId == lastNode && isLeaf(currentNode))
+    {
+      node->mChildren.removeAt(i);
+      delete currentNode;
+      return true;
+    }
+  }
 
   return false;
 }
