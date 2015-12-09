@@ -32,7 +32,8 @@ Trie::~Trie()
 *********************************************************************************************/
 void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 {
-
+  Node *node = traverseTrie(path, mRootNode);
+  node->thisSet.hasMinSupport = hasMinSupport;
 }
 
 
@@ -41,9 +42,10 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *      Pre:	Handed the path
 *	  Post:	Returns true if the node at the given path has min support, false otherwise.
 *********************************************************************************************/
-bool Trie::getHasMinSupport(const DynamicArray<int> & path) const
+bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 {
-
+  Node *node = traverseTrie(path, mRootNode);
+  return node->thisSet.hasMinSupport;
 }
 
 
@@ -79,7 +81,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *      Pre:	Handed the path of the new item
 *	  Post:	Item is added to the tree
 *********************************************************************************************/
-bool Trie::addNode(const DynamicArray<int>& path)
+bool Trie::addNode(const DynamicArray<int> &path)
 {
 
 }
