@@ -50,6 +50,7 @@ class Trie
 		void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
 
 		bool addNode(const DynamicArray<int> &path, int itemId);
+		bool addNode(const DynamicArray<int> &path);
 		bool isEmpty() const;
 		bool removeNode(const DynamicArray<int> &path);
 

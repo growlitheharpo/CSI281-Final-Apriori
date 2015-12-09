@@ -75,6 +75,17 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 
 
 /*********************************************************************************************
+*  Purpose:	Add a node to the tree with the given path
+*      Pre:	Handed the path of the new item
+*	  Post:	Item is added to the tree
+*********************************************************************************************/
+bool Trie::addNode(const DynamicArray<int>& path)
+{
+
+}
+
+
+/*********************************************************************************************
 *  Purpose:	Destroy a subtrie in the trie.
 *      Pre:	Handed the node at which to begin deleting
 *	  Post:	Subtrie is deleted

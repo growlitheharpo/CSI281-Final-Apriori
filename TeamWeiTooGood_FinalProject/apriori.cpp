@@ -97,13 +97,27 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, i
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: 
+*     Pre: 
+*	 Post: 
 *********************************************************************************************/
 void candidateGen(const Trie& largeItemsets, Trie& candidateItemsets, int depth)
 {
+	DynamicArray<DynamicArray<int>> previousLevelItems;
+	DynamicArray<int> thisCandidate;
 
+	largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
+
+	//Loop through all the combinations of itemsets
+	for (int i = 0; i < previousLevelItems.count(); i++)
+	{
+		for (int j = i; j < previousLevelItems.count(); j++)
+		{
+			//Union the two, then add them to candidates
+			unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
+			candidateItemsets.addNode(thisCandidate);
+		}
+	}
 }
 
 
