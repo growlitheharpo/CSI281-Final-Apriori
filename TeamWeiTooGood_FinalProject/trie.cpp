@@ -9,8 +9,8 @@
 *********************************************************************************************/
 Trie::Trie()
 {
-	mRootNode = new Node();
-	mRootNode->mItemId = -1;    //No itemId
+  mRootNode = new Node();
+  mRootNode->mItemId = -1;    //No itemId
 }
 
 
@@ -21,7 +21,7 @@ Trie::Trie()
 *********************************************************************************************/
 Trie::~Trie()
 {
-	destroySubtrie(mRootNode);
+  destroySubtrie(mRootNode);
 }
 
 
@@ -56,23 +56,23 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 {
-	if (path.count() == 0)
-	{
-		mRootNode->mChildren.insert(new Node(itemId));
-		return true;
-	}
-	else
-	{
-		Node *node = traverseTrie(path, mRootNode);
+  if (path.count() == 0)
+  {
+    mRootNode->mChildren.insert(new Node(itemId));
+    return true;
+  }
+  else
+  {
+    Node *node = traverseTrie(path, mRootNode);
 
-		if (node->mItemId == path[path.count() - 1])
-		{
-			node->mChildren.insert(new Node(itemId));
-			return true;
-		}
-		else
-			return false;
-	}
+    if (node->mItemId == path[path.count() - 1])
+    {
+      node->mChildren.insert(new Node(itemId));
+      return true;
+    }
+    else
+      return false;
+  }
 }
 
 
@@ -89,24 +89,23 @@ bool Trie::addNode(const DynamicArray<int> &path)
 
 /*********************************************************************************************
 *  Purpose:	Destroy a subtrie in the trie.
-*      Pre:	Handed the node at which to begin deleting
+*      Pre:	Handed the node before which to begin deleting
 *	  Post:	Subtrie is deleted
 *********************************************************************************************/
 void Trie::destroySubtrie(Node *node)
 {
-	if (isLeaf(node))
-	{
-		return;
-	}
-	else
-	{
-		while (node->mChildren.count() > 0)
-		{
-			destroySubtrie(node->mChildren[0]);
-			//delete node->mChildren[0];
-			//node->mChildren[0]->mItemId = 5;
-		}
-	}
+  if (isLeaf(node))
+  {
+    return;
+  }
+  else
+  {
+    while (node->mChildren.count() > 0)
+    {
+      destroySubtrie(node->mChildren[0]);
+      delete node->mChildren[0];
+    }
+  }
 }
 
 
@@ -117,22 +116,22 @@ void Trie::destroySubtrie(Node *node)
 *********************************************************************************************/
 void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 {
-	SimpleQueue<Node *> nodeQueue;
-	Node *currentNode;
-	nodeQueue.enqueue(mRootNode);
+  SimpleQueue<Node *> nodeQueue;
+  Node *currentNode;
+  nodeQueue.enqueue(mRootNode);
 
-	allPaths.clear();
+  allPaths.clear();
 
-	while (nodeQueue.getCount() > 0)
-	{
-		currentNode = nodeQueue.dequeue();
+  while (nodeQueue.getCount() > 0)
+  {
+    currentNode = nodeQueue.dequeue();
 
-		DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
-		allPaths.insert(thisNodesChildren);
+    DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
+    allPaths.insert(thisNodesChildren);
 
-		for (int i = 0; i < currentNode->mChildren.count(); i++)
-			nodeQueue.enqueue((currentNode->mChildren[i]));
-	}
+    for (int i = 0; i < currentNode->mChildren.count(); i++)
+      nodeQueue.enqueue((currentNode->mChildren[i]));
+  }
 }
 
 
@@ -141,9 +140,20 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 *      Pre:	Handed the DA<DA<int>> to store the paths, and what depth/level to get them from.
 *	  Post:	pathsAtDepth is filled with the paths at the given depth/level.
 *********************************************************************************************/
-void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
+void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth = 0) const
 {
-
+  if (currentDepth == depth)
+  {
+    pathsAtDepth.insert(currentNode->thisSet.thisSet);
+    return;
+  }
+  else
+  {
+    for (int i = 0; i < currentNode->mChildren.count(); i++)
+    {
+      getAllPathsAtDepth(pathsAtDepth, depth, currentNode->mChildren[i], currentDepth + 1);
+    }
+  }
 }
 
 
@@ -154,7 +164,7 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 *********************************************************************************************/
 bool Trie::isEmpty() const
 {
-	return mRootNode->mChildren.count() == 0;
+  return mRootNode->mChildren.count() == 0;
 }
 
 
@@ -165,7 +175,7 @@ bool Trie::isEmpty() const
 *********************************************************************************************/
 bool Trie::isLeaf(Node *node) const
 {
-	return node->mChildren.count() == 0;
+  return node->mChildren.count() == 0;
 }
 
 
@@ -176,33 +186,35 @@ bool Trie::isLeaf(Node *node) const
 *********************************************************************************************/
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
-	//   int lastNode = path[path.count() - 1];
-	//   path.removeAt(path.count() - 1);
-	// 	Node *node
+  //   int lastNode = path[path.count() - 1];
+  //   path.removeAt(path.count() - 1);
+  // 	Node *node
 
 
-	return false;
+  return false;
 }
 
 
 /*********************************************************************************************
-*  Purpose:	david what the fuck is this
-*      Pre:	
-*	  Post:	
+*  Purpose:	Traverse the trie to end of path
+*      Pre:	Handed the path to wanted node
+*	  Post:	Wanted node is returned
 *********************************************************************************************/
-Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path, Node *node) const
+Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
 {
-	for (int i = 0; i < path.count(); i++)
-	{
-		for (int j = 0; j < node->mChildren.count(); j++)
-		{
-			if (node->mChildren[j]->mItemId == path[i])
-			{
-				node = node->mChildren[j];
-				break;
-			}
-		}
-	}
+  Node *node = mRootNode;
 
-	return node;
+  for (int i = 0; i < path.count(); i++)
+  {
+    for (int j = 0; j < node->mChildren.count(); j++)
+    {
+      if (node->mChildren[j]->mItemId == path[i])
+      {
+        node = node->mChildren[j];
+        break;
+      }
+    }
+  }
+
+  return node;
 }
