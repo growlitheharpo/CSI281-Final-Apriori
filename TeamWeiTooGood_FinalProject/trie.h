@@ -43,18 +43,17 @@ class Trie
 		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node) const;
 		Node* traverseTrie(const DynamicArray<int> &path) const;
+    void getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
 
 	public:
 		Trie();
 		~Trie();
 
-    const Node* getRootNode() { return mRootNode; }
-		
     void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
 		bool getHasMinSupport(const DynamicArray<int> &path) const;
 
 		void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
-		void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
+    void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
 
 		bool addNode(const DynamicArray<int> &path, int itemId);
 		bool addNode(const DynamicArray<int> &path);

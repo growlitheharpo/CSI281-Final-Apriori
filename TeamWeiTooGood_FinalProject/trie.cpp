@@ -150,13 +150,17 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
   }
 }
 
+void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
+{
+  getAllPathsAtDepthStart(pathsAtDepth, depth, mRootNode, 0);
+}
 
 /*********************************************************************************************
 *  Purpose:	Get all paths from the nodes at a certain depth/level of the tree.
 *      Pre:	Handed the DA<DA<int>> to store the paths, and what depth/level to get them from.
 *	  Post:	pathsAtDepth is filled with the paths at the given depth/level.
 *********************************************************************************************/
-void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
+void Trie::getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
 {
   if (currentDepth == depth)
   {
@@ -167,10 +171,11 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
   {
     for (int i = 0; i < currentNode->mChildren.count(); i++)
     {
-      getAllPathsAtDepth(pathsAtDepth, depth, currentNode->mChildren[i], currentDepth + 1);
+      getAllPathsAtDepthStart(pathsAtDepth, depth, currentNode->mChildren[i], currentDepth + 1);
     }
   }
 }
+
 
 
 /*********************************************************************************************
