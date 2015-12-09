@@ -6,7 +6,7 @@
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void addCandidatesToLTree(const DynamicArray<DynamicArray<int>>& candidates, Trie& largeItemsets)
+void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Trie &largeItemsets)
 {
 	for (int i = 0; i < candidates.count(); i++)
 		largeItemsets.addNode(candidates[i], candidates[i][candidates[i].count() - 1]);;
@@ -21,7 +21,7 @@ void addCandidatesToLTree(const DynamicArray<DynamicArray<int>>& candidates, Tri
 void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& candidates, int depth)
 {
 	DynamicArray<DynamicArray<int>> itemsets;
-	candidates.getAllPathsAtDepth(itemsets, depth);
+	candidates.getAllPathsAtDepth(itemsets, depth, candidates.getRootNode(), 0);
 
 	int currentItemsetSupport;
 	bool foundInTransaction;
@@ -66,7 +66,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& largeItemsets)
+void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
 {
 	int supportForThisItem = 0;
 	DynamicArray<int> paths;
@@ -101,12 +101,12 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, i
 *     Pre: 
 *	 Post: 
 *********************************************************************************************/
-void candidateGen(const Trie& largeItemsets, Trie& candidateItemsets, int depth)
+void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 {
 	DynamicArray<DynamicArray<int>> previousLevelItems;
 	DynamicArray<int> thisCandidate;
 
-	largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
+  largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1, largeItemsets.getRootNode(), 0);    //Fix this James
 
 	//Loop through all the combinations of itemsets
 	for (int i = 0; i < previousLevelItems.count(); i++)
@@ -126,7 +126,7 @@ void candidateGen(const Trie& largeItemsets, Trie& candidateItemsets, int depth)
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& largeItemsets)
+void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
 {
 	DynamicArray<DynamicArray<int>> resultsOfThisStep;
 	Trie candidates;
@@ -139,7 +139,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSu
 		calcCandidateSupport(transactions, arrInfo, minSupport, candidates, k);
 
 		//Check if we have anything to add this step
-		candidates.getAllPathsAtDepth(resultsOfThisStep, k);
+    candidates.getAllPathsAtDepth(resultsOfThisStep, k, candidates.getRootNode(), 0);
 		if (resultsOfThisStep.count() == 0)
 			break;
 
@@ -154,7 +154,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D& arrInfo, int minSu
 *	 Post:
 *  Source: http://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
 *********************************************************************************************/
-void unionTwoArrays(const DynamicArray<int>& array1, const DynamicArray<int> &array2, DynamicArray<int>& output)
+void unionTwoArrays(const DynamicArray<int> &array1, const DynamicArray<int> &array2, DynamicArray<int>& output)
 {
 	output.clear();
 
