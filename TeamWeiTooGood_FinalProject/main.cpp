@@ -1,5 +1,3 @@
-//#include "inputoutput.h"
-//#include "apriori.h"
 #include "inputoutput.h"
 #include "apriori.h"
 #include "timerSystem.h"

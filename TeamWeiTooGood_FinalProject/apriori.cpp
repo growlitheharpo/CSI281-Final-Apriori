@@ -69,6 +69,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& largeItemsets)
 {
 	int supportForThisItem = 0;
+	DynamicArray<int> paths;
 
 	//For each potential item
 	for (int curItem = 0; curItem < arrInfo.sizeJ; curItem++)
@@ -84,7 +85,9 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, i
 				//If we hit minimum support, add it and break (to the next item)
 				if (supportForThisItem >= minSupport)
 				{
-					largeItemsets.addNode(, curItem);
+					paths.clear();
+					paths.insert(curItem);
+					largeItemsets.addNode(paths, curItem);
 					break;
 				}
 			}
