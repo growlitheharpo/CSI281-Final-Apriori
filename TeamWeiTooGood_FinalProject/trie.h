@@ -31,13 +31,18 @@ class Trie
 			{
 				mItemId = itemId;
 			}
+
+      ~Node()
+      {
+        cout << "Deleting node with item: " << mItemId << endl;     //For debug
+      }
 		};
 
 		Node *mRootNode;
 
 		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node) const;
-		Node* traverseTrie(const DynamicArray<int> &path, Node *someNode) const;
+		Node* traverseTrie(const DynamicArray<int> &path) const;
 
 	public:
 		Trie();
@@ -47,7 +52,7 @@ class Trie
 		bool getHasMinSupport(const DynamicArray<int> &path) const;
 
 		void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
-		void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
+		void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth = 0) const;
 
 		bool addNode(const DynamicArray<int> &path, int itemId);
 		bool addNode(const DynamicArray<int> &path);
