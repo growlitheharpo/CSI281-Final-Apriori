@@ -32,7 +32,7 @@ Trie::~Trie()
 *********************************************************************************************/
 void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 {
-  Node *node = traverseTrie(path, mRootNode);
+  Node *node = traverseTrie(path);
   node->thisSet.hasMinSupport = hasMinSupport;
 }
 
@@ -44,7 +44,7 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *********************************************************************************************/
 bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 {
-  Node *node = traverseTrie(path, mRootNode);
+  Node *node = traverseTrie(path);
   return node->thisSet.hasMinSupport;
 }
 
@@ -63,7 +63,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
   }
   else
   {
-    Node *node = traverseTrie(path, mRootNode);
+    Node *node = traverseTrie(path);
 
     if (node->mItemId == path[path.count() - 1])
     {
@@ -83,7 +83,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path)
 {
-
+  return false;
 }
 
 
@@ -140,7 +140,7 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 *      Pre:	Handed the DA<DA<int>> to store the paths, and what depth/level to get them from.
 *	  Post:	pathsAtDepth is filled with the paths at the given depth/level.
 *********************************************************************************************/
-void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth = 0) const
+void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
 {
   if (currentDepth == depth)
   {
