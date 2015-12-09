@@ -83,7 +83,23 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path)
 {
-  return false;
+  if (path.count() == 0)
+  {
+    mRootNode->mChildren.insert(new Node());
+    return true;
+  }
+  else
+  {
+    Node *node = traverseTrie(path);
+
+    if (node->mItemId == path[path.count() - 1])
+    {
+      node->mChildren.insert(new Node());
+      return true;
+    }
+    else
+      return false;
+  }
 }
 
 
