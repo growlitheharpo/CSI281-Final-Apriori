@@ -93,7 +93,7 @@ int	getMinimumSupport(int totalTransactionCount)
 *     Pre: Handed the transaction pointer, the array info, and the sizes.
 *	 Post: Transactions is initializes and arrayInfo is set to proper values.
 *********************************************************************************************/
-void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
+void initializeTransactionArray(bool** &transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
 {
 	transactions = new bool*[sizeI];
 	for (int i = 0; i < sizeI; i++)
@@ -116,7 +116,7 @@ void initializeTransactionArray(bool **transactions, ArrayInfo2D &arrayInfo, int
 *     Pre: The necessary variables are declared, and filename is initialized.
 *	 Post: Returns true if the file could be opened, otherwise false.
 *********************************************************************************************/
-bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filename)
+bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filename)
 {
 	ifstream fin;
 
@@ -133,10 +133,16 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 
 	//Actually load the data
 	fin >> currentTransaction >> currentItem;
+
+	--currentTransaction;
+	--currentItem;
 	while (!fin.eof())
 	{
 		transactions[currentTransaction][currentItem] = true;
 		fin >> currentTransaction >> currentItem;
+
+		--currentTransaction;
+		--currentItem;
 	}
 
 	return true;
@@ -190,9 +196,9 @@ void parseFileName(int &transactions, int &items, const string &filename)
 		else if (readD)
 			transactionsStr += filename[i];
 
-		if (toupper(filename[i]) == toupper('n'))
+		if ((filename[i]) == toupper('n'))
 			readN = true;
-		else if (toupper(filename[i]) == toupper('d'))
+		else if ((filename[i]) == toupper('d'))
 			readD = true;
 	}
 
