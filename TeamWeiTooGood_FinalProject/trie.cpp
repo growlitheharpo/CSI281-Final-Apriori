@@ -65,7 +65,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
   {
     Node *node = traverseTrie(path);
 
-    if (node->mItemId == path[path.count() - 1])
+    if (node->mItemId == path[path.count() - 2])
     {
       node->mChildren.insert(new Node(itemId));
       return true;
@@ -92,7 +92,7 @@ bool Trie::addNode(const DynamicArray<int> &path)
   {
     Node *node = traverseTrie(path);
 
-    if (node->mItemId == path[path.count() - 1])
+    if (node->mItemId == path[path.count() - 2])
     {
       node->mChildren.insert(new Node());
       return true;
@@ -207,16 +207,13 @@ bool Trie::isLeaf(Node *node) const
 *********************************************************************************************/
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
-  DynamicArray<int> deletionPath = path;
-  int lastNode = path[path.count() - 1];
-  deletionPath.removeAt(path.count() - 1);
-  Node *node = traverseTrie(deletionPath),
+  Node *node = traverseTrie(path),
        *currentNode;
 
   for (int i = 0; i < node->mChildren.count(); i++)
   {
     currentNode = node->mChildren[i];
-    if (currentNode->mItemId == lastNode && isLeaf(currentNode))
+    if (currentNode->mItemId == path[path.count() - 1] && isLeaf(currentNode))
     {
       node->mChildren.removeAt(i);
       delete currentNode;
@@ -237,7 +234,7 @@ Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
 {
   Node *node = mRootNode;
 
-  for (int i = 0; i < path.count(); i++)
+  for (int i = 0; i < path.count() - 1; i++)
   {
     for (int j = 0; j < node->mChildren.count(); j++)
     {
