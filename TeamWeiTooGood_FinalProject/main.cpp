@@ -3,7 +3,7 @@
 #include "timerSystem.h"
 
 //Name this main once we're ready to start
-int actualMain()
+int main()
 {
 	TimerSystem timer;
 	Trie largeItemsets;
@@ -17,7 +17,8 @@ int actualMain()
 
 	while (keepRunning)
 	{
-		filename = getFileName();
+		//filename = getFileName();
+		filename = "datasets\\T5.N0.5K.D1K.txt";
 
 		if (!loadData(transactions, transactionSizeInfo, filename))
 			continue;
@@ -39,7 +40,7 @@ int actualMain()
 
 #include <iostream>
 
-int main()
+int testmain()
 {
 	Trie largeItemsets;
 	ArrayInfo2D transactionSizeInfo(4, 6);
@@ -56,7 +57,7 @@ int main()
 	{
 		transactions[i] = new bool[6];
 		for (int j = 0; j < 6; j++)
-			transactions[i][j] = hardcodedts;
+			transactions[i][j] = hardcodedts[i][j];
 	}
 
 	runApriori(const_cast<const bool **>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);

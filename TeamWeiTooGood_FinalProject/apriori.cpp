@@ -38,7 +38,9 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 
 			//For each item in the itemset, check if it's in this transaction (at least until we find one that isn't there)
 			for (int curItem = 0; curItem < itemsets[curItemset].count() && foundInTransaction; curItem++)
+			{
 				foundInTransaction = transactions[curTrans][itemsets[curItemset][curItem]];
+			}
 
 			//If we found everything, increment support
 			if (foundInTransaction)
@@ -81,7 +83,7 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 			if (transactions[curTransaction][curItem])
 			{
 				supportForThisItem++;
-				
+
 				//If we hit minimum support, add it and break (to the next item)
 				if (supportForThisItem >= minSupport)
 				{
@@ -97,16 +99,16 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose:
+*     Pre:
+*	 Post:
 *********************************************************************************************/
 void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 {
 	DynamicArray<DynamicArray<int>> previousLevelItems;
 	DynamicArray<int> thisCandidate;
 
-  largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
+	largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
 
 	//Loop through all the combinations of itemsets
 	for (int i = 0; i < previousLevelItems.count(); i++)
@@ -115,6 +117,10 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 		{
 			//Union the two, then add them to candidates
 			unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
+
+			if (candidateItemsets.getPathExists(thisCandidate))
+				continue;
+
 			candidateItemsets.addNode(thisCandidate);
 		}
 	}
@@ -139,7 +145,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 		calcCandidateSupport(transactions, arrInfo, minSupport, candidates, k);
 
 		//Check if we have anything to add this step
-    candidates.getAllPathsAtDepth(resultsOfThisStep, k);
+		candidates.getAllPathsAtDepth(resultsOfThisStep, k);
 		if (resultsOfThisStep.count() == 0)
 			break;
 
