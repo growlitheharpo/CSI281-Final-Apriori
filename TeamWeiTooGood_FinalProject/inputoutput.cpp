@@ -80,7 +80,7 @@ int	getMinimumSupport(int totalTransactionCount)
 		}
 
 		if (valid)
-			support = (enteredPercent) ? (stoi(input) * 0.01 * totalTransactionCount) : stoi(input);
+			support = (enteredPercent) ? (stoi(input) * static_cast<int>(0.01 * totalTransactionCount)) : stoi(input);
 
 	} while (support < 0 || support > totalTransactionCount);
 
