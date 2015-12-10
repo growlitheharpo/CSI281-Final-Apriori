@@ -44,14 +44,22 @@ int main()
 	Trie largeItemsets;
 	ArrayInfo2D transactionSizeInfo(4, 6);
 
-	const bool transactions[4][6] = { { false, true, true, true, true, false },
+	const bool hardcodedts[4][6] = { { false, true, true, true, true, false },
 								{ false, true, false, false, false, false },
 								{ false, true, false, true, true, true },
 								{ true, true, false, false, false, false } };
 
 	int minimumSupport = 2;
 
-	runApriori(transactions, transactionSizeInfo, minimumSupport, largeItemsets);
+	bool **transactions = new bool*[4];
+	for (int i = 0; i < 4; i++)
+	{
+		transactions[i] = new bool[6];
+		for (int j = 0; j < 6; j++)
+			transactions[i][j] = hardcodedts;
+	}
+
+	runApriori(const_cast<const bool **>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
 
 	outputResults(0.0, largeItemsets);
 
