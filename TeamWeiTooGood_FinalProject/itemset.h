@@ -14,13 +14,13 @@ struct Itemset
 		this->hasMinSupport = false;
 	}
 
-	Itemset(DynamicArray<int> &set)
+	Itemset(const DynamicArray<int> &set)
 	{
 		this->thisSet = set;
 		this->hasMinSupport = false;
 	}
 
-	Itemset(DynamicArray<int> &set, bool support)
+	Itemset(const DynamicArray<int> &set, bool support)
 	{
 		this->thisSet = set;
 		this->hasMinSupport = support;

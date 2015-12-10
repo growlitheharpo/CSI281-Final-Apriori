@@ -9,8 +9,7 @@
 *********************************************************************************************/
 Trie::Trie()
 {
-  mRootNode = new Node();
-  mRootNode->mItemId = -1;    //No itemId
+	myContents.clear();
 }
 
 
@@ -21,7 +20,7 @@ Trie::Trie()
 *********************************************************************************************/
 Trie::~Trie()
 {
-  destroySubtrie(mRootNode);
+	myContents.clear();
 }
 
 
@@ -32,8 +31,15 @@ Trie::~Trie()
 *********************************************************************************************/
 void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 {
-  Node *node = traverseTrie(path);
-  node->thisSet.hasMinSupport = hasMinSupport;
+	int level = path.count();
+	for (int i = 0; i < myContents[level].count(); i++)
+	{
+		if (path == myContents[level][i].thisSet)
+		{
+			myContents[level][i].hasMinSupport = true;
+			break;
+		}
+	}
 }
 
 
@@ -44,8 +50,16 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *********************************************************************************************/
 bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 {
-  Node *node = traverseTrie(path);
-  return node->thisSet.hasMinSupport;
+	int level = path.count();
+	if (level >= myContents.count()) return false;
+
+	for (int i = 0; i < myContents[level].count(); i++)
+	{
+		if (path == (myContents[level][i].thisSet))
+			return myContents[level][i].hasMinSupport;
+	}
+
+	return false;
 }
 
 
@@ -56,23 +70,7 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 {
-  if (path.count() == 0)
-  {
-    mRootNode->mChildren.insert(new Node(itemId));
-    return true;
-  }
-  else
-  {
-    Node *node = traverseTrie(path);
-
-    if (node->mItemId == path[path.count() - 1])
-    {
-      node->mChildren.insert(new Node(itemId));
-      return true;
-    }
-    else
-      return false;
-  }
+	return addNode(path);
 }
 
 
@@ -83,45 +81,13 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path)
 {
-  if (path.count() == 0)
-  {
-    mRootNode->mChildren.insert(new Node());
-    return true;
-  }
-  else
-  {
-    Node *node = traverseTrie(path);
+	int level = path.count();
+	while (level > path.count())
+		myContents.insert(DynamicArray<Itemset>());
 
-    if (node->mItemId == path[path.count() - 1])
-    {
-      node->mChildren.insert(new Node());
-      return true;
-    }
-    else
-      return false;
-  }
-}
+	myContents[level].insert(Itemset(path));
 
-
-/*********************************************************************************************
-*  Purpose:	Destroy a subtrie in the trie.
-*      Pre:	Handed the node before which to begin deleting
-*	  Post:	Subtrie is deleted
-*********************************************************************************************/
-void Trie::destroySubtrie(Node *node)
-{
-  if (isLeaf(node))
-  {
-    return;
-  }
-  else
-  {
-    while (node->mChildren.count() > 0)
-    {
-      destroySubtrie(node->mChildren[0]);
-      delete node->mChildren[0];
-    }
-  }
+	return true;
 }
 
 
@@ -132,48 +98,25 @@ void Trie::destroySubtrie(Node *node)
 *********************************************************************************************/
 void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 {
-  SimpleQueue<Node *> nodeQueue;
-  Node *currentNode;
-  nodeQueue.enqueue(mRootNode);
+	allPaths.clear();
 
-  allPaths.clear();
-
-  while (nodeQueue.getCount() > 0)
-  {
-    currentNode = nodeQueue.dequeue();
-
-    DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
-    allPaths.insert(thisNodesChildren);
-
-    for (int i = 0; i < currentNode->mChildren.count(); i++)
-      nodeQueue.enqueue((currentNode->mChildren[i]));
-  }
+	for (int i = 0; i < myContents.count(); i++)
+	{
+		for (int j = 0; j < myContents[i].count(); j++)
+		{
+			allPaths.insert(myContents[i][j].thisSet);
+		}
+	}
 }
 
 void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
 {
-  getAllPathsAtDepthStart(pathsAtDepth, depth, mRootNode, 0);
-}
+	pathsAtDepth.clear();
 
-/*********************************************************************************************
-*  Purpose:	Get all paths from the nodes at a certain depth/level of the tree.
-*      Pre:	Handed the DA<DA<int>> to store the paths, and what depth/level to get them from.
-*	  Post:	pathsAtDepth is filled with the paths at the given depth/level.
-*********************************************************************************************/
-void Trie::getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
-{
-  if (currentDepth == depth)
-  {
-    pathsAtDepth.insert(currentNode->thisSet.thisSet);
-    return;
-  }
-  else
-  {
-    for (int i = 0; i < currentNode->mChildren.count(); i++)
-    {
-      getAllPathsAtDepthStart(pathsAtDepth, depth, currentNode->mChildren[i], currentDepth + 1);
-    }
-  }
+	if (depth >= myContents.count()) return;
+
+	for (int j = 0; j < myContents[depth].count(); j++)
+		pathsAtDepth.insert(myContents[depth][j].thisSet);
 }
 
 
@@ -185,18 +128,7 @@ void Trie::getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth
 *********************************************************************************************/
 bool Trie::isEmpty() const
 {
-  return mRootNode->mChildren.count() == 0;
-}
-
-
-/*********************************************************************************************
-*  Purpose:	Determine if a given node is a leaf.
-*      Pre:	Handed a node.
-*	  Post:	True if node is a leaf, false otherwise.
-*********************************************************************************************/
-bool Trie::isLeaf(Node *node) const
-{
-  return node->mChildren.count() == 0;
+	return (myContents.count() > 0);
 }
 
 
@@ -207,46 +139,18 @@ bool Trie::isLeaf(Node *node) const
 *********************************************************************************************/
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
-  DynamicArray<int> deletionPath = path;
-  int lastNode = path[path.count() - 1];
-  deletionPath.removeAt(path.count() - 1);
-  Node *node = traverseTrie(deletionPath),
-       *currentNode;
+	int level = path.count();
 
-  for (int i = 0; i < node->mChildren.count(); i++)
-  {
-    currentNode = node->mChildren[i];
-    if (currentNode->mItemId == lastNode && isLeaf(currentNode))
-    {
-      node->mChildren.removeAt(i);
-      delete currentNode;
-      return true;
-    }
-  }
+	if (level >= myContents.count()) return false;
 
-  return false;
-}
+	for (int i = 0; i < myContents[level].count(); i++)
+	{
+		if (path == myContents[level][i].thisSet)
+		{
+			myContents[level].removeAt(i);
+			return true;
+		}
+	}
 
-
-/*********************************************************************************************
-*  Purpose:	Traverse the trie to end of path
-*      Pre:	Handed the path to wanted node
-*	  Post:	Wanted node is returned
-*********************************************************************************************/
-Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
-{
-  Node *node = mRootNode;
-
-  for (int i = 0; i < path.count(); i++)
-  {
-    for (int j = 0; j < node->mChildren.count(); j++)
-    {
-      if (node->mChildren[j]->mItemId == path[i])
-      {
-        return node->mChildren[j];
-      }
-    }
-  }
-
-  return NULL;
+	return false;
 }
