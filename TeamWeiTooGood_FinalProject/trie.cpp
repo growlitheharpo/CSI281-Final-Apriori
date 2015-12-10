@@ -82,7 +82,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 bool Trie::addNode(const DynamicArray<int> &path)
 {
 	int level = path.count();
-	while (level > path.count())
+	while (level >= myContents.count())
 		myContents.insert(DynamicArray<Itemset>());
 
 	myContents[level].insert(Itemset(path));
@@ -109,6 +109,12 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 	}
 }
 
+
+/*********************************************************************************************
+*  Purpose:	
+*      Pre:	
+*	  Post:	
+*********************************************************************************************/
 void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
 {
 	pathsAtDepth.clear();
@@ -116,7 +122,11 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 	if (depth >= myContents.count()) return;
 
 	for (int j = 0; j < myContents[depth].count(); j++)
+	{
+		//DynamicArray<int> *theSet = &(myContents[depth][j].thisSet);
+
 		pathsAtDepth.insert(myContents[depth][j].thisSet);
+	}
 }
 
 

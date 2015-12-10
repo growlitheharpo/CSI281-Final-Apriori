@@ -17,6 +17,8 @@ private:
 public:
 	DynamicArray();
 	DynamicArray(int size);
+	DynamicArray(DynamicArray& other);
+	DynamicArray(const DynamicArray& other);
 	~DynamicArray();
 
 	int count() const;
@@ -120,6 +122,38 @@ DynamicArray<T>::DynamicArray(int size)
 
 	mArraySize = size;
 	numIndexesFilled = 0;
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+DynamicArray<T>::DynamicArray(DynamicArray& other)
+{
+	mData = new T[GROW_SHRINK_SIZE];
+	mArraySize = GROW_SHRINK_SIZE;
+	numIndexesFilled = 0;
+
+	*this = other;
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+template <typename T>
+DynamicArray<T>::DynamicArray(const DynamicArray& other)
+{
+	mData = new T[GROW_SHRINK_SIZE];
+	mArraySize = GROW_SHRINK_SIZE;
+	numIndexesFilled = 0;
+
+	*this = other;
 }
 
 

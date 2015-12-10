@@ -49,22 +49,55 @@ int main()
 	DynamicArray<int> path;
 	DynamicArray<DynamicArray<int>> allPaths;
 
+	path.insert(5);
+	trie.addNode(path);
+
+	path.clear();
+	path.insert(7);
+	trie.addNode(path);
+
+	path.clear();
+	path.insert(10);
+	trie.addNode(path);
+	
+	/*
 	trie.addNode(path, 5);
 	trie.addNode(path, 7);
-	trie.addNode(path, 10);
+	trie.addNode(path, 10);*/
 
 	path.insert(5);
-	trie.addNode(path, 4);
-	trie.addNode(path, 3);
+	path.insert(4);
+	trie.addNode(path);
+
+	path.clear();
+	path.insert(5);
+	path.insert(3);
+	trie.addNode(path);
+
+
+	path.clear();
+	path.insert(5);
+	path.insert(2);
 	trie.addNode(path, 2);
+
+
+	path.clear();
+	path.insert(5);
+	path.insert(1);
 	trie.addNode(path, 1);
 
-
 	trie.getAllPaths(allPaths);
+	//trie.getAllPathsAtDepth(allPaths, 1);
 
 	for (int i = 0; i < allPaths.count(); i++)
+	{
+		cout << "Itemset: " << i << ": ";
 		for (int j = 0; j < allPaths[i].count(); j++)
-			cout << allPaths[i][j];
+		{
+			cout << allPaths[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 	/*
 	DynamicArray<int> array1, array2, output;
