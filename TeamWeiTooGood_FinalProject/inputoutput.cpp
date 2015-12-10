@@ -153,12 +153,17 @@ void outputResults(double time, const Trie& largeItemsets)
   vector<vector<int>> itemsets;
 	const_cast<Trie&>(largeItemsets).getAllPaths(itemsets);
 
-	for (int i = 0; i < itemsets.count(); i++)
+	for (int i = 0; i < itemsets.size(); i++)
 	{
 		//ex: "Set 1: 4 5
 		//	   Set 2: 4 7"
 		cout << "Set " << i + 1 << ": ";
-		itemsets[i].display();
+		//itemsets[i].display();
+
+    for (int j = 0; j < itemsets[i].size(); j++)
+    {
+      cout << itemsets[i][j] << " ";
+    }
 	}
 
 	cout << "All sets found in " << time << " seconds.";

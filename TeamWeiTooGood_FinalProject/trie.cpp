@@ -46,10 +46,17 @@ bool Trie::getHasMinSupport(const vector<int> &path) const
 bool Trie::addNode(const vector<int> &path)
 {
   Node *node = traverseTrie(path);
+  Node *newNode = new Node(path[path.size() - 1]);
 
-  node->mChildren.push_back(new Node(path[path.size() - 1]));
-  return true;
+  newNode->thisSet.thisSet = path;
 
+  if (newNode != NULL)
+  {
+    node->mChildren.push_back(newNode);
+    return true;
+  }
+  else
+    return false;
 }
 
 
@@ -98,11 +105,19 @@ void Trie::getAllPaths(vector<vector<int>> &allPaths) const
     for (int i = 0; i < currentNode->mChildren.size(); i++)
       nodeQueue.enqueue((currentNode->mChildren[i]));
   }
+
+  //Remove rootNode
+  allPaths.erase(allPaths.begin());
 }
 
 void Trie::getAllPathsAtDepth(vector<vector<int>> &pathsAtDepth, int depth) const
 {
-  getAllPathsAtDepthStart(pathsAtDepth, depth, mRootNode, 0);
+//   int currentDepth = 0;
+// 
+//   vector<vector<int>> allPaths;
+//   getAllPaths(allPaths);
+//   
+//   pathsAtDepth
 }
 
 /*********************************************************************************************
@@ -112,14 +127,14 @@ void Trie::getAllPathsAtDepth(vector<vector<int>> &pathsAtDepth, int depth) cons
 *********************************************************************************************/
 void Trie::getAllPathsAtDepthStart(vector<vector<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
 {
-  if (currentDepth == depth)
+  if (currentDepth < depth)
   {
-    pathsAtDepth.insert(currentNode->thisSet.thisSet);
+    pathsAtDepth.push_back(currentNode->thisSet.thisSet);
     return;
   }
   else
   {
-    for (int i = 0; i < currentNode->mChildren.count(); i++)
+    for (int i = 0; i < currentNode->mChildren.size(); i++)
     {
       getAllPathsAtDepthStart(pathsAtDepth, depth, currentNode->mChildren[i], currentDepth + 1);
     }
@@ -135,7 +150,7 @@ void Trie::getAllPathsAtDepthStart(vector<vector<int>> &pathsAtDepth, int depth,
 *********************************************************************************************/
 bool Trie::isEmpty() const
 {
-  return mRootNode->mChildren.count() == 0;
+  return mRootNode->mChildren.size() == 0;
 }
 
 
@@ -146,7 +161,7 @@ bool Trie::isEmpty() const
 *********************************************************************************************/
 bool Trie::isLeaf(Node *node) const
 {
-  return node->mChildren.count() == 0;
+  return node->mChildren.size() == 0;
 }
 
 
@@ -160,12 +175,12 @@ bool Trie::removeNode(const vector<int> &path)
   Node *node = traverseTrie(path),
     *currentNode;
 
-  for (int i = 0; i < node->mChildren.count(); i++)
+  for (int i = 0; i < node->mChildren.size(); i++)
   {
     currentNode = node->mChildren[i];
-    if (currentNode->mItemId == path[path.count() - 1] && isLeaf(currentNode))
+    if (currentNode->mItemId == path[path.size() - 1] && isLeaf(currentNode))
     {
-      node->mChildren.removeAt(i);
+      node->mChildren.erase(node->mChildren.begin() + i);
       delete currentNode;
       return true;
     }
@@ -184,9 +199,9 @@ Trie::Node* Trie::traverseTrie(const vector<int> &path) const
 {
   Node *node = mRootNode;
 
-  for (int i = 0; i < path.count() - 1; i++)
+  for (int i = 0; i < path.size() - 1; i++)
   {
-    for (int j = 0; j < node->mChildren.count(); j++)
+    for (int j = 0; j < node->mChildren.size(); j++)
     {
       if (node->mChildren[j]->mItemId == path[i])
       {

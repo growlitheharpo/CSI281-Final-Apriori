@@ -8,7 +8,7 @@
 *********************************************************************************************/
 void addCandidatesToLTree(const vector<vector<int>> &candidates, Trie &largeItemsets)
 {
-	for (int i = 0; i < candidates.count(); i++)
+	for (int i = 0; i < candidates.size(); i++)
 		largeItemsets.addNode(candidates[i]);;
 }
 
@@ -27,7 +27,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 	bool foundInTransaction;
 
 	//For each potential candidate itemset
-	for (int curItemset = 0; curItemset < itemsets.count(); curItemset++)
+  for (int curItemset = 0; curItemset < itemsets.size(); curItemset++)
 	{
 		currentItemsetSupport = 0; //set this candidate's support to 0
 
@@ -37,7 +37,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 			foundInTransaction = true;
 
 			//For each item in the itemset, check if it's in this transaction (at least until we find one that isn't there)
-			for (int curItem = 0; curItem < itemsets[curItemset].count() && foundInTransaction; curItem++)
+      for (int curItem = 0; curItem < itemsets[curItemset].size() && foundInTransaction; curItem++)
 				foundInTransaction = transactions[curTrans][itemsets[curItemset][curItem]];
 
 			//If we found everything, increment support
@@ -86,7 +86,7 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 				if (supportForThisItem >= minSupport)
 				{
 					paths.clear();
-					paths.insert(curItem);
+					paths.push_back(curItem);
 					largeItemsets.addNode(paths);
 					break;
 				}
@@ -109,9 +109,9 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
   largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
 
 	//Loop through all the combinations of itemsets
-	for (int i = 0; i < previousLevelItems.count(); i++)
+  for (int i = 0; i < previousLevelItems.size(); i++)
 	{
-		for (int j = i; j < previousLevelItems.count(); j++)
+    for (int j = i; j < previousLevelItems.size(); j++)
 		{
 			//Union the two, then add them to candidates
 			unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
@@ -140,7 +140,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 
 		//Check if we have anything to add this step
     candidates.getAllPathsAtDepth(resultsOfThisStep, k);
-		if (resultsOfThisStep.count() == 0)
+    if (resultsOfThisStep.size() == 0)
 			break;
 
 		addCandidatesToLTree(resultsOfThisStep, largeItemsets);
@@ -159,23 +159,23 @@ void unionTwoArrays(const vector<int> &array1, const vector<int> &array2, vector
 	output.clear();
 
 	int i = 0, j = 0;
-	while (i < array1.count() && j < array2.count())
+  while (i < array1.size() && j < array2.size())
 	{
 		if (array1[i] < array2[j])
-			output.insert(array1[i++]);
+			output.push_back(array1[i++]);
 		else if (array2[j] < array1[i])
-			output.insert(array2[j++]);
+      output.push_back(array2[j++]);
 		else
 		{
-			output.insert(array2[j]);
+      output.push_back(array2[j]);
 			j++;
 			i++;
 		}
 	}
 
-	while (i < array1.count())
-		output.insert(array1[i++]);
+  while (i < array1.size())
+    output.push_back(array1[i++]);
 
-	while (j < array2.count())
-		output.insert(array2[j++]);
+  while (j < array2.size())
+    output.push_back(array2[j++]);
 }

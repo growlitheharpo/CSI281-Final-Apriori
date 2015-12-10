@@ -2,10 +2,10 @@
 #define ITEMSET_H
 
 #include "dynamicarray.h"
-
+#include <vector>
 struct Itemset
 {
-	DynamicArray<int> thisSet;
+	vector<int> thisSet;
 	bool hasMinSupport;
 
 	Itemset()
@@ -14,13 +14,13 @@ struct Itemset
 		this->hasMinSupport = false;
 	}
 
-	Itemset(DynamicArray<int> &set)
+  Itemset(vector<int> &set)
 	{
 		this->thisSet = set;
 		this->hasMinSupport = false;
 	}
 
-	Itemset(DynamicArray<int> &set, bool support)
+  Itemset(vector<int> &set, bool support)
 	{
 		this->thisSet = set;
 		this->hasMinSupport = support;

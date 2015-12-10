@@ -3,7 +3,6 @@
 
 #include "basefunctions.h"
 #include "itemset.h"
-#include <vector>
 
 class Trie
 {

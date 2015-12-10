@@ -37,7 +37,6 @@ int actualMain()
 }
 
 #include <iostream>
-#include <vector>
 
 int main()
 {
@@ -49,16 +48,42 @@ int main()
 
   vector<int> path;
   vector<vector<int>> allPaths;
+  vector<vector<int>> allPathsDepth;
 
+  path.push_back(1);
+  trie.addNode(path);
+  path.push_back(2);
+  trie.addNode(path);
+  path.push_back(3);
+  trie.addNode(path);
+
+  path.pop_back();
+  path.push_back(4);
+  trie.addNode(path);
+
+  path.pop_back();
   path.push_back(5);
   trie.addNode(path);
 
+
+
   path.clear();
-  path.push_back(7);
+  path.push_back(10);
+  trie.addNode(path);
+  path.push_back(11);
+  trie.addNode(path);
+  path.push_back(12);
+  trie.addNode(path);
+  path.push_back(13);
+  trie.addNode(path);
+  path.push_back(14);
   trie.addNode(path);
 
-  path.push_back(8);
+  path.pop_back();
+  path.push_back(15);
   trie.addNode(path);
+
+  //trie.getAllPathsAtDepth(allPathsDepth, 2);
 
   trie.getAllPaths(allPaths);
 
@@ -66,8 +91,19 @@ int main()
   {
     for (int j = 0; j < allPaths[i].size(); j++)
     {
-      cout << allPaths[i][j];
+      cout << allPaths[i][j] << " ";
     }
+    cout << endl;
+  }
+
+  cout << "\ndepth 2\n";
+  for (int i = 0; i < allPathsDepth.size(); i++)
+  {
+    for (int j = 0; j < allPathsDepth[i].size(); j++)
+    {
+      cout << allPathsDepth[i][j] << " ";
+    }
+    cout << endl;
   }
   /*
   DynamicArray<int> array1, array2, output;
