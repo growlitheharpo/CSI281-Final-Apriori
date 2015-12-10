@@ -145,8 +145,13 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 
 	if (depth >= myContents.count()) return;
 
+	cout << "Number of itemsets at depth " << depth << " is " << myContents[depth].count() << endl;
+
 	for (int j = 0; j < myContents[depth].count(); j++)
 	{
+		if (j == 300)
+			cout << "w";
+
 		pathsAtDepth.insert(myContents[depth][j].thisSet);
 	}
 }
