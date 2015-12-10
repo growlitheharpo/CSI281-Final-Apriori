@@ -52,19 +52,21 @@ int main()
   trie.addNode(path, 5);
   trie.addNode(path, 7);
   trie.addNode(path, 10);
+  trie.addNode(path, 11);
+  trie.addNode(path, 11);
 
-  path.insert(5);
-  trie.addNode(path, 4);
-  trie.addNode(path, 3);
-  trie.addNode(path, 2);
-  trie.addNode(path, 1);
+//   path.insert(5);
+//   trie.addNode(path, 4);
+//   trie.addNode(path, 3);
+//   trie.addNode(path, 2);
+//   trie.addNode(path, 1);
+// 
+// 
+//   trie.getAllPaths(allPaths);
 
-
-  trie.getAllPaths(allPaths);
-
-  for (int i = 0; i < allPaths.count(); i++)
-  for (int j = 0; j < allPaths[i].count(); j++)
-    cout << allPaths[i][j];
+//   for (int i = 0; i < allPaths.count(); i++)
+//   for (int j = 0; j < allPaths[i].count(); j++)
+//     cout << allPaths[i][j];
 
   /*
   DynamicArray<int> array1, array2, output;

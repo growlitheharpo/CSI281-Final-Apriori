@@ -38,7 +38,6 @@ class Trie
       }
 		};
 
-		Node *mRootNode;
 
 		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node) const;
@@ -46,6 +45,7 @@ class Trie
     void getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
 
 	public:
+		Node *mRootNode;    //ONLY FOR DEBUG!!
 		Trie();
 		~Trie();
 
