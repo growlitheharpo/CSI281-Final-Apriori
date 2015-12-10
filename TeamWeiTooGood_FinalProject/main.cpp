@@ -30,6 +30,7 @@ int actualMain()
 
 		outputResults(time, largeItemsets);
 
+		delete[] transactions;
 		keepRunning = getContinue();
 	}
 
@@ -40,89 +41,19 @@ int actualMain()
 
 int main()
 {
-	//bool keepRunning = getContinue();
-	//cout << "Keep running is " << (keepRunning ? "true" : "false") << ".\n";
+	Trie largeItemsets;
+	ArrayInfo2D transactionSizeInfo(4, 6);
 
+	const bool transactions[4][6] = { { false, true, true, true, true, false },
+								{ false, true, false, false, false, false },
+								{ false, true, false, true, true, true },
+								{ true, true, false, false, false, false } };
 
-	Trie trie;
+	int minimumSupport = 2;
 
-	DynamicArray<int> path;
-	DynamicArray<DynamicArray<int>> allPaths;
+	runApriori(transactions, transactionSizeInfo, minimumSupport, largeItemsets);
 
-	path.insert(5);
-	trie.addNode(path);
-
-	path.clear();
-	path.insert(7);
-	trie.addNode(path);
-
-	path.clear();
-	path.insert(10);
-	trie.addNode(path);
-	
-	/*
-	trie.addNode(path, 5);
-	trie.addNode(path, 7);
-	trie.addNode(path, 10);*/
-
-	path.insert(5);
-	path.insert(4);
-	trie.addNode(path);
-
-	path.clear();
-	path.insert(5);
-	path.insert(3);
-	trie.addNode(path);
-
-
-	path.clear();
-	path.insert(5);
-	path.insert(2);
-	trie.addNode(path, 2);
-
-
-	path.clear();
-	path.insert(5);
-	path.insert(1);
-	trie.addNode(path, 1);
-
-	trie.getAllPaths(allPaths);
-	//trie.getAllPathsAtDepth(allPaths, 1);
-
-	for (int i = 0; i < allPaths.count(); i++)
-	{
-		cout << "Itemset: " << i << ": ";
-		for (int j = 0; j < allPaths[i].count(); j++)
-		{
-			cout << allPaths[i][j] << " ";
-		}
-		cout << endl;
-	}
-
-	/*
-	DynamicArray<int> array1, array2, output;
-
-	array1.insert(2);
-	array1.insert(3);
-	array1.insert(4);
-
-	array2.insert(2);
-	array2.insert(3);
-	array2.insert(5);
-
-
-	array1.display();
-	array2.display();
-
-	unionTwoArrays(array1, array2, output);
-
-
-	array1.display();
-	array2.display();
-	output.display();*/
-
-
-
+	outputResults(0.0, largeItemsets);
 
 	system("pause");
 	return 0;
