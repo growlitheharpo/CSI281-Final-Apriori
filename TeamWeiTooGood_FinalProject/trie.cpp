@@ -14,16 +14,6 @@ Trie::Trie()
 }
 
 
-/*********************************************************************************************
-*  Purpose:	Destructor
-*      Pre:	None
-*	  Post:	Trie is destroyed and memory is released.
-*********************************************************************************************/
-Trie::~Trie()
-{
-  destroySubtrie(mRootNode);
-}
-
 
 /*********************************************************************************************
 *  Purpose:	Set minimum support for the node at a given path
@@ -48,34 +38,6 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
   return node->thisSet.hasMinSupport;
 }
 
-
-/*********************************************************************************************
-*  Purpose:	Add a node to the tree with the given itemId and path
-*      Pre:	Handed the path and the id of the new item
-*	  Post:	Item is added to the tree
-*********************************************************************************************/
-bool Trie::addNode(const DynamicArray<int> &path, int itemId)
-{
-  if (path.count() == 0)
-  {
-    mRootNode->mChildren.insert(new Node(itemId));
-    return true;
-  }
-  else
-  {
-    Node *node = traverseTrie(path);
-
-    if (node->mItemId == path[path.count() - 2])
-    {
-      node->mChildren.insert(new Node(itemId));
-      return true;
-    }
-    else
-      return false;
-  }
-}
-
-
 /*********************************************************************************************
 *  Purpose:	Add a node to the tree with the given path
 *      Pre:	Handed the path of the new item
@@ -83,23 +45,11 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path)
 {
-  if (path.count() == 0)
-  {
-    mRootNode->mChildren.insert(new Node());
-    return true;
-  }
-  else
-  {
-    Node *node = traverseTrie(path);
+  Node *node = traverseTrie(path);
 
-    if (node->mItemId == path[path.count() - 2])
-    {
-      node->mChildren.insert(new Node());
-      return true;
-    }
-    else
-      return false;
-  }
+  node->mChildren.insert(new Node(path[path.count() - 1]));
+  return true;
+
 }
 
 
@@ -208,7 +158,7 @@ bool Trie::isLeaf(Node *node) const
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
   Node *node = traverseTrie(path),
-       *currentNode;
+    *currentNode;
 
   for (int i = 0; i < node->mChildren.count(); i++)
   {
@@ -245,5 +195,5 @@ Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
     }
   }
 
-  return NULL;
+  return node;
 }

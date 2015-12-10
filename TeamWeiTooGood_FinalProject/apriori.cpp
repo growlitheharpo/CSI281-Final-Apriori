@@ -9,7 +9,7 @@
 void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Trie &largeItemsets)
 {
 	for (int i = 0; i < candidates.count(); i++)
-		largeItemsets.addNode(candidates[i], candidates[i][candidates[i].count() - 1]);;
+		largeItemsets.addNode(candidates[i]);;
 }
 
 
@@ -87,7 +87,7 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 				{
 					paths.clear();
 					paths.insert(curItem);
-					largeItemsets.addNode(paths, curItem);
+					largeItemsets.addNode(paths);
 					break;
 				}
 			}
