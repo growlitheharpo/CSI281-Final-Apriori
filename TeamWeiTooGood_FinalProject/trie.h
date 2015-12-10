@@ -44,7 +44,7 @@ class Trie
 		Node* traverseTrie(const DynamicArray<int> &path) const;
     void getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
 
-		Node *mRootNode;    //ONLY FOR DEBUG!!
+		Node *mRootNode;
 	public:
 		Trie();
     ~Trie() { delete mRootNode; }
