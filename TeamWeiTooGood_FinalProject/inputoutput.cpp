@@ -150,7 +150,7 @@ bool loadData(bool **transactions, ArrayInfo2D &arrayInfo, const string &filenam
 *********************************************************************************************/
 void outputResults(double time, const Trie& largeItemsets)
 {
-	DynamicArray<DynamicArray<int>> itemsets;
+  vector<vector<int>> itemsets;
 	const_cast<Trie&>(largeItemsets).getAllPaths(itemsets);
 
 	for (int i = 0; i < itemsets.count(); i++)

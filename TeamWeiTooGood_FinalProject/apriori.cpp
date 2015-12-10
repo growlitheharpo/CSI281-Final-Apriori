@@ -6,7 +6,7 @@
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Trie &largeItemsets)
+void addCandidatesToLTree(const vector<vector<int>> &candidates, Trie &largeItemsets)
 {
 	for (int i = 0; i < candidates.count(); i++)
 		largeItemsets.addNode(candidates[i]);;
@@ -20,7 +20,7 @@ void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Tri
 *********************************************************************************************/
 void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& candidates, int depth)
 {
-	DynamicArray<DynamicArray<int>> itemsets;
+	vector<vector<int>> itemsets;
 	candidates.getAllPathsAtDepth(itemsets, depth);
 
 	int currentItemsetSupport;
@@ -69,7 +69,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
 {
 	int supportForThisItem = 0;
-	DynamicArray<int> paths;
+  vector<int> paths;
 
 	//For each potential item
 	for (int curItem = 0; curItem < arrInfo.sizeJ; curItem++)
@@ -103,8 +103,8 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 *********************************************************************************************/
 void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 {
-	DynamicArray<DynamicArray<int>> previousLevelItems;
-	DynamicArray<int> thisCandidate;
+  vector<vector<int>> previousLevelItems;
+  vector<int> thisCandidate;
 
   largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
 
@@ -128,7 +128,7 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 *********************************************************************************************/
 void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
 {
-	DynamicArray<DynamicArray<int>> resultsOfThisStep;
+	vector<vector<int>> resultsOfThisStep;
 	Trie candidates;
 
 	calculate1Itemsets(transactions, arrInfo, minSupport, largeItemsets);
@@ -154,7 +154,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 *	 Post:
 *  Source: http://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
 *********************************************************************************************/
-void unionTwoArrays(const DynamicArray<int> &array1, const DynamicArray<int> &array2, DynamicArray<int>& output)
+void unionTwoArrays(const vector<int> &array1, const vector<int> &array2, vector<int>& output)
 {
 	output.clear();
 

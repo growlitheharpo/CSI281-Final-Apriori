@@ -10,7 +10,7 @@ class Trie
 	private:
 		struct Node
 		{
-			DynamicArray<Node*> mChildren;
+			vector<Node*> mChildren;
 			Itemset				      thisSet;
 			int                 mItemId;
 

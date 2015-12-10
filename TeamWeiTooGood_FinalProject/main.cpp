@@ -47,24 +47,24 @@ int main()
 
   Trie trie;
 
-  DynamicArray<int> path;
-  DynamicArray<DynamicArray<int>> allPaths;
+  vector<int> path;
+  vector<vector<int>> allPaths;
 
-  path.insert(5);
+  path.push_back(5);
   trie.addNode(path);
 
   path.clear();
-  path.insert(7);
+  path.push_back(7);
   trie.addNode(path);
 
-  path.insert(8);
+  path.push_back(8);
   trie.addNode(path);
 
   trie.getAllPaths(allPaths);
 
-  for (int i = 0; i < allPaths.count(); i++)
+  for (int i = 0; i < allPaths.size(); i++)
   {
-    for (int j = 0; j < allPaths[i].count(); j++)
+    for (int j = 0; j < allPaths[i].size(); j++)
     {
       cout << allPaths[i][j];
     }

@@ -47,7 +47,7 @@ bool Trie::addNode(const vector<int> &path)
 {
   Node *node = traverseTrie(path);
 
-  node->mChildren.insert(new Node(path[path.count() - 1]));
+  node->mChildren.push_back(new Node(path[path.size() - 1]));
   return true;
 
 }
@@ -66,7 +66,7 @@ void Trie::destroySubtrie(Node *node)
   }
   else
   {
-    while (node->mChildren.count() > 0)
+    while (node->mChildren.size() > 0)
     {
       destroySubtrie(node->mChildren[0]);
       delete node->mChildren[0];
@@ -92,10 +92,10 @@ void Trie::getAllPaths(vector<vector<int>> &allPaths) const
   {
     currentNode = nodeQueue.dequeue();
 
-    DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
-    allPaths.insert(thisNodesChildren);
+    vector<int> thisNodesChildren = currentNode->thisSet.thisSet;
+    allPaths.push_back(thisNodesChildren);
 
-    for (int i = 0; i < currentNode->mChildren.count(); i++)
+    for (int i = 0; i < currentNode->mChildren.size(); i++)
       nodeQueue.enqueue((currentNode->mChildren[i]));
   }
 }
