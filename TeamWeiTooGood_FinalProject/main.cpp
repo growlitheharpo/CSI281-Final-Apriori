@@ -37,6 +37,7 @@ int actualMain()
 }
 
 #include <iostream>
+#include <vector>
 
 int main()
 {

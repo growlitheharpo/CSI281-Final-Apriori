@@ -20,7 +20,7 @@ Trie::Trie()
 *      Pre:	Handed the path to the node, and whether or not it has support
 *	  Post:	Node is updated
 *********************************************************************************************/
-void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
+void Trie::setMinSupport(const vector<int> &path, bool hasMinSupport)
 {
   Node *node = traverseTrie(path);
   node->thisSet.hasMinSupport = hasMinSupport;
@@ -32,7 +32,7 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *      Pre:	Handed the path
 *	  Post:	Returns true if the node at the given path has min support, false otherwise.
 *********************************************************************************************/
-bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
+bool Trie::getHasMinSupport(const vector<int> &path) const
 {
   Node *node = traverseTrie(path);
   return node->thisSet.hasMinSupport;
@@ -43,7 +43,7 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 *      Pre:	Handed the path of the new item
 *	  Post:	Item is added to the tree
 *********************************************************************************************/
-bool Trie::addNode(const DynamicArray<int> &path)
+bool Trie::addNode(const vector<int> &path)
 {
   Node *node = traverseTrie(path);
 
@@ -80,7 +80,7 @@ void Trie::destroySubtrie(Node *node)
 *      Pre:	Handed the declared DA<DA<int>> where the paths will be stored.
 *	  Post:	All paths stored in the trie are inserted into the array.
 *********************************************************************************************/
-void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
+void Trie::getAllPaths(vector<vector<int>> &allPaths) const
 {
   SimpleQueue<Node *> nodeQueue;
   Node *currentNode;
@@ -100,7 +100,7 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
   }
 }
 
-void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
+void Trie::getAllPathsAtDepth(vector<vector<int>> &pathsAtDepth, int depth) const
 {
   getAllPathsAtDepthStart(pathsAtDepth, depth, mRootNode, 0);
 }
@@ -110,7 +110,7 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 *      Pre:	Handed the DA<DA<int>> to store the paths, and what depth/level to get them from.
 *	  Post:	pathsAtDepth is filled with the paths at the given depth/level.
 *********************************************************************************************/
-void Trie::getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
+void Trie::getAllPathsAtDepthStart(vector<vector<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const
 {
   if (currentDepth == depth)
   {
@@ -155,7 +155,7 @@ bool Trie::isLeaf(Node *node) const
 *      Pre:	Handed the path to remove the node from.
 *	  Post:	Returns false if the item could not be found, otherwise true and item is removed.
 *********************************************************************************************/
-bool Trie::removeNode(const DynamicArray<int> &path)
+bool Trie::removeNode(const vector<int> &path)
 {
   Node *node = traverseTrie(path),
     *currentNode;
@@ -180,7 +180,7 @@ bool Trie::removeNode(const DynamicArray<int> &path)
 *      Pre:	Handed the path to wanted node
 *	  Post:	Wanted node is returned
 *********************************************************************************************/
-Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
+Trie::Node* Trie::traverseTrie(const vector<int> &path) const
 {
   Node *node = mRootNode;
 
