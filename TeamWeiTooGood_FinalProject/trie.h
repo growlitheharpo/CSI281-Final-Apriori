@@ -16,6 +16,8 @@ public:
 	void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
 	bool getHasMinSupport(const DynamicArray<int> &path) const;
 
+	bool getPathExists(const DynamicArray<int> &path) const;
+
 	void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
 	void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
 

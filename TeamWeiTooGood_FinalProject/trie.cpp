@@ -64,6 +64,30 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 
 
 /*********************************************************************************************
+*  Purpose:	
+*      Pre:	
+*	  Post:	
+*********************************************************************************************/
+bool Trie::getPathExists(const DynamicArray<int> &path) const
+{
+	int level = path.count();
+
+	if (level >= myContents.count())
+		return false;
+
+	for (int i = 0; i < myContents[level].count(); i++)
+	{
+		if (path == myContents[level][i].thisSet)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+/*********************************************************************************************
 *  Purpose:	Add a node to the tree with the given itemId and path
 *      Pre:	Handed the path and the id of the new item
 *	  Post:	Item is added to the tree
@@ -123,8 +147,6 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 
 	for (int j = 0; j < myContents[depth].count(); j++)
 	{
-		//DynamicArray<int> *theSet = &(myContents[depth][j].thisSet);
-
 		pathsAtDepth.insert(myContents[depth][j].thisSet);
 	}
 }
