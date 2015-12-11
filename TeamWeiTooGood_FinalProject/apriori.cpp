@@ -121,7 +121,11 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 				continue;
 
 			//Union the two, then add them to candidates
-			unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
+			//unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
+
+			//Faster?
+			thisCandidate = previousLevelItems[i];
+			thisCandidate.insert(previousLevelItems[j][previousLevelItems[j].count() - 1]);
 
 			candidateItemsets.addNode(thisCandidate);
 		}
