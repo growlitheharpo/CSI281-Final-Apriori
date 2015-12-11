@@ -53,6 +53,7 @@ class Trie
 
     bool addNode(const vector<int> &path);
     void displayAllPaths();
+    void displayAllPathsAtDepth(int depth);
     bool isEmpty() const;
     bool removeNode(const vector<int> &path);
 

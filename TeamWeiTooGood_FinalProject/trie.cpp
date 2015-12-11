@@ -135,6 +135,23 @@ void Trie::displayAllPaths()
   }
 }
 
+void Trie::displayAllPathsAtDepth(int depth)
+{
+  vector<vector<int>> allPathsDepth;
+
+  getAllPathsAtDepth(allPathsDepth, depth);
+
+  cout << "\nDepth: " << depth << endl;
+  for (int i = 0; i < allPathsDepth.size(); i++)
+  {
+    for (int j = 0; j < allPathsDepth[i].size(); j++)
+    {
+      cout << allPathsDepth[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
+
 /*********************************************************************************************
 *  Purpose:	Is the trie empty?
 *      Pre:	None

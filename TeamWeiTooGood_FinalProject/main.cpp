@@ -80,35 +80,27 @@ int main()
   path.push_back(15);
   trie.addNode(path);
 
-  //trie.getAllPathsAtDepth(allPathsDepth, 3);
-
   trie.displayAllPaths();
 
-  /*trie.getAllPaths(allPaths);
+  path.clear();
+  path.push_back(1);
+  trie.removeNode(path);
+  path.push_back(2);
+  path.push_back(5);
+  trie.removeNode(path);
 
-  for (int i = 0; i < allPaths.size(); i++)
-  {
-    for (int j = 0; j < allPaths[i].size(); j++)
-    {
-      cout << allPaths[i][j] << " ";
-    }
-    cout << endl;
-  }
-*/
+  path.clear();
+  path.push_back(10);
+  path.push_back(11);
+  path.push_back(12);
+  trie.removeNode(path);
+  path.push_back(13);
+  path.push_back(14);
+  trie.removeNode(path);
 
 
-
-
-  /*
-  cout << "\ndepth 2\n";
-  for (int i = 0; i < allPathsDepth.size(); i++)
-  {
-    for (int j = 0; j < allPathsDepth[i].size(); j++)
-    {
-      cout << allPathsDepth[i][j] << " ";
-    }
-    cout << endl;
-  }*/
+  cout << endl;
+  trie.displayAllPaths();
 
   system("pause");
   return 0;
