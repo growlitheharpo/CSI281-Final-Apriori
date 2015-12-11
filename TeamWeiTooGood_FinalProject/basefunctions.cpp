@@ -1,11 +1,14 @@
 #include "basefunctions.h"
 
 
-void cleanupTransactions(bool** transactions, ArrayInfo2D arrayInfo)
+void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 {
-	for (int i = arrayInfo.sizeI - 1; i >= 0; i--)
+	bool *currentPointer;
+	for (int i = 0; i < arrayInfo.sizeI; i++)
 	{
-		delete[] transactions[i];
+		currentPointer = transactions[i];
+
+		delete[] currentPointer;
 	}
 
 	delete[] transactions;

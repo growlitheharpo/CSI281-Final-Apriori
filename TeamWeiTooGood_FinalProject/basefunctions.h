@@ -22,7 +22,7 @@ struct ArrayInfo2D
 	}
 };
 
-void cleanupTransactions(bool** transactions, ArrayInfo2D array_info2_d);
+void cleanupTransactions(bool** &transactions, ArrayInfo2D array_info2_d);
 void clearScreen(bool pauseFirst = false);
 void pause();
 

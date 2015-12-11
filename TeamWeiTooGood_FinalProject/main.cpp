@@ -32,12 +32,12 @@ int main()
 		minimumSupport = getMinimumSupport(transactionSizeInfo.sizeI);
 
 		timer.startClock();
-		runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
+		//runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
 		time = timer.getTime();
 
 		outputResults(time, largeItemsets);
 
-		//cleanupTransactions(transactions, transactionSizeInfo);
+		cleanupTransactions(transactions, transactionSizeInfo);
 		keepRunning = getContinue();
 	}
 
