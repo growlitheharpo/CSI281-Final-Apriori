@@ -6,59 +6,27 @@
 
 class Trie
 {
-	private:
-		struct Node
-		{
-			DynamicArray<Node*> mChildren;
-			Itemset				      thisSet;
-			int                 mItemId;
+private:
+	DynamicArray<DynamicArray<Itemset*>> myContents;
 
+public:
+	Trie();
+	~Trie();
 
-			/*     Pre:  None
-			*     Post:  This object is initialized using default values
-			*  Purpose:  To initialize date object
-			*************************************************************************/
-			Node()
-			{
-				mItemId = int();
-			}
+	void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
+	bool getHasMinSupport(const DynamicArray<int> &path) const;
 
-			/*     Pre:  None
-			*     Post:  This object is initialized using specified data
-			*  Purpose:  To initialize date object
-			*************************************************************************/
-			Node(int itemId)
-			{
-				mItemId = itemId;
-			}
+	bool getPathExists(const DynamicArray<int> &path) const;
 
-      ~Node()
-      {
-        cout << "Deleting node with item: " << mItemId << endl;     //For debug
-      }
-		};
+	void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
+	void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
 
+	bool addNode(const DynamicArray<int> &path, int itemId);
+	bool addNode(const DynamicArray<int> &path);
+	bool isEmpty() const;
+	bool removeNode(const DynamicArray<int> &path);
 
-		void destroySubtrie(Node *node);
-		bool isLeaf(Node *node) const;
-		Node* traverseTrie(const DynamicArray<int> &path) const;
-    void getAllPathsAtDepthStart(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
-
-		Node *mRootNode;    //ONLY FOR DEBUG!!
-	public:
-		Trie();
-    ~Trie() { delete mRootNode; }
-
-    void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
-		bool getHasMinSupport(const DynamicArray<int> &path) const;
-
-		void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
-    void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
-
-		bool addNode(const DynamicArray<int> &path);
-		bool isEmpty() const;
-		bool removeNode(const DynamicArray<int> &path);
-
+	void clearTrie();
 };
 
 #endif
