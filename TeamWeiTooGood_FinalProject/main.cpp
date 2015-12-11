@@ -82,7 +82,6 @@ int main()
 
   trie.displayAllPaths();
 
-  path.clear();
   path.push_back(1);
   trie.removeNode(path);
   path.push_back(2);
@@ -98,6 +97,10 @@ int main()
   path.push_back(14);
   trie.removeNode(path);
 
+  cout << endl;
+  trie.displayAllPaths();
+
+  trie.clear();
 
   cout << endl;
   trie.displayAllPaths();
