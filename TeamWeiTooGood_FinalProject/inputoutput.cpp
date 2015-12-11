@@ -160,6 +160,17 @@ void outputResults(double time, const ItemsetHolder& largeItemsets)
 
 
 /*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS])
+{
+
+}
+
+
+/*********************************************************************************************
 * Purpose: Turn a filename into the number of items and transactions.
 *     Pre: Handed the filename, and references to transactions and items.
 *	 Post: Transactions and items are updated to the correct value.

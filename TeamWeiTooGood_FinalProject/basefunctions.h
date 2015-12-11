@@ -2,6 +2,7 @@
 #define BASE_FUNCTIONS_H
 
 #include <iostream>
+#include "aprioriresult.h"
 
 using namespace std;
 
