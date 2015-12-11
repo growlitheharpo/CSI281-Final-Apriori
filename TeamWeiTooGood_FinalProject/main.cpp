@@ -16,7 +16,7 @@ int main()
 
 	while (keepRunning)
 	{
-		largeItemsets.clearTrie();
+		largeItemsets.clear();
 
 		filename = getFileName();
 		//filename = "datasets\\T25.N0.1K.D10K.txt";

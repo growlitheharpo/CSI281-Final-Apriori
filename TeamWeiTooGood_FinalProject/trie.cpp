@@ -9,8 +9,8 @@
 *********************************************************************************************/
 Trie::Trie()
 {
-  mRootNode = new Node();
-  mRootNode->mItemId = -1;    //No itemId
+	mRootNode = new Node();
+	mRootNode->mItemId = -1;    //No itemId
 }
 
 //Public functions
@@ -21,18 +21,18 @@ Trie::Trie()
 *********************************************************************************************/
 bool Trie::addNode(const DynamicArray<int> &path)
 {
-  Node *node = traverseTrie(path);
-  Node *newNode = new Node(path[path.size() - 1]);
+	Node *node = traverseTrie(path);
+	Node *newNode = new Node(path[path.count() - 1]);
 
-  newNode->thisSet.thisSet = path;
+	newNode->thisSet.thisSet = path;
 
-  if (newNode != NULL)
-  {
-    node->mChildren.push_back(newNode);
-    return true;
-  }
-  else
-    return false;
+	if (newNode != NULL)
+	{
+		node->mChildren.insert(newNode);
+		return true;
+	}
+	else
+		return false;
 }
 
 /*********************************************************************************************
@@ -42,16 +42,16 @@ bool Trie::addNode(const DynamicArray<int> &path)
 *********************************************************************************************/
 void Trie::clear()
 {
-  for (int i = 0; i < mRootNode->mChildren.count(); i++)
-  {
-    removeAll(mRootNode->mChildren[i]);
-  }
+	for (int i = 0; i < mRootNode->mChildren.count(); i++)
+	{
+		removeAll(mRootNode->mChildren[i]);
+	}
 
-  while (mRootNode->mChildren.count() > 0)
-  {
-    delete mRootNode->mChildren[0];
-    mRootNode->mChildren.removeAt(0);
-  }
+	while (mRootNode->mChildren.count() > 0)
+	{
+		delete mRootNode->mChildren[0];
+		mRootNode->mChildren.removeAt(0);
+	}
 }
 
 /*********************************************************************************************
@@ -61,18 +61,18 @@ void Trie::clear()
 *********************************************************************************************/
 void Trie::displayAllPaths()
 {
-  DynamicArray<DynamicArray<int>> allPaths;
+	DynamicArray<DynamicArray<int>> allPaths;
 
-  getAllPaths(allPaths);
+	getAllPaths(allPaths);
 
-  for (int i = 0; i < allPaths.size(); i++)
-  {
-    for (int j = 0; j < allPaths[i].size(); j++)
-    {
-      cout << allPaths[i][j] << " ";
-    }
-    cout << endl;
-  }
+	for (int i = 0; i < allPaths.count(); i++)
+	{
+		for (int j = 0; j < allPaths[i].count(); j++)
+		{
+			cout << allPaths[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
 
 /*********************************************************************************************
@@ -82,19 +82,19 @@ void Trie::displayAllPaths()
 *********************************************************************************************/
 void Trie::displayAllPathsAtDepth(int depth)
 {
-  DynamicArray<DynamicArray<int>> allPathsDepth;
+	DynamicArray<DynamicArray<int>> allPathsDepth;
 
-  getAllPathsAtDepth(allPathsDepth, depth);
+	getAllPathsAtDepth(allPathsDepth, depth);
 
-  cout << "\nDepth: " << depth << endl;
-  for (int i = 0; i < allPathsDepth.size(); i++)
-  {
-    for (int j = 0; j < allPathsDepth[i].size(); j++)
-    {
-      cout << allPathsDepth[i][j] << " ";
-    }
-    cout << endl;
-  }
+	cout << "\nDepth: " << depth << endl;
+	for (int i = 0; i < allPathsDepth.count(); i++)
+	{
+		for (int j = 0; j < allPathsDepth[i].count(); j++)
+		{
+			cout << allPathsDepth[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
 
 /*********************************************************************************************
@@ -104,25 +104,25 @@ void Trie::displayAllPathsAtDepth(int depth)
 *********************************************************************************************/
 void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 {
-  SimpleQueue<Node *> nodeQueue;
-  Node *currentNode;
-  nodeQueue.enqueue(mRootNode);
+	SimpleQueue<Node *> nodeQueue;
+	Node *currentNode;
+	nodeQueue.enqueue(mRootNode);
 
-  allPaths.clear();
+	allPaths.clear();
 
-  while (nodeQueue.getCount() > 0)
-  {
-    currentNode = nodeQueue.dequeue();
+	while (nodeQueue.getCount() > 0)
+	{
+		currentNode = nodeQueue.dequeue();
 
-    DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
-    allPaths.push_back(thisNodesChildren);
+		DynamicArray<int> thisNodesChildren = currentNode->thisSet.thisSet;
+		allPaths.insert(thisNodesChildren);
 
-    for (int i = 0; i < currentNode->mChildren.size(); i++)
-      nodeQueue.enqueue((currentNode->mChildren[i]));
-  }
+		for (int i = 0; i < currentNode->mChildren.count(); i++)
+			nodeQueue.enqueue((currentNode->mChildren[i]));
+	}
 
-  //Remove rootNode
-  allPaths.removeAt(0);
+	//Remove rootNode
+	allPaths.removeAt(0);
 }
 
 /*********************************************************************************************
@@ -132,16 +132,16 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 *********************************************************************************************/
 void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
 {
-  DynamicArray<DynamicArray<int>> allPaths;
-  getAllPaths(allPaths);
+	DynamicArray<DynamicArray<int>> allPaths;
+	getAllPaths(allPaths);
 
-  for (int i = 0; i < allPaths.size(); i++)
-  {
-    if (allPaths[i].size() == depth)
-    {
-      pathsAtDepth.push_back(allPaths[i]);
-    }
-  }
+	for (int i = 0; i < allPaths.count(); i++)
+	{
+		if (allPaths[i].count() == depth)
+		{
+			pathsAtDepth.insert(allPaths[i]);
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -151,8 +151,8 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 *********************************************************************************************/
 bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 {
-  Node *node = traverseTrie(path);
-  return node->thisSet.hasMinSupport;
+	Node *node = traverseTrie(path);
+	return node->thisSet.hasMinSupport;
 }
 
 /*********************************************************************************************
@@ -162,7 +162,7 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 *********************************************************************************************/
 bool Trie::isEmpty() const
 {
-  return mRootNode->mChildren.size() == 0;
+	return mRootNode->mChildren.count() == 0;
 }
 
 /*********************************************************************************************
@@ -172,21 +172,21 @@ bool Trie::isEmpty() const
 *********************************************************************************************/
 bool Trie::removeNode(const DynamicArray<int> &path)
 {
-  Node *node = traverseTrie(path),
-    *currentNode;
+	Node *node = traverseTrie(path),
+		*currentNode;
 
-  for (int i = 0; i < node->mChildren.size(); i++)
-  {
-    currentNode = node->mChildren[i];
-    if (currentNode->mItemId == path[path.size() - 1] && isLeaf(currentNode))
-    {
-      node->mChildren.removeAt(i);
-      delete currentNode;
-      return true;
-    }
-  }
+	for (int i = 0; i < node->mChildren.count(); i++)
+	{
+		currentNode = node->mChildren[i];
+		if (currentNode->mItemId == path[path.count() - 1] && isLeaf(currentNode))
+		{
+			node->mChildren.removeAt(i);
+			delete currentNode;
+			return true;
+		}
+	}
 
-  return false;
+	return false;
 }
 
 /*********************************************************************************************
@@ -196,8 +196,8 @@ bool Trie::removeNode(const DynamicArray<int> &path)
 *********************************************************************************************/
 void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 {
-  Node *node = traverseTrie(path);
-  node->thisSet.hasMinSupport = hasMinSupport;
+	Node *node = traverseTrie(path);
+	node->thisSet.hasMinSupport = hasMinSupport;
 }
 
 //Private Functions
@@ -208,7 +208,7 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *********************************************************************************************/
 bool Trie::isLeaf(Node *node) const
 {
-  return node->mChildren.size() == 0;
+	return node->mChildren.count() == 0;
 }
 
 /*********************************************************************************************
@@ -218,19 +218,19 @@ bool Trie::isLeaf(Node *node) const
 *********************************************************************************************/
 void Trie::removeAll(Node *node)
 {
-  if (isLeaf(node))
-    return;
-  
-  for (int i = 0; i < node->mChildren.count(); i++)
-  {
-    removeAll(node->mChildren[i]);
-  }
+	if (isLeaf(node))
+		return;
 
-  while (node->mChildren.count() > 0)
-  {
-    delete node->mChildren[0];
-    node->mChildren.removeAt(0);
-  }
+	for (int i = 0; i < node->mChildren.count(); i++)
+	{
+		removeAll(node->mChildren[i]);
+	}
+
+	while (node->mChildren.count() > 0)
+	{
+		delete node->mChildren[0];
+		node->mChildren.removeAt(0);
+	}
 }
 
 /*********************************************************************************************
@@ -240,20 +240,20 @@ void Trie::removeAll(Node *node)
 *********************************************************************************************/
 Trie::Node* Trie::traverseTrie(const DynamicArray<int> &path) const
 {
-  Node *node = mRootNode;
+	Node *node = mRootNode;
 
-  for (int i = 0; i < path.size() - 1; i++)
-  {
-    for (int j = 0; j < node->mChildren.size(); j++)
-    {
-      if (node->mChildren[j]->mItemId == path[i])
-      {
-        return node->mChildren[j];
-      }
-    }
-  }
+	for (int i = 0; i < path.count() - 1; i++)
+	{
+		for (int j = 0; j < node->mChildren.count(); j++)
+		{
+			if (node->mChildren[j]->mItemId == path[i])
+			{
+				return node->mChildren[j];
+			}
+		}
+	}
 
-  return node;
+	return node;
 }
 
 
