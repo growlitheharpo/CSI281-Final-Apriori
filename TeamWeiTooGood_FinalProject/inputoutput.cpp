@@ -167,7 +167,7 @@ void outputResults(double time, const Trie& largeItemsets)
 		itemsets[i].display();
 	}
 
-	cout << "All sets found in " << time << " seconds.";
+	cout << "All sets found in " << time << " seconds." << endl;
 }
 
 
