@@ -68,5 +68,8 @@
     <ClInclude Include="itemsetholder.h">
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
+    <ClInclude Include="aprioriresult.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

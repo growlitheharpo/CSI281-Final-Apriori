@@ -1,4 +1,5 @@
 #include "apriori.h"
+#include "timerSystem.h"
 
 
 /*********************************************************************************************
@@ -157,15 +158,24 @@ bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArra
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets)
+void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets, DynamicArray<AprioriResult> &results)
 {
 	DynamicArray<DynamicArray<int>> resultsOfThisStep;
 	ItemsetHolder candidates;
+	TimerSystem timer;
+	double timeResult = 0.0;
 
+	timer.startClock();
 	calculate1Itemsets(transactions, arrInfo, minSupport, largeItemsets);
+	timeResult = timer.getTime();
+
+	largeItemsets.getAllSetsAtDepth(resultsOfThisStep, 1);
+	results.insert(AprioriResult(1, resultsOfThisStep.count(), timeResult));
 
 	for (int k = 2;; k++)
 	{
+		timer.startClock();
+
 		candidateGen(largeItemsets, candidates, k);
 		calcCandidateSupport(transactions, arrInfo, minSupport, candidates, k);
 
@@ -175,6 +185,9 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 			break;
 
 		addCandidatesToLTree(resultsOfThisStep, largeItemsets);
+
+		timeResult = timer.getTime();
+		results.insert(AprioriResult(k, resultsOfThisStep.count(), timeResult));
 	}
 }
 

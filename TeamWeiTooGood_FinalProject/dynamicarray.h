@@ -5,7 +5,7 @@ template <typename T>
 class DynamicArray
 {
 private:
-	const int GROW_SHRINK_SIZE = 500;
+	const int GROW_SHRINK_SIZE = 1000;
 
 	T *mData;
 	int mArraySize, numIndexesFilled;

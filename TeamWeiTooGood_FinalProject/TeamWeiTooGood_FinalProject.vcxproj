@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="apriori.h" />
+    <ClInclude Include="aprioriresult.h" />
     <ClInclude Include="basefunctions.h" />
     <ClInclude Include="dynamicarray.h" />
     <ClInclude Include="inputoutput.h" />

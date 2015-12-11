@@ -1,15 +1,10 @@
 #include "inputoutput.h"
 #include "apriori.h"
-#include "timerSystem.h"
 
 
-int main()
+int interactiveMain()
 {
-  DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS];
-
-  outputAllTestResults(allResults);
-
-	/*TimerSystem timer;
+	DynamicArray<AprioriResult> results;
 	ItemsetHolder largeItemsets;
 	ArrayInfo2D transactionSizeInfo;
 	bool **transactions = NULL;
@@ -22,6 +17,7 @@ int main()
 	while (keepRunning)
 	{
 		largeItemsets.clearTrie();
+		time = 0.0;
 
 		filename = getFileName();
 
@@ -31,9 +27,10 @@ int main()
 		minimumSupport = getMinimumSupport(transactionSizeInfo.sizeI);
 
 		//Do apriori
-		timer.startClock();
-		runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
-		time = timer.getTime();
+		runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets, results);
+
+		for (int i = 0; i < results.count(); i++)
+			time += results[i].mTimeForThisDepth;
 
 		//show results
 		outputResults(time, largeItemsets);
@@ -42,7 +39,49 @@ int main()
 		cleanupTransactions(transactions, transactionSizeInfo);
 		keepRunning = getContinue();
 	}
-*/
-  system("pause");
+
+	system("pause");
 	return 0;
+}
+
+int testingMain()
+{
+	DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS];
+
+	ItemsetHolder largeItemsets;
+	ArrayInfo2D transactionSizeInfo;
+	bool **transactions = NULL;
+
+	string currentFile;
+	int currentMinSupport;
+
+	for (int i = 0; i < NUM_OF_DATASETS; i++)
+	{
+		for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
+		{
+			currentFile = "datasets\\" + DATASET_LIST[i];
+			loadData(transactions, transactionSizeInfo, currentFile);
+			currentMinSupport = (transactionSizeInfo.sizeJ * MINIMUM_SUPPORT_LIST[j]) / 100;
+
+			for (int k = 0; k < NUM_OF_TRIALS; k++)
+			{
+				largeItemsets.clearTrie();
+				runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, currentMinSupport, largeItemsets, allResults[i][j][k]);
+			}
+
+			cleanupTransactions(transactions, transactionSizeInfo);
+		}
+	}
+
+	outputAllTestResults(allResults);
+
+	return 0;
+}
+
+int main()
+{
+	//entry point
+
+	return testingMain();
+	//return interactiveMain();
 }
