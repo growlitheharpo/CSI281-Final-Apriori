@@ -20,10 +20,24 @@ struct Itemset
 		this->hasMinSupport = false;
 	}
 
+	Itemset(const Itemset& other)
+	{
+		this->thisSet = other.thisSet;
+		this->hasMinSupport = other.hasMinSupport;
+	}
+
 	Itemset(const DynamicArray<int> &set, bool support)
 	{
 		this->thisSet = set;
 		this->hasMinSupport = support;
+	}
+
+	Itemset& operator = (const Itemset& other)
+	{
+		this->thisSet = other.thisSet;
+		this->hasMinSupport = other.hasMinSupport;
+
+		return *this;
 	}
 };
 

@@ -157,7 +157,7 @@ bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filena
 void outputResults(double time, const Trie& largeItemsets)
 {
 	DynamicArray<DynamicArray<int>> itemsets;
-	const_cast<Trie&>(largeItemsets).getAllPaths(itemsets);
+	largeItemsets.getAllPaths(itemsets);
 
 	for (int i = 0; i < itemsets.count(); i++)
 	{

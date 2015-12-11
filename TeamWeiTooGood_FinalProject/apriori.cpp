@@ -42,7 +42,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 				foundInTransaction = transactions[curTrans][itemsets[curItemset][curItem]];
 			}
 
-			//If we found everything, increment support
+			//If every item in this set was found in this transaction, increment support
 			if (foundInTransaction)
 			{
 				currentItemsetSupport++;
@@ -70,12 +70,14 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 *********************************************************************************************/
 void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
 {
-	int supportForThisItem = 0;
+	int supportForThisItem;
 	DynamicArray<int> paths;
 
 	//For each potential item
 	for (int curItem = 0; curItem < arrInfo.sizeJ; curItem++)
 	{
+		supportForThisItem = 0;
+
 		//Loop over every transaction
 		for (int curTransaction = 0; curTransaction < arrInfo.sizeI; curTransaction++)
 		{
@@ -113,17 +115,34 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 	//Loop through all the combinations of itemsets
 	for (int i = 0; i < previousLevelItems.count(); i++)
 	{
-		for (int j = i; j < previousLevelItems.count(); j++)
+		for (int j = i + 1; j < previousLevelItems.count(); j++)
 		{
+			if (!itemsetsHaveFirstKInCommon(previousLevelItems[i], previousLevelItems[j], depth - 2))
+				continue;
+
 			//Union the two, then add them to candidates
 			unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
-
-			if (candidateItemsets.getPathExists(thisCandidate))
-				continue;
 
 			candidateItemsets.addNode(thisCandidate);
 		}
 	}
+}
+
+
+/*********************************************************************************************
+* Purpose:
+*     Pre:
+*	 Post:
+*********************************************************************************************/
+bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArray<int> &set2, int k)
+{
+	for (int i = 0; i < k; i++)
+	{
+		if (set1[i] != set2[i])
+			return false;
+	}
+
+	return true;
 }
 
 

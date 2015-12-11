@@ -7,7 +7,7 @@
 class Trie
 {
 private:
-	DynamicArray<DynamicArray<Itemset>> myContents;
+	DynamicArray<DynamicArray<Itemset*>> myContents;
 
 public:
 	Trie();

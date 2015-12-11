@@ -20,6 +20,14 @@ Trie::Trie()
 *********************************************************************************************/
 Trie::~Trie()
 {
+	for (int i = myContents.count() - 1; i >= 0; i--)
+	{
+		for (int j = myContents[i].count() - 1; j >= 0; j--)
+		{
+			delete myContents[i][j];
+		}
+	}
+
 	myContents.clear();
 }
 
@@ -34,9 +42,9 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 	int level = path.count();
 	for (int i = 0; i < myContents[level].count(); i++)
 	{
-		if (path == myContents[level][i].thisSet)
+		if (path == myContents[level][i]->thisSet)
 		{
-			myContents[level][i].hasMinSupport = true;
+			myContents[level][i]->hasMinSupport = true;
 			break;
 		}
 	}
@@ -55,8 +63,8 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 
 	for (int i = 0; i < myContents[level].count(); i++)
 	{
-		if (path == (myContents[level][i].thisSet))
-			return myContents[level][i].hasMinSupport;
+		if (path == (myContents[level][i]->thisSet))
+			return myContents[level][i]->hasMinSupport;
 	}
 
 	return false;
@@ -77,7 +85,7 @@ bool Trie::getPathExists(const DynamicArray<int> &path) const
 
 	for (int i = 0; i < myContents[level].count(); i++)
 	{
-		if (path == myContents[level][i].thisSet)
+		if (path == myContents[level][i]->thisSet)
 		{
 			return true;
 		}
@@ -107,9 +115,9 @@ bool Trie::addNode(const DynamicArray<int> &path)
 {
 	int level = path.count();
 	while (level >= myContents.count())
-		myContents.insert(DynamicArray<Itemset>());
+		myContents.insert(DynamicArray<Itemset*>());
 
-	myContents[level].insert(Itemset(path));
+	myContents[level].insert(new Itemset(path));
 
 	return true;
 }
@@ -128,7 +136,7 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 	{
 		for (int j = 0; j < myContents[i].count(); j++)
 		{
-			allPaths.insert(myContents[i][j].thisSet);
+			allPaths.insert(myContents[i][j]->thisSet);
 		}
 	}
 }
@@ -145,14 +153,9 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 
 	if (depth >= myContents.count()) return;
 
-	cout << "Number of itemsets at depth " << depth << " is " << myContents[depth].count() << endl;
-
 	for (int j = 0; j < myContents[depth].count(); j++)
 	{
-		if (j == 300)
-			cout << "w";
-
-		pathsAtDepth.insert(myContents[depth][j].thisSet);
+		pathsAtDepth.insert(myContents[depth][j]->thisSet);
 	}
 }
 
@@ -182,7 +185,7 @@ bool Trie::removeNode(const DynamicArray<int> &path)
 
 	for (int i = 0; i < myContents[level].count(); i++)
 	{
-		if (path == myContents[level][i].thisSet)
+		if (path == myContents[level][i]->thisSet)
 		{
 			myContents[level].removeAt(i);
 			return true;
