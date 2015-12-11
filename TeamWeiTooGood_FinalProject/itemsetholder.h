@@ -18,8 +18,9 @@ public:
 
 	bool getPathExists(const DynamicArray<int> &path) const;
 
-	void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
-	void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
+	void getAllItemsets(DynamicArray<DynamicArray<int>> &allSets) const;
+	void getAllTwoOrLargerSets(DynamicArray<DynamicArray<int>> &sets) const;
+	void getAllSetsAtDepth(DynamicArray<DynamicArray<int>> &setsAtDepth, int depth) const;
 
 	bool addNode(const DynamicArray<int> &path, int itemId);
 	bool addNode(const DynamicArray<int> &path);

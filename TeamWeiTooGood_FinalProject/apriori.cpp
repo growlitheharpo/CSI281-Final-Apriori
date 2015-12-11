@@ -21,7 +21,7 @@ void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Ite
 void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, ItemsetHolder& candidates, int depth)
 {
 	DynamicArray<DynamicArray<int>> itemsets;
-	candidates.getAllPathsAtDepth(itemsets, depth);
+	candidates.getAllSetsAtDepth(itemsets, depth);
 
 	int currentItemsetSupport;
 	bool foundInTransaction;
@@ -110,7 +110,7 @@ void candidateGen(const ItemsetHolder &largeItemsets, ItemsetHolder &candidateIt
 	DynamicArray<DynamicArray<int>> previousLevelItems;
 	DynamicArray<int> thisCandidate;
 
-	largeItemsets.getAllPathsAtDepth(previousLevelItems, depth - 1);
+	largeItemsets.getAllSetsAtDepth(previousLevelItems, depth - 1);
 
 	//Loop through all the combinations of itemsets
 	for (int i = 0; i < previousLevelItems.count(); i++)
@@ -170,7 +170,7 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 		calcCandidateSupport(transactions, arrInfo, minSupport, candidates, k);
 
 		//Check if we have anything to add this step
-		candidates.getAllPathsAtDepth(resultsOfThisStep, k);
+		candidates.getAllSetsAtDepth(resultsOfThisStep, k);
 		if (resultsOfThisStep.count() == 0)
 			break;
 

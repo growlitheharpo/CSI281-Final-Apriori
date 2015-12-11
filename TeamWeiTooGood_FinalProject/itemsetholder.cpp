@@ -120,15 +120,15 @@ bool ItemsetHolder::addNode(const DynamicArray<int> &path)
 *      Pre:	Handed the declared DA<DA<int>> where the paths will be stored.
 *	  Post:	All paths stored in the trie are inserted into the array.
 *********************************************************************************************/
-void ItemsetHolder::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
+void ItemsetHolder::getAllItemsets(DynamicArray<DynamicArray<int>> &allSets) const
 {
-	allPaths.clear();
+	allSets.clear();
 
 	for (int i = 0; i < myContents.count(); i++)
 	{
 		for (int j = 0; j < myContents[i].count(); j++)
 		{
-			allPaths.insert(myContents[i][j]->thisSet);
+			allSets.insert(myContents[i][j]->thisSet);
 		}
 	}
 }
@@ -139,15 +139,34 @@ void ItemsetHolder::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 *      Pre:
 *	  Post:
 *********************************************************************************************/
-void ItemsetHolder::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
+void ItemsetHolder::getAllTwoOrLargerSets(DynamicArray<DynamicArray<int>>& sets) const
 {
-	pathsAtDepth.clear();
+	sets.clear();
+
+	for (int i = 2; i < myContents.count(); i++)
+	{
+		for (int j = 0; j < myContents[i].count(); j++)
+		{
+			sets.insert(myContents[i][j]->thisSet);
+		}
+	}
+}
+
+
+/*********************************************************************************************
+*  Purpose:
+*      Pre:
+*	  Post:
+*********************************************************************************************/
+void ItemsetHolder::getAllSetsAtDepth(DynamicArray<DynamicArray<int>> &setsAtDepth, int depth) const
+{
+	setsAtDepth.clear();
 
 	if (depth >= myContents.count()) return;
 
 	for (int j = 0; j < myContents[depth].count(); j++)
 	{
-		pathsAtDepth.insert(myContents[depth][j]->thisSet);
+		setsAtDepth.insert(myContents[depth][j]->thisSet);
 	}
 }
 
