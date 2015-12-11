@@ -21,6 +21,7 @@ class Trie
 			Node()
 			{
 				mItemId = int();
+        thisSet.hasMinSupport = false;
 			}
 
 			/*     Pre:  None
@@ -30,6 +31,7 @@ class Trie
 			Node(int itemId)
 			{
 				mItemId = itemId;
+        thisSet.hasMinSupport = false;
 			}
 
       ~Node(){}
