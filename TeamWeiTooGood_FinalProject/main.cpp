@@ -45,9 +45,9 @@ int main()
 
   Trie trie;
 
-  vector<int> path;
-  vector<vector<int>> allPaths;
-  vector<vector<int>> allPathsDepth;
+  DynamicArray<int> path;
+  DynamicArray<DynamicArray<int>> allPaths;
+  DynamicArray<DynamicArray<int>> allPathsDepth;
 
   path.push_back(1);
   trie.addNode(path);
@@ -56,11 +56,11 @@ int main()
   path.push_back(3);
   trie.addNode(path);
 
-  path.pop_back();
+  path.removeAt(path.count() - 1);
   path.push_back(4);
   trie.addNode(path);
 
-  path.pop_back();
+  path.removeAt(path.count() - 1);
   path.push_back(5);
   trie.addNode(path);
 
@@ -76,7 +76,7 @@ int main()
   path.push_back(14);
   trie.addNode(path);
 
-  path.pop_back();
+  path.removeAt(path.count() - 1);
   path.push_back(15);
   trie.addNode(path);
 

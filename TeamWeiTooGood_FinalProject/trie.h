@@ -9,7 +9,7 @@ class Trie
 	private:
 		struct Node
 		{
-			vector<Node*> mChildren;
+			DynamicArray<Node*> mChildren;
 			Itemset				      thisSet;
 			int                 mItemId;
 
@@ -39,23 +39,23 @@ class Trie
 
 		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node) const;
-		Node* traverseTrie(const vector<int> &path) const;
+		Node* traverseTrie(const DynamicArray<int> &path) const;
 
 	public:
 		Trie();
     ~Trie() { delete mRootNode; }
 
-    void getAllPaths(vector<vector<int>> &allPaths) const;
-    void getAllPathsAtDepth(vector<vector<int>> &pathsAtDepth, int depth) const;
-    bool getHasMinSupport(const vector<int> &path) const;
+    void getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const;
+    void getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const;
+    bool getHasMinSupport(const DynamicArray<int> &path) const;
 
-    void setMinSupport(const vector<int> &path, bool hasMinSupport);
+    void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
 
-    bool addNode(const vector<int> &path);
+    bool addNode(const DynamicArray<int> &path);
     void displayAllPaths();
     void displayAllPathsAtDepth(int depth);
     bool isEmpty() const;
-    bool removeNode(const vector<int> &path);
+    bool removeNode(const DynamicArray<int> &path);
 
 };
 
