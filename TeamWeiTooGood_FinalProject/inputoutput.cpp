@@ -142,7 +142,7 @@ bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filena
 *     Pre: largeItemsets is properly determined, and time is calculated.
 *	 Post: Information is outputed.
 *********************************************************************************************/
-void outputResults(double time, const Trie& largeItemsets)
+void outputResults(double time, const ItemsetHolder& largeItemsets)
 {
 	DynamicArray<DynamicArray<int>> itemsets;
 	largeItemsets.getAllPaths(itemsets);

@@ -6,7 +6,7 @@
 int main()
 {
 	TimerSystem timer;
-	Trie largeItemsets;
+	ItemsetHolder largeItemsets;
 	ArrayInfo2D transactionSizeInfo;
 	bool **transactions = NULL;
 

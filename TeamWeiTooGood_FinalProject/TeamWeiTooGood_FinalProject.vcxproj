@@ -70,7 +70,7 @@
     <ClCompile Include="inputoutput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="timerSystem.cpp" />
-    <ClCompile Include="trie.cpp" />
+    <ClCompile Include="itemsetholder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="apriori.h" />
@@ -79,7 +79,7 @@
     <ClInclude Include="inputoutput.h" />
     <ClInclude Include="itemset.h" />
     <ClInclude Include="timerSystem.h" />
-    <ClInclude Include="trie.h" />
+    <ClInclude Include="itemsetholder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

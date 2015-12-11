@@ -4,14 +4,14 @@
 #include "basefunctions.h"
 #include "itemset.h"
 
-class Trie
+class ItemsetHolder
 {
 private:
 	DynamicArray<DynamicArray<Itemset*>> myContents;
 
 public:
-	Trie();
-	~Trie();
+	ItemsetHolder();
+	~ItemsetHolder();
 
 	void setMinSupport(const DynamicArray<int> &path, bool hasMinSupport);
 	bool getHasMinSupport(const DynamicArray<int> &path) const;

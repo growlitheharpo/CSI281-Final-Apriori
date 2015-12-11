@@ -6,7 +6,7 @@
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Trie &largeItemsets)
+void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, ItemsetHolder &largeItemsets)
 {
 	for (int i = 0; i < candidates.count(); i++)
 		largeItemsets.addNode(candidates[i]);;
@@ -18,7 +18,7 @@ void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Tri
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, Trie& candidates, int depth)
+void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, ItemsetHolder& candidates, int depth)
 {
 	DynamicArray<DynamicArray<int>> itemsets;
 	candidates.getAllPathsAtDepth(itemsets, depth);
@@ -68,7 +68,7 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
+void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets)
 {
 	int supportForThisItem;
 	DynamicArray<int> paths;
@@ -105,7 +105,7 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
+void candidateGen(const ItemsetHolder &largeItemsets, ItemsetHolder &candidateItemsets, int depth)
 {
 	DynamicArray<DynamicArray<int>> previousLevelItems;
 	DynamicArray<int> thisCandidate;
@@ -157,10 +157,10 @@ bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArra
 *     Pre:
 *	 Post:
 *********************************************************************************************/
-void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, Trie &largeItemsets)
+void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets)
 {
 	DynamicArray<DynamicArray<int>> resultsOfThisStep;
-	Trie candidates;
+	ItemsetHolder candidates;
 
 	calculate1Itemsets(transactions, arrInfo, minSupport, largeItemsets);
 

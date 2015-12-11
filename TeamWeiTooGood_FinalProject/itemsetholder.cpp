@@ -1,4 +1,4 @@
-#include "trie.h"
+#include "itemsetholder.h"
 #include "simpleQueue.h"
 
 
@@ -7,7 +7,7 @@
 *      Pre:	None
 *	  Post:	Trie is initialized
 *********************************************************************************************/
-Trie::Trie()
+ItemsetHolder::ItemsetHolder()
 {
 	myContents.clear();
 }
@@ -18,7 +18,7 @@ Trie::Trie()
 *      Pre:	None
 *	  Post:	Trie is destroyed and memory is released.
 *********************************************************************************************/
-Trie::~Trie()
+ItemsetHolder::~ItemsetHolder()
 {
 	clearTrie();
 }
@@ -29,7 +29,7 @@ Trie::~Trie()
 *      Pre:	Handed the path to the node, and whether or not it has support
 *	  Post:	Node is updated
 *********************************************************************************************/
-void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
+void ItemsetHolder::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 {
 	int level = path.count();
 	for (int i = 0; i < myContents[level].count(); i++)
@@ -48,7 +48,7 @@ void Trie::setMinSupport(const DynamicArray<int> &path, bool hasMinSupport)
 *      Pre:	Handed the path
 *	  Post:	Returns true if the node at the given path has min support, false otherwise.
 *********************************************************************************************/
-bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
+bool ItemsetHolder::getHasMinSupport(const DynamicArray<int> &path) const
 {
 	int level = path.count();
 	if (level >= myContents.count()) return false;
@@ -68,7 +68,7 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 *      Pre:
 *	  Post:
 *********************************************************************************************/
-bool Trie::getPathExists(const DynamicArray<int> &path) const
+bool ItemsetHolder::getPathExists(const DynamicArray<int> &path) const
 {
 	int level = path.count();
 
@@ -92,7 +92,7 @@ bool Trie::getPathExists(const DynamicArray<int> &path) const
 *      Pre:	Handed the path and the id of the new item
 *	  Post:	Item is added to the tree
 *********************************************************************************************/
-bool Trie::addNode(const DynamicArray<int> &path, int itemId)
+bool ItemsetHolder::addNode(const DynamicArray<int> &path, int itemId)
 {
 	return addNode(path);
 }
@@ -103,7 +103,7 @@ bool Trie::addNode(const DynamicArray<int> &path, int itemId)
 *      Pre:	Handed the path of the new item
 *	  Post:	Item is added to the tree
 *********************************************************************************************/
-bool Trie::addNode(const DynamicArray<int> &path)
+bool ItemsetHolder::addNode(const DynamicArray<int> &path)
 {
 	int level = path.count();
 	while (level >= myContents.count())
@@ -120,7 +120,7 @@ bool Trie::addNode(const DynamicArray<int> &path)
 *      Pre:	Handed the declared DA<DA<int>> where the paths will be stored.
 *	  Post:	All paths stored in the trie are inserted into the array.
 *********************************************************************************************/
-void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
+void ItemsetHolder::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 {
 	allPaths.clear();
 
@@ -139,7 +139,7 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 *      Pre:
 *	  Post:
 *********************************************************************************************/
-void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
+void ItemsetHolder::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
 {
 	pathsAtDepth.clear();
 
@@ -158,7 +158,7 @@ void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int
 *      Pre:	None
 *	  Post:	True if root has no children, false otherwise
 *********************************************************************************************/
-bool Trie::isEmpty() const
+bool ItemsetHolder::isEmpty() const
 {
 	return (myContents.count() > 0);
 }
@@ -169,7 +169,7 @@ bool Trie::isEmpty() const
 *      Pre:	Handed the path to remove the node from.
 *	  Post:	Returns false if the item could not be found, otherwise true and item is removed.
 *********************************************************************************************/
-bool Trie::removeNode(const DynamicArray<int> &path)
+bool ItemsetHolder::removeNode(const DynamicArray<int> &path)
 {
 	int level = path.count();
 
@@ -193,7 +193,7 @@ bool Trie::removeNode(const DynamicArray<int> &path)
 *      Pre:
 *	  Post:
 *********************************************************************************************/
-void Trie::clearTrie()
+void ItemsetHolder::clearTrie()
 {
 	for (int i = myContents.count() - 1; i >= 0; i--)
 	{
@@ -201,6 +201,8 @@ void Trie::clearTrie()
 		{
 			delete myContents[i][j];
 		}
+
+		myContents[i].clear();
 	}
 
 	myContents.clear();

@@ -39,19 +39,16 @@
     <ClCompile Include="basefunctions.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="trie.cpp">
+    <ClCompile Include="timerSystem.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="timerSystem.cpp">
+    <ClCompile Include="itemsetholder.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputoutput.h">
       <Filter>Header Files\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="trie.h">
-      <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="dynamicarray.h">
       <Filter>Header Files\Classes</Filter>
@@ -66,6 +63,9 @@
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="timerSystem.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="itemsetholder.h">
       <Filter>Header Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
