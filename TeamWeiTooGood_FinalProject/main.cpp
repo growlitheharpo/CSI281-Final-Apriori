@@ -24,7 +24,7 @@ int main()
 		largeItemsets.clearTrie();
 
 		//filename = getFileName();
-		filename = "datasets\\T25.N0.1K.D100K.txt";
+		filename = "datasets\\T25.N0.1K.D10K.txt";
 
 		if (!loadData(transactions, transactionSizeInfo, filename))
 			continue;
@@ -37,7 +37,7 @@ int main()
 
 		outputResults(time, largeItemsets);
 
-		delete[] transactions;
+		//cleanupTransactions(transactions, transactionSizeInfo);
 		keepRunning = getContinue();
 	}
 
