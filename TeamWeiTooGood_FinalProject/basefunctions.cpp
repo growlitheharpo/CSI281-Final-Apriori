@@ -12,6 +12,7 @@ void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 	}
 
 	delete[] transactions;
+	transactions = NULL;
 }
 
 
