@@ -32,31 +32,28 @@ class Trie
 				mItemId = itemId;
 			}
 
-      ~Node()
-      {
-        cout << "Deleting node with item: " << mItemId << endl;     //For debug
-      }
+      ~Node(){}
 		};
 
+		Node *mRootNode;
 
 		void destroySubtrie(Node *node);
 		bool isLeaf(Node *node) const;
 		Node* traverseTrie(const vector<int> &path) const;
-    void getAllPathsAtDepthStart(vector<vector<int>> &pathsAtDepth, int depth, const Node *currentNode, int currentDepth) const;
 
-		Node *mRootNode;
 	public:
 		Trie();
     ~Trie() { delete mRootNode; }
 
-    void setMinSupport(const vector<int> &path, bool hasMinSupport);
-    bool getHasMinSupport(const vector<int> &path) const;
-
     void getAllPaths(vector<vector<int>> &allPaths) const;
     void getAllPathsAtDepth(vector<vector<int>> &pathsAtDepth, int depth) const;
+    bool getHasMinSupport(const vector<int> &path) const;
+
+    void setMinSupport(const vector<int> &path, bool hasMinSupport);
 
     bool addNode(const vector<int> &path);
-		bool isEmpty() const;
+    void displayAllPaths();
+    bool isEmpty() const;
     bool removeNode(const vector<int> &path);
 
 };

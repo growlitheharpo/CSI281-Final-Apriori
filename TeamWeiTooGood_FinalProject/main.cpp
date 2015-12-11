@@ -43,7 +43,6 @@ int main()
   //bool keepRunning = getContinue();
   //cout << "Keep running is " << (keepRunning ? "true" : "false") << ".\n";
 
-
   Trie trie;
 
   vector<int> path;
@@ -65,8 +64,6 @@ int main()
   path.push_back(5);
   trie.addNode(path);
 
-
-
   path.clear();
   path.push_back(10);
   trie.addNode(path);
@@ -83,9 +80,11 @@ int main()
   path.push_back(15);
   trie.addNode(path);
 
-  //trie.getAllPathsAtDepth(allPathsDepth, 2);
+  //trie.getAllPathsAtDepth(allPathsDepth, 3);
 
-  trie.getAllPaths(allPaths);
+  trie.displayAllPaths();
+
+  /*trie.getAllPaths(allPaths);
 
   for (int i = 0; i < allPaths.size(); i++)
   {
@@ -95,7 +94,12 @@ int main()
     }
     cout << endl;
   }
+*/
 
+
+
+
+  /*
   cout << "\ndepth 2\n";
   for (int i = 0; i < allPathsDepth.size(); i++)
   {
@@ -104,31 +108,7 @@ int main()
       cout << allPathsDepth[i][j] << " ";
     }
     cout << endl;
-  }
-  /*
-  DynamicArray<int> array1, array2, output;
-
-  array1.insert(2);
-  array1.insert(3);
-  array1.insert(4);
-
-  array2.insert(2);
-  array2.insert(3);
-  array2.insert(5);
-
-
-  array1.display();
-  array2.display();
-
-  unionTwoArrays(array1, array2, output);
-
-
-  array1.display();
-  array2.display();
-  output.display();*/
-
-
-
+  }*/
 
   system("pause");
   return 0;
