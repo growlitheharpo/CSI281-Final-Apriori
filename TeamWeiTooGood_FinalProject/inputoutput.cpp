@@ -48,7 +48,7 @@ string getFileName()
 *     Pre: Have the total number of transactions in this itemset.
 *	 Post: Returns the minimum number of items necessary
 *********************************************************************************************/
-int	getMinimumSupport(int totalTransactionCount)
+int	getMinimumSupport(const int totalTransactionCount)
 {
 	cout << "Enter the desired transactions for minimum support.\n"
 		<< "This can either be an exact number of transactions, \n"
@@ -124,7 +124,6 @@ bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filena
 	if (!fin.good())
 		return false;
 
-	int currentTransaction, currentItem;
 	int numTransactions, numItems;
 
 	//Determine the size of our array and initialize it
@@ -132,18 +131,7 @@ bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filena
 	initializeTransactionArray(transactions, arrayInfo, numTransactions, numItems);
 
 	//Actually load the data
-	fin >> currentTransaction >> currentItem;
-
-	--currentTransaction;
-	--currentItem;
-	while (!fin.eof())
-	{
-		transactions[currentTransaction][currentItem] = true;
-		fin >> currentTransaction >> currentItem;
-
-		--currentTransaction;
-		--currentItem;
-	}
+	readFile(transactions, arrayInfo, fin);
 
 	return true;
 }
@@ -204,4 +192,30 @@ void parseFileName(int &transactions, int &items, const string &filename)
 
 	transactions = static_cast<int>(stof(transactionsStr) * 1000);
 	items = static_cast<int>(stof(itemsStr) * 1000);
+}
+
+
+/*********************************************************************************************
+* Purpose: 
+*     Pre: 
+*	 Post: 
+*********************************************************************************************/
+void readFile(bool **transactions, const ArrayInfo2D &arrayInfo, ifstream& fin)
+{
+	int currentTransaction, currentItem;
+
+	fin >> currentTransaction >> currentItem;
+
+	bool *thisTransaction;
+
+	--currentTransaction;
+	while (!fin.eof())
+	{
+		thisTransaction = transactions[currentTransaction];
+		*(thisTransaction + currentItem) = true;
+		
+		fin >> currentTransaction >> currentItem;
+
+		--currentTransaction;
+	}
 }
