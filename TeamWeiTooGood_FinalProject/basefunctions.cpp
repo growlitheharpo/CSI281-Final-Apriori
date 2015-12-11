@@ -3,7 +3,6 @@
 
 void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 {
-	/*
 	bool *currentPointer;
 	for (int i = 0; i < arrayInfo.sizeI; i++)
 	{
@@ -13,8 +12,6 @@ void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 	}
 
 	delete[] transactions;
-	*/
-	cout << "Transactions is currently leaking." << endl;
 }
 
 
