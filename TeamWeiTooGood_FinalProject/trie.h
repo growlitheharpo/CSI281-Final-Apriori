@@ -25,6 +25,8 @@ public:
 	bool addNode(const DynamicArray<int> &path);
 	bool isEmpty() const;
 	bool removeNode(const DynamicArray<int> &path);
+
+	void clearTrie();
 };
 
 #endif

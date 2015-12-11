@@ -21,8 +21,10 @@ int main()
 
 	while (keepRunning)
 	{
+		largeItemsets.clearTrie();
+
 		//filename = getFileName();
-		filename = "datasets\\T5.N0.1K.D1K.txt";
+		filename = "datasets\\T25.N0.1K.D100K.txt";
 
 		if (!loadData(transactions, transactionSizeInfo, filename))
 			continue;

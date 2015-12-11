@@ -5,7 +5,7 @@ template <typename T>
 class DynamicArray
 {
 private:
-	const int GROW_SHRINK_SIZE = 5;
+	const int GROW_SHRINK_SIZE = 500;
 
 	T *mData;
 	int mArraySize, numIndexesFilled;
@@ -30,8 +30,7 @@ public:
 
 	DynamicArray<T>& operator= (const DynamicArray<T>& otherArray);
 
-	bool operator== (DynamicArray<T>& otherArray);
-	bool operator== (DynamicArray<T>& otherArray) const;
+	bool operator== (const DynamicArray<T>& otherArray) const;
 
 	T& operator[] (int index);
 	T operator[] (int index) const;
@@ -286,19 +285,7 @@ DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
 *	 Post:
 *********************************************************************************************/
 template <typename T>
-bool DynamicArray<T>::operator== (DynamicArray<T>& otherArray)
-{
-	return this->operator==(const_cast<const DynamicArray<T>&>(otherArray));
-}
-
-
-/*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
-*********************************************************************************************/
-template <typename T>
-bool DynamicArray<T>::operator==(DynamicArray<T>& otherArray) const
+bool DynamicArray<T>::operator==(const DynamicArray<T>& otherArray) const
 {
 	if (this->numIndexesFilled != otherArray.numIndexesFilled)
 		return false;

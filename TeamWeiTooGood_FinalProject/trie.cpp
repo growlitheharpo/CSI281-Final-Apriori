@@ -20,15 +20,7 @@ Trie::Trie()
 *********************************************************************************************/
 Trie::~Trie()
 {
-	for (int i = myContents.count() - 1; i >= 0; i--)
-	{
-		for (int j = myContents[i].count() - 1; j >= 0; j--)
-		{
-			delete myContents[i][j];
-		}
-	}
-
-	myContents.clear();
+	clearTrie();
 }
 
 
@@ -72,9 +64,9 @@ bool Trie::getHasMinSupport(const DynamicArray<int> &path) const
 
 
 /*********************************************************************************************
-*  Purpose:	
-*      Pre:	
-*	  Post:	
+*  Purpose:
+*      Pre:
+*	  Post:
 *********************************************************************************************/
 bool Trie::getPathExists(const DynamicArray<int> &path) const
 {
@@ -143,9 +135,9 @@ void Trie::getAllPaths(DynamicArray<DynamicArray<int>> &allPaths) const
 
 
 /*********************************************************************************************
-*  Purpose:	
-*      Pre:	
-*	  Post:	
+*  Purpose:
+*      Pre:
+*	  Post:
 *********************************************************************************************/
 void Trie::getAllPathsAtDepth(DynamicArray<DynamicArray<int>> &pathsAtDepth, int depth) const
 {
@@ -193,4 +185,23 @@ bool Trie::removeNode(const DynamicArray<int> &path)
 	}
 
 	return false;
+}
+
+
+/*********************************************************************************************
+*  Purpose:
+*      Pre:
+*	  Post:
+*********************************************************************************************/
+void Trie::clearTrie()
+{
+	for (int i = myContents.count() - 1; i >= 0; i--)
+	{
+		for (int j = myContents[i].count() - 1; j >= 0; j--)
+		{
+			delete myContents[i][j];
+		}
+	}
+
+	myContents.clear();
 }

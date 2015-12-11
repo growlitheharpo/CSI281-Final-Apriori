@@ -120,6 +120,8 @@ void candidateGen(const Trie &largeItemsets, Trie &candidateItemsets, int depth)
 			if (!itemsetsHaveFirstKInCommon(previousLevelItems[i], previousLevelItems[j], depth - 2))
 				continue;
 
+			if (previousLevelItems[i] == previousLevelItems[j]) continue;
+
 			//Union the two, then add them to candidates
 			//unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
 
