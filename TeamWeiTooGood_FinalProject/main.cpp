@@ -26,14 +26,15 @@ int main()
 
 		minimumSupport = getMinimumSupport(transactionSizeInfo.sizeI);
 
-
+		//Do apriori
 		timer.startClock();
 		runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, minimumSupport, largeItemsets);
 		time = timer.getTime();
 
-
+		//show results
 		outputResults(time, largeItemsets);
 
+		//deallocate transactions and ask to continue
 		cleanupTransactions(transactions, transactionSizeInfo);
 		keepRunning = getContinue();
 	}
