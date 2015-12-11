@@ -1,6 +1,7 @@
 #include "inputoutput.h"
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 /*********************************************************************************************
 * Purpose: Determine if the user would like to continue.
@@ -166,7 +167,25 @@ void outputResults(double time, const ItemsetHolder& largeItemsets)
 *********************************************************************************************/
 void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS])
 {
+  //fstream file;
+  //file.open("aprioriResults.txt", std::ios::out);
+      cout << left << setw(10) << "Dataset: " << setw(25) << DATASET_LIST[1] << setw(10) << "MinSupport: "  << setw(5) << MINIMUM_SUPPORT_LIST[2] << endl
+        << setw(10) << "Itemset:" << setw(20) << "Itemsets generated" << setw(7) << "Run 1:" << setw(7) << "Run 2:" << setw(7)
+        << "Run 3:" << setw(7) << "Avg:" << endl << endl;
 
+  for (int i = 0; i< NUM_OF_DATASETS; i++)
+  {
+    for (int j = 0; j < NUM_OF_MINSUPPORTS;j++)
+    {
+
+      for (int k = 0; k < NUM_OF_TRIALS;k++)
+      {
+        for (int l = 0; l < allResults[i][j][k].count();l++)
+        {
+        }
+      }
+    }
+  }
 }
 
 

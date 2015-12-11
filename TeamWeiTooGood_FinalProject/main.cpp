@@ -5,7 +5,11 @@
 
 int main()
 {
-	TimerSystem timer;
+  DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS];
+
+  outputAllTestResults(allResults);
+
+	/*TimerSystem timer;
 	ItemsetHolder largeItemsets;
 	ArrayInfo2D transactionSizeInfo;
 	bool **transactions = NULL;
@@ -38,6 +42,7 @@ int main()
 		cleanupTransactions(transactions, transactionSizeInfo);
 		keepRunning = getContinue();
 	}
-
+*/
+  system("pause");
 	return 0;
 }
