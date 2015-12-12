@@ -51,9 +51,6 @@ void DynamicArray<T>::copyArray(const T* array1, T* array2, int size1, int size2
 	int i;
 	for (i = 0; i < size1; i++)
 		array2[i] = array1[i];
-
-	for (; i < size2; i++)
-		array2[i] = T();
 }
 
 

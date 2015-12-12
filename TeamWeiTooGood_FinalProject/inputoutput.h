@@ -4,7 +4,7 @@
 #include "basefunctions.h"
 #include "itemsetholder.h"
 
-const int NUM_OF_DATASETS = 27,
+const int NUM_OF_DATASETS = 5,
 		  NUM_OF_MINSUPPORTS = 3,
 		  NUM_OF_TRIALS = 3;
 
