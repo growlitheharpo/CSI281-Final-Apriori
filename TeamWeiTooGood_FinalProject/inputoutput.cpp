@@ -174,21 +174,22 @@ void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS
   {
     for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
     {
-      cout << left << setw(10) << "Dataset: " << setw(25) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
-        << setw(10) << "Itemset:" << setw(20) << "Itemsets generated:" << setw(10) << "Run 1:" << setw(10) << "Run 2:" << setw(10)
-        << "Run 3:" << setw(10) << "Avg:" << endl << endl;
+      cout << left << setw(15) << "Dataset: " << setw(30) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
+        << setw(15) << "Itemset:" << setw(25) << "Itemsets generated:" << setw(15) << "Run 1:" << setw(15) << "Run 2:" << setw(15)
+        << "Run 3:" << setw(15) << "Avg:" << endl << endl;
       {
         for (int k = 0; k < allResults[i][j][0].count(); k++)
         {
           double average = 0;
-          cout << setw(4) << "Set " << setw(6) << allResults[i][j][k][0].mDepth << setw(20) << allResults[i][j][k][0].mNumOfItemsetsAtThisDepth;
+          cout << setw(4) << "Set " << setw(11) << allResults[i][j][k][0].mDepth << setw(25) << allResults[i][j][k][0].mNumOfItemsetsAtThisDepth;
 
           for (int l = 0; l < NUM_OF_TRIALS; l++)
           {
-            cout << setw(10) << allResults[i][j][l][k].mTimeForThisDepth;
+            cout << setw(15) << allResults[i][j][l][k].mTimeForThisDepth;
             average += allResults[i][j][l][k].mTimeForThisDepth;
           }
-          cout << setw(10) << average << endl;
+          average /= 3;
+          cout << setw(15) << average << endl;
         }
       }
     }
