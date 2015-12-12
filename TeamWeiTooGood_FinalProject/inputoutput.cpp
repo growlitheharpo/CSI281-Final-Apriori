@@ -167,8 +167,8 @@ void outputResults(double time, const ItemsetHolder& largeItemsets)
 *********************************************************************************************/
 void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS])
 {
-	//fstream file;
-	//file.open("aprioriResults.txt", std::ios::out);
+	fstream file;
+	file.open("aprioriResults.txt", std::ios::out);
 
 	//For each dataset
 	for (int i = 0; i < NUM_OF_DATASETS; i++)
@@ -176,7 +176,7 @@ void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS
 		//for each minimum support
 		for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
 		{
-			cout << left << setw(15) << "Dataset: " << setw(30) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
+      file << left << setw(15) << "Dataset: " << setw(30) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
 				<< setw(15) << "Itemset:" << setw(25) << "Itemsets generated:" << setw(15) << "Run 1:" << setw(15) << "Run 2:" << setw(15)
 				<< "Run 3:" << setw(15) << "Avg:" << endl << endl;
 
@@ -184,20 +184,22 @@ void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS
 			for (int k = 0; k < allResults[i][j][0].count(); k++)
 			{
 				double average = 0;
-				cout << setw(4) << "Set " << setw(11) << allResults[i][j][0][k].mDepth << setw(25) << allResults[i][j][0][k].mNumOfItemsetsAtThisDepth;
+        file << setw(4) << "Set " << setw(11) << allResults[i][j][0][k].mDepth << setw(25) << allResults[i][j][0][k].mNumOfItemsetsAtThisDepth;
 
 				for (int l = 0; l < NUM_OF_TRIALS; l++)
 				{
-					cout << setw(15) << allResults[i][j][l][k].mTimeForThisDepth;
+          file << setw(15) << allResults[i][j][l][k].mTimeForThisDepth;
 					average += allResults[i][j][l][k].mTimeForThisDepth;
 				}
 				average /= 3;
-				cout << setw(15) << average << endl;
+        file << setw(15) << average << endl;
 			}
 
-			cout << "\n\n";
+			file << "\n\n";
 		}
 	}
+
+  file.close();
 }
 
 
