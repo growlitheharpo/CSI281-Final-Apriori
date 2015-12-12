@@ -39,7 +39,7 @@ const string DATASET_LIST[] =
 	"T25.N1K.D100K.txt"
 };
 
-const int MINIMUM_SUPPORT_LIST[] = { 20, 40, 60 };
+const int MINIMUM_SUPPORT_LIST[] = { 15, 25, 40 };
 
 bool	getContinue();
 string	getFileName();
