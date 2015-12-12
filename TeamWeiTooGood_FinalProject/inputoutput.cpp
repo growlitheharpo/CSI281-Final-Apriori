@@ -192,6 +192,7 @@ void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS
           cout << setw(15) << average << endl;
         }
       }
+      cout << "\n\n";
     }
   }
 }
