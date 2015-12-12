@@ -1,6 +1,10 @@
 #include "basefunctions.h"
 
-
+/*********************************************************************************************
+* Purpose:  Clear transactions array
+*     Pre:  Transactions and arrayInfo must be initialized
+*	 Post:    Transactions are cleared
+*********************************************************************************************/
 void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 {
 	bool *currentPointer;
@@ -17,9 +21,9 @@ void cleanupTransactions(bool** &transactions, ArrayInfo2D arrayInfo)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Clear console
+*     Pre: None
+*	 Post: Console is cleared
 *********************************************************************************************/
 void clearScreen(bool pauseFirst)
 {
@@ -31,9 +35,9 @@ void clearScreen(bool pauseFirst)
 
 
 /*********************************************************************************************
-* Purpose: 
-*     Pre: 
-*	 Post: 
+* Purpose: Pause execution
+*     Pre: None
+*	 Post: Execution is paused
 *********************************************************************************************/
 void pause()
 {

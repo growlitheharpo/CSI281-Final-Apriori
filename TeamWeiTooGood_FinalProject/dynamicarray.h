@@ -38,9 +38,9 @@ public:
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Copy one array into another
+*     Pre: Two initialized arrays and the sizes must be passed in
+*	 Post:  One array is copied into another
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::copyArray(const T* array1, T* array2, int size1, int size2)
@@ -55,9 +55,9 @@ void DynamicArray<T>::copyArray(const T* array1, T* array2, int size1, int size2
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Change size of array
+*     Pre: Array must be initialized
+*	 Post:  Array is resized
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::contractArray()
@@ -73,9 +73,9 @@ void DynamicArray<T>::contractArray()
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Increase size of array
+*     Pre: Array  must be initialized
+*	 Post:  Array size is increased
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::expandArray()
@@ -91,9 +91,9 @@ void DynamicArray<T>::expandArray()
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Initialize dynamic array
+*     Pre: None
+*	 Post:  Initialize DynamicArray
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::DynamicArray()
@@ -106,9 +106,9 @@ DynamicArray<T>::DynamicArray()
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Initialize dynamic array
+*     Pre: Size must be passed in
+*	 Post:  Initialize DynamicArray
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::DynamicArray(int size)
@@ -121,9 +121,9 @@ DynamicArray<T>::DynamicArray(int size)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Initialize dynamic array
+*     Pre: Another initialized and instantiated DynamicArray
+*	 Post:  Initialize DynamicArray
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::DynamicArray(const DynamicArray& other)
@@ -137,9 +137,9 @@ DynamicArray<T>::DynamicArray(const DynamicArray& other)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Destructor
+*     Pre:  None
+*	 Post:    None
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>::~DynamicArray()
@@ -149,9 +149,9 @@ DynamicArray<T>::~DynamicArray()
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Return size of array
+*     Pre:  Initialized array
+*	 Post:    Size is returned
 *********************************************************************************************/
 template <typename T>
 int DynamicArray<T>::count() const
@@ -161,9 +161,9 @@ int DynamicArray<T>::count() const
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Display array on screen
+*     Pre:  Initialized array
+*	 Post:    array is displayed on screen
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::display() const
@@ -176,9 +176,9 @@ void DynamicArray<T>::display() const
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Clear array
+*     Pre:  Initialized array
+*	 Post:    Array is cleared
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::clear()
@@ -193,9 +193,9 @@ void DynamicArray<T>::clear()
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Insert item into array
+*     Pre:  Initialized array
+*	 Post:    Item is inserted
 *********************************************************************************************/
 template <typename T>
 void DynamicArray<T>::insert(const T& item)
@@ -209,9 +209,9 @@ void DynamicArray<T>::insert(const T& item)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Remove item fromarray
+*     Pre:  Initialized array
+*	 Post:    Item is removed
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::remove(const T& item)
@@ -234,9 +234,9 @@ bool DynamicArray<T>::remove(const T& item)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Remove item from array at index
+*     Pre:  Initialized array
+*	 Post:    Item is removed
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::removeAt(int index)
@@ -257,9 +257,9 @@ bool DynamicArray<T>::removeAt(int index)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Set DynamicArray equal to DynamicArray
+*     Pre:  Arrays are initialized
+*	 Post:    Dynamic array is assigned
 *********************************************************************************************/
 template <typename T>
 DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
@@ -277,9 +277,9 @@ DynamicArray<T>& DynamicArray<T>::operator= (const DynamicArray<T>& otherArray)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Compare arrays
+*     Pre:  Arrays must be initialized
+*	 Post:    Returns true if equal, false if not
 *********************************************************************************************/
 template <typename T>
 bool DynamicArray<T>::operator==(const DynamicArray<T>& otherArray) const
@@ -298,8 +298,8 @@ bool DynamicArray<T>::operator==(const DynamicArray<T>& otherArray) const
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
+* Purpose:  Get item at index
+*     Pre:  Initialized array
 *	 Post: Return the item at the index. Throws exception (std::out_of_range) if out of range.
 *********************************************************************************************/
 template <typename T>
@@ -313,8 +313,8 @@ T& DynamicArray<T>::operator[](int index)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
+* Purpose:  Get item at index
+*     Pre:  Initialized array
 *	 Post: Return the item at the index. Throws exception (std::out_of_range) if out of range.
 *********************************************************************************************/
 template <typename T>

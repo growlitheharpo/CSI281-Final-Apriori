@@ -8,12 +8,22 @@ struct Itemset
 	DynamicArray<int> thisSet;
 	bool hasMinSupport;
 
+  /*********************************************************************************************
+  * Purpose:  Initialize
+  *     Pre:  None
+  *	 Post: Itemset is initialized
+  *********************************************************************************************/
 	Itemset()
 	{
 		this->thisSet.clear();
 		this->hasMinSupport = false;
 	}
 
+  /*********************************************************************************************
+  * Purpose:  Initialize with an itemset
+  *     Pre:  Initialized itemset
+  *	 Post: Itemset is initialized
+  *********************************************************************************************/
 	Itemset(const DynamicArray<int> &set)
 	{
 		this->thisSet = set;

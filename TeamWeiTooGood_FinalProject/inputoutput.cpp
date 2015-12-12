@@ -161,9 +161,9 @@ void outputResults(double time, const ItemsetHolder& largeItemsets)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose:  Output all test results
+*     Pre:  Multi-dimensional array must be initialized and filled
+*	 Post:    All results are output to file
 *********************************************************************************************/
 void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS])
 {
@@ -240,9 +240,9 @@ void parseFileName(int &transactions, int &items, const string &filename)
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Read in transactions from file
+*     Pre: Ifstream, arrayInfo and transaction arrays must be initialized and instantiated
+*	 Post:  Arrays are populated
 *********************************************************************************************/
 void readFile(bool **transactions, const ArrayInfo2D &arrayInfo, ifstream& fin)
 {

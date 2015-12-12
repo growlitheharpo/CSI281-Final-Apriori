@@ -64,9 +64,9 @@ bool ItemsetHolder::getHasMinSupport(const DynamicArray<int> &path) const
 
 
 /*********************************************************************************************
-*  Purpose:
-*      Pre:
-*	  Post:
+*  Purpose: Return whether path exists
+*      Pre: Path must be initialized
+*	  Post:   Returns true if path exists, false otherwise
 *********************************************************************************************/
 bool ItemsetHolder::getPathExists(const DynamicArray<int> &path) const
 {
@@ -135,9 +135,9 @@ void ItemsetHolder::getAllItemsets(DynamicArray<DynamicArray<int>> &allSets) con
 
 
 /*********************************************************************************************
-*  Purpose:
-*      Pre:
-*	  Post:
+*  Purpose: Get all sets of size 2 or larger
+*      Pre: Sets must be initialized and instantiated
+*	  Post:   Gets all sets of size 2 or more
 *********************************************************************************************/
 void ItemsetHolder::getAllTwoOrLargerSets(DynamicArray<DynamicArray<int>>& sets) const
 {
@@ -154,9 +154,9 @@ void ItemsetHolder::getAllTwoOrLargerSets(DynamicArray<DynamicArray<int>>& sets)
 
 
 /*********************************************************************************************
-*  Purpose:
-*      Pre:
-*	  Post:
+*  Purpose: Get all sets at given size
+*      Pre: Sets must be initialized and instantiated
+*	  Post:   Gets all sets at given depth
 *********************************************************************************************/
 void ItemsetHolder::getAllSetsAtDepth(DynamicArray<DynamicArray<int>> &setsAtDepth, int depth) const
 {
@@ -208,9 +208,9 @@ bool ItemsetHolder::removeNode(const DynamicArray<int> &path)
 
 
 /*********************************************************************************************
-*  Purpose:
-*      Pre:
-*	  Post:
+*  Purpose: Clear the structure
+*      Pre: Structure must be initialized
+*	  Post:   Structure is cleared
 *********************************************************************************************/
 void ItemsetHolder::clearTrie()
 {
