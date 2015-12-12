@@ -1,6 +1,6 @@
 #include "inputoutput.h"
 #include "apriori.h"
-
+#include <string>
 
 int interactiveMain()
 {
@@ -57,10 +57,16 @@ int testingMain()
 
 	for (int i = 0; i < NUM_OF_DATASETS; i++)
 	{
+		currentFile = "datasets\\" + DATASET_LIST[i];
+		cout << "Testing " << currentFile << endl;
+		if (!loadData(transactions, transactionSizeInfo, currentFile))
+		{
+			cout << "Could not load " << currentFile << endl;
+			continue;
+		}
+
 		for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
 		{
-			currentFile = "datasets\\" + DATASET_LIST[i];
-			loadData(transactions, transactionSizeInfo, currentFile);
 			currentMinSupport = (transactionSizeInfo.sizeI * MINIMUM_SUPPORT_LIST[j]) / 100;
 
 			for (int k = 0; k < NUM_OF_TRIALS; k++)
@@ -69,12 +75,14 @@ int testingMain()
 				runApriori(const_cast<const bool**>(transactions), transactionSizeInfo, currentMinSupport, largeItemsets, allResults[i][j][k]);
 			}
 
-			cleanupTransactions(transactions, transactionSizeInfo);
 		}
+
+		cleanupTransactions(transactions, transactionSizeInfo);
 	}
 
 	outputAllTestResults(allResults);
 
+	system("pause");
 	return 0;
 }
 

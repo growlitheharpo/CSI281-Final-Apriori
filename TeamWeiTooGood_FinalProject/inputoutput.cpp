@@ -10,21 +10,21 @@
 *********************************************************************************************/
 bool getContinue()
 {
-  string input;
+	string input;
 
-  do
-  {
-    cout << "Continue? (Y/N): ";
-    getline(cin, input);
+	do
+	{
+		cout << "Continue? (Y/N): ";
+		getline(cin, input);
 
-    if (input.length() > 1 || (tolower(input[0]) != 'y' && tolower(input[0]) != 'n'))
-      continue;
-    else if (tolower(input[0]) == 'y')
-      return true;
-    else
-      return false;
+		if (input.length() > 1 || (tolower(input[0]) != 'y' && tolower(input[0]) != 'n'))
+			continue;
+		else if (tolower(input[0]) == 'y')
+			return true;
+		else
+			return false;
 
-  } while (true);
+	} while (true);
 }
 
 
@@ -35,12 +35,12 @@ bool getContinue()
 *********************************************************************************************/
 string getFileName()
 {
-  string filename;
+	string filename;
 
-  cout << "Enter the name of the transaction file: ";
-  getline(cin, filename);
+	cout << "Enter the name of the transaction file: ";
+	getline(cin, filename);
 
-  return filename;
+	return filename;
 }
 
 
@@ -51,41 +51,41 @@ string getFileName()
 *********************************************************************************************/
 int	getMinimumSupport(const int totalTransactionCount)
 {
-  cout << "Enter the desired transactions for minimum support.\n"
-    << "This can either be an exact number of transactions, \n"
-    << "or a percentage of all transactions if you begin with\n"
-    << "a % sign.\n";
+	cout << "Enter the desired transactions for minimum support.\n"
+		<< "This can either be an exact number of transactions, \n"
+		<< "or a percentage of all transactions if you begin with\n"
+		<< "a % sign.\n";
 
-  string input;
-  int support = -1;
-  bool enteredPercent, valid;
+	string input;
+	int support = -1;
+	bool enteredPercent, valid;
 
-  do
-  {
-    enteredPercent = false;
-    valid = true;
+	do
+	{
+		enteredPercent = false;
+		valid = true;
 
-    cout << "Enter minimum support: ";
-    getline(cin, input);
+		cout << "Enter minimum support: ";
+		getline(cin, input);
 
-    if (input[0] == '%')
-    {
-      enteredPercent = true;
-      input.erase(0, 1);
-    }
+		if (input[0] == '%')
+		{
+			enteredPercent = true;
+			input.erase(0, 1);
+		}
 
-    for (size_t i = 0; i < input.size() && valid; i++)
-    {
-      if (input[i] < '0' || input[i] > '9')
-        valid = false;
-    }
+		for (size_t i = 0; i < input.size() && valid; i++)
+		{
+			if (input[i] < '0' || input[i] > '9')
+				valid = false;
+		}
 
-    if (valid)
-      support = (enteredPercent) ? (stoi(input) * static_cast<int>(0.01 * totalTransactionCount)) : stoi(input);
+		if (valid)
+			support = (enteredPercent) ? (stoi(input) * static_cast<int>(0.01 * totalTransactionCount)) : stoi(input);
 
-  } while (support < 0 || support > totalTransactionCount);
+	} while (support < 0 || support > totalTransactionCount);
 
-  return support;
+	return support;
 }
 
 
@@ -96,19 +96,19 @@ int	getMinimumSupport(const int totalTransactionCount)
 *********************************************************************************************/
 void initializeTransactionArray(bool** &transactions, ArrayInfo2D &arrayInfo, int sizeI, int sizeJ)
 {
-  transactions = new bool*[sizeI];
-  for (int i = 0; i < sizeI; i++)
-  {
-    transactions[i] = new bool[sizeJ];
+	transactions = new bool*[sizeI];
+	for (int i = 0; i < sizeI; i++)
+	{
+		transactions[i] = new bool[sizeJ];
 
-    for (int j = 0; j < sizeJ; j++)
-    {
-      transactions[i][j] = false;
-    }
-  }
+		for (int j = 0; j < sizeJ; j++)
+		{
+			transactions[i][j] = false;
+		}
+	}
 
-  arrayInfo.sizeI = sizeI;
-  arrayInfo.sizeJ = sizeJ;
+	arrayInfo.sizeI = sizeI;
+	arrayInfo.sizeJ = sizeJ;
 }
 
 
@@ -119,22 +119,22 @@ void initializeTransactionArray(bool** &transactions, ArrayInfo2D &arrayInfo, in
 *********************************************************************************************/
 bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filename)
 {
-  ifstream fin;
+	ifstream fin;
 
-  fin.open(filename);
-  if (!fin.good())
-    return false;
+	fin.open(filename);
+	if (!fin.good())
+		return false;
 
-  int numTransactions, numItems;
+	int numTransactions, numItems;
 
-  //Determine the size of our array and initialize it
-  parseFileName(numTransactions, numItems, filename);
-  initializeTransactionArray(transactions, arrayInfo, numTransactions, numItems);
+	//Determine the size of our array and initialize it
+	parseFileName(numTransactions, numItems, filename);
+	initializeTransactionArray(transactions, arrayInfo, numTransactions, numItems);
 
-  //Actually load the data
-  readFile(transactions, arrayInfo, fin);
+	//Actually load the data
+	readFile(transactions, arrayInfo, fin);
 
-  return true;
+	return true;
 }
 
 
@@ -145,18 +145,18 @@ bool loadData(bool** &transactions, ArrayInfo2D &arrayInfo, const string &filena
 *********************************************************************************************/
 void outputResults(double time, const ItemsetHolder& largeItemsets)
 {
-  DynamicArray<DynamicArray<int>> itemsets;
-  largeItemsets.getAllTwoOrLargerSets(itemsets);
+	DynamicArray<DynamicArray<int>> itemsets;
+	largeItemsets.getAllTwoOrLargerSets(itemsets);
 
-  for (int i = 0; i < itemsets.count(); i++)
-  {
-    //ex: "Set 1: 4 5
-    //	   Set 2: 4 7"
-    cout << "Set " << i + 1 << ": ";
-    itemsets[i].display();
-  }
+	for (int i = 0; i < itemsets.count(); i++)
+	{
+		//ex: "Set 1: 4 5
+		//	   Set 2: 4 7"
+		cout << "Set " << i + 1 << ": ";
+		itemsets[i].display();
+	}
 
-  cout << "All sets found in " << time << " seconds." << endl;
+	cout << "All sets found in " << time << " seconds." << endl;
 }
 
 
@@ -167,34 +167,37 @@ void outputResults(double time, const ItemsetHolder& largeItemsets)
 *********************************************************************************************/
 void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS][NUM_OF_MINSUPPORTS][NUM_OF_TRIALS])
 {
-  //fstream file;
-  //file.open("aprioriResults.txt", std::ios::out);
+	//fstream file;
+	//file.open("aprioriResults.txt", std::ios::out);
 
-  for (int i = 0; i < NUM_OF_DATASETS; i++)
-  {
-    for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
-    {
-      cout << left << setw(15) << "Dataset: " << setw(30) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
-        << setw(15) << "Itemset:" << setw(25) << "Itemsets generated:" << setw(15) << "Run 1:" << setw(15) << "Run 2:" << setw(15)
-        << "Run 3:" << setw(15) << "Avg:" << endl << endl;
-      {
-        for (int k = 0; k < allResults[i][j][0].count(); k++)
-        {
-          double average = 0;
-          cout << setw(4) << "Set " << setw(11) << allResults[i][j][k][0].mDepth << setw(25) << allResults[i][j][k][0].mNumOfItemsetsAtThisDepth;
+	//For each dataset
+	for (int i = 0; i < NUM_OF_DATASETS; i++)
+	{
+		//for each minimum support
+		for (int j = 0; j < NUM_OF_MINSUPPORTS; j++)
+		{
+			cout << left << setw(15) << "Dataset: " << setw(30) << DATASET_LIST[i] << setw(10) << "MinSupport: " << setw(5) << MINIMUM_SUPPORT_LIST[j] << endl
+				<< setw(15) << "Itemset:" << setw(25) << "Itemsets generated:" << setw(15) << "Run 1:" << setw(15) << "Run 2:" << setw(15)
+				<< "Run 3:" << setw(15) << "Avg:" << endl << endl;
 
-          for (int l = 0; l < NUM_OF_TRIALS; l++)
-          {
-            cout << setw(15) << allResults[i][j][l][k].mTimeForThisDepth;
-            average += allResults[i][j][l][k].mTimeForThisDepth;
-          }
-          average /= 3;
-          cout << setw(15) << average << endl;
-        }
-      }
-      cout << "\n\n";
-    }
-  }
+			//for the number of itemsets found by apriori in this dataset at this minimum support
+			for (int k = 0; k < allResults[i][j][0].count(); k++)
+			{
+				double average = 0;
+				cout << setw(4) << "Set " << setw(11) << allResults[i][j][0][k].mDepth << setw(25) << allResults[i][j][0][k].mNumOfItemsetsAtThisDepth;
+
+				for (int l = 0; l < NUM_OF_TRIALS; l++)
+				{
+					cout << setw(15) << allResults[i][j][l][k].mTimeForThisDepth;
+					average += allResults[i][j][l][k].mTimeForThisDepth;
+				}
+				average /= 3;
+				cout << setw(15) << average << endl;
+			}
+
+			cout << "\n\n";
+		}
+	}
 }
 
 
@@ -205,32 +208,32 @@ void outputAllTestResults(DynamicArray<AprioriResult> allResults[NUM_OF_DATASETS
 *********************************************************************************************/
 void parseFileName(int &transactions, int &items, const string &filename)
 {
-  //Values in title
-  string transactionsStr = "";   //D value
-  string itemsStr = "";          //N value
+	//Values in title
+	string transactionsStr = "";   //D value
+	string itemsStr = "";          //N value
 
-  //Track what to store from filename string
-  bool readN = false;
-  bool readD = false;
+	//Track what to store from filename string
+	bool readN = false;
+	bool readD = false;
 
-  for (size_t i = 0; i < filename.size(); i++)
-  {
-    if (toupper(filename[i]) == toupper('k'))
-      readN = readD = false;
+	for (size_t i = 0; i < filename.size(); i++)
+	{
+		if (toupper(filename[i]) == toupper('k'))
+			readN = readD = false;
 
-    if (readN)
-      itemsStr += filename[i];
-    else if (readD)
-      transactionsStr += filename[i];
+		if (readN)
+			itemsStr += filename[i];
+		else if (readD)
+			transactionsStr += filename[i];
 
-    if ((filename[i]) == toupper('n'))
-      readN = true;
-    else if ((filename[i]) == toupper('d'))
-      readD = true;
-  }
+		if ((filename[i]) == toupper('n'))
+			readN = true;
+		else if ((filename[i]) == toupper('d'))
+			readD = true;
+	}
 
-  transactions = static_cast<int>(stof(transactionsStr) * 1000);
-  items = static_cast<int>(stof(itemsStr) * 1000);
+	transactions = static_cast<int>(stof(transactionsStr) * 1000);
+	items = static_cast<int>(stof(itemsStr) * 1000);
 }
 
 
@@ -241,20 +244,20 @@ void parseFileName(int &transactions, int &items, const string &filename)
 *********************************************************************************************/
 void readFile(bool **transactions, const ArrayInfo2D &arrayInfo, ifstream& fin)
 {
-  int currentTransaction, currentItem;
+	int currentTransaction, currentItem;
 
-  fin >> currentTransaction >> currentItem;
+	fin >> currentTransaction >> currentItem;
 
-  bool *thisTransaction;
+	bool *thisTransaction;
 
-  --currentTransaction;
-  while (!fin.eof())
-  {
-    thisTransaction = transactions[currentTransaction];
-    *(thisTransaction + currentItem) = true;
+	--currentTransaction;
+	while (!fin.eof())
+	{
+		thisTransaction = transactions[currentTransaction];
+		*(thisTransaction + currentItem) = true;
 
-    fin >> currentTransaction >> currentItem;
+		fin >> currentTransaction >> currentItem;
 
-    --currentTransaction;
-  }
+		--currentTransaction;
+	}
 }

@@ -10,6 +10,7 @@ const int NUM_OF_DATASETS = 5,
 
 const string DATASET_LIST[] =
 {
+	"T25.N0.1K.D10K.txt", //DELETE ME
 	"T5.N0.1K.D1K.txt",
 	"T5.N0.1K.D10K.txt",
 	"T5.N0.1K.D100K.txt",
