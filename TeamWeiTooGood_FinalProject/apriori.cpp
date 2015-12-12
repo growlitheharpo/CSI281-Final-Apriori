@@ -3,9 +3,9 @@
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+* Purpose: Add the candidates to the set of itemsets that are large.
+*     Pre: Both sets have been properly declared. Candidates has ALREADY BEEN PRUNED
+*	 Post: Candidates are added to the list of large itemsets.
 *********************************************************************************************/
 void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, ItemsetHolder &largeItemsets)
 {
@@ -15,9 +15,11 @@ void addCandidatesToLTree(const DynamicArray<DynamicArray<int>> &candidates, Ite
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+*  Purpose: Calculate the support for candidates at this depth and delete those not meeting
+*			minimum support.
+*      Pre: Handed transactions and sizeinfo about transactions, as well as what the minimum
+*			support is, the holder of candidates, and the depth we're working at.
+*	  Post: Candidates is updated to include only those meeting minimum support.
 *********************************************************************************************/
 void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo, int minSupport, ItemsetHolder& candidates, int depth)
 {
@@ -65,9 +67,10 @@ void calcCandidateSupport(const bool **transactions, const ArrayInfo2D& arrInfo,
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+*  Purpose:	Calculate the 1-itemsets meeting minimum support and add them to the holder.
+*      Pre:	Handed valid transactions and sizeinfo, as well as minimum support and the holder
+*			for large itemsets.
+*	  Post:	The large 1-itemsets are added to the holder.
 *********************************************************************************************/
 void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets)
 {
@@ -102,9 +105,9 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D &arrInfo, i
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+*  Purpose:	Generate candidates at the current depth.
+*      Pre:	Handed the previous large itemsets, the holder for candidates, and our current k.
+*	  Post:	Valid candidates are added to the candidate holder.
 *********************************************************************************************/
 void candidateGen(const ItemsetHolder &largeItemsets, ItemsetHolder &candidateItemsets, int depth)
 {
@@ -124,9 +127,6 @@ void candidateGen(const ItemsetHolder &largeItemsets, ItemsetHolder &candidateIt
 			if (previousLevelItems[i] == previousLevelItems[j]) continue;
 
 			//Union the two, then add them to candidates
-			//unionTwoArrays(previousLevelItems[i], previousLevelItems[j], thisCandidate);
-
-			//Faster?
 			thisCandidate = previousLevelItems[i];
 			thisCandidate.insert(previousLevelItems[j][previousLevelItems[j].count() - 1]);
 
@@ -137,9 +137,9 @@ void candidateGen(const ItemsetHolder &largeItemsets, ItemsetHolder &candidateIt
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+*  Purpose:	Check if the two itemsets have the first k elements in common
+*      Pre:	Handed two properly initialized itemsets of a size greater than k.
+*	  Post:	Return true if the first k items are the same in the two sets.
 *********************************************************************************************/
 bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArray<int> &set2, int k)
 {
@@ -154,9 +154,11 @@ bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArra
 
 
 /*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
+*  Purpose:	Run the apriori algorithm on the given transactions and place the resulting sets
+*			in largeItemsets, and the time results in results.
+*      Pre:	Handed the loaded transactions and the size of each, as well as the minimum
+*			support, and the initialized and cleared items and results.
+*	  Post:	largeItemsets and results are updated with the resulting values.
 *********************************************************************************************/
 void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets, DynamicArray<AprioriResult> &results)
 {
@@ -189,37 +191,4 @@ void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSu
 		timeResult = timer.getTime();
 		results.insert(AprioriResult(k, resultsOfThisStep.count(), timeResult));
 	}
-}
-
-
-/*********************************************************************************************
-* Purpose:
-*     Pre:
-*	 Post:
-*  Source: http://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
-*********************************************************************************************/
-void unionTwoArrays(const DynamicArray<int> &array1, const DynamicArray<int> &array2, DynamicArray<int>& output)
-{
-	output.clear();
-
-	int i = 0, j = 0;
-	while (i < array1.count() && j < array2.count())
-	{
-		if (array1[i] < array2[j])
-			output.insert(array1[i++]);
-		else if (array2[j] < array1[i])
-			output.insert(array2[j++]);
-		else
-		{
-			output.insert(array2[j]);
-			j++;
-			i++;
-		}
-	}
-
-	while (i < array1.count())
-		output.insert(array1[i++]);
-
-	while (j < array2.count())
-		output.insert(array2[j++]);
 }

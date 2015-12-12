@@ -10,6 +10,5 @@ void calculate1Itemsets(const bool **transactions, const ArrayInfo2D& arrInfo, i
 void candidateGen(const ItemsetHolder& largeItemsets, ItemsetHolder& candidateItemsets, int depth);
 bool itemsetsHaveFirstKInCommon(const DynamicArray<int> &set1, const DynamicArray<int> &set2, int k);
 void runApriori(const bool **transactions, const ArrayInfo2D &arrInfo, int minSupport, ItemsetHolder &largeItemsets, DynamicArray<AprioriResult> &results);
-void unionTwoArrays(const DynamicArray<int>& array1, const DynamicArray<int> &array2, DynamicArray<int>& output);
 
 #endif
