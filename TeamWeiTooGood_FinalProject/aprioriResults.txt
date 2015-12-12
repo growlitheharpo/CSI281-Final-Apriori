@@ -1,0 +1,510 @@
+Dataset:       T5.N0.1K.D1K.txt              MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          1                        0.00030704     0.000279387    0.000277676    0.000288034    
+
+
+Dataset:       T5.N0.1K.D1K.txt              MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.000330988    0.000280242    0.000283663    0.000298297    
+
+
+Dataset:       T5.N0.1K.D1K.txt              MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.000306185    0.000429913    0.000273115    0.000336404    
+
+
+Dataset:       T5.N0.1K.D10K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          2                        0.00322264     0.00332441     0.00418424     0.0035771      
+
+
+Dataset:       T5.N0.1K.D10K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00386865     0.00314623     0.00316391     0.00339293     
+
+
+Dataset:       T5.N0.1K.D10K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00328479     0.0032922      0.00412124     0.00356607     
+
+
+Dataset:       T5.N0.1K.D100K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          2                        0.0823563      0.0889883      0.0836207      0.0849884      
+
+
+Dataset:       T5.N0.1K.D100K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0905552      0.0823384      0.0882941      0.0870625      
+
+
+Dataset:       T5.N0.1K.D100K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0825448      0.0895682      0.0829256      0.0850129      
+
+
+Dataset:       T5.N0.5K.D1K.txt              MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00108419     0.0011891      0.00110956     0.00112762     
+
+
+Dataset:       T5.N0.5K.D1K.txt              MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00116487     0.00110415     0.00110272     0.00112391     
+
+
+Dataset:       T5.N0.5K.D1K.txt              MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00112496     0.00110044     0.00110956     0.00111165     
+
+
+Dataset:       T5.N0.5K.D10K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0185045      0.0185276      0.0177989      0.018277       
+
+
+Dataset:       T5.N0.5K.D10K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0182702      0.0238448      0.0181134      0.0200761      
+
+
+Dataset:       T5.N0.5K.D10K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0179409      0.0178135      0.0178226      0.017859       
+
+
+Dataset:       T5.N0.5K.D100K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.466448       0.463315       0.466111       0.465291       
+
+
+Dataset:       T5.N0.5K.D100K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.461977       0.468739       0.463333       0.464683       
+
+
+Dataset:       T5.N0.5K.D100K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.463035       0.470014       0.482103       0.471717       
+
+
+Dataset:       T5.N1K.D1K.txt                MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00240101     0.00250194     0.00240814     0.00243703     
+
+
+Dataset:       T5.N1K.D1K.txt                MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00239873     0.00243922     0.00243636     0.00242477     
+
+
+Dataset:       T5.N1K.D1K.txt                MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00245376     0.00351457     0.0035331      0.00316714     
+
+
+Dataset:       T5.N1K.D10K.txt               MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0383595      0.0382138      0.0381254      0.0382329      
+
+
+Dataset:       T5.N1K.D10K.txt               MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0453541      0.037805       0.0381317      0.0404303      
+
+
+Dataset:       T5.N1K.D10K.txt               MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.039763       0.0492456      0.0379986      0.0423357      
+
+
+Dataset:       T5.N1K.D100K.txt              MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.35553        1.16898        1.05614        1.19355        
+
+
+Dataset:       T5.N1K.D100K.txt              MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.07472        1.05991        1.0695         1.06804        
+
+
+Dataset:       T5.N1K.D100K.txt              MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.08507        1.05587        1.06549        1.06881        
+
+
+Dataset:       T20.N0.1K.D1K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          43                       0.000385439    0.000557918    0.000497194    0.000480184    
+Set 2          86                       0.172397       0.166466       0.163564       0.167476       
+Set 3          12                       0.0670154      0.0698444      0.0692214      0.0686937      
+
+
+Dataset:       T20.N0.1K.D1K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          10                       0.000454431    0.000455001    0.000417654    0.000442362    
+Set 2          3                        0.0120664      0.0111803      0.011198       0.0114816      
+
+
+Dataset:       T20.N0.1K.D1K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.00045158     0.000417939    0.000441317    0.000436945    
+
+
+Dataset:       T20.N0.1K.D10K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          41                       0.00386494     0.00380906     0.00386409     0.00384603     
+Set 2          85                       1.32932        1.33681        1.33103        1.33239        
+Set 3          11                       0.475979       0.481924       0.47978        0.479227       
+
+
+Dataset:       T20.N0.1K.D10K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          9                        0.0046401      0.00469654     0.00468714     0.00467459     
+Set 2          3                        0.0657742      0.0707296      0.0661334      0.0675457      
+
+
+Dataset:       T20.N0.1K.D10K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.00485049     0.00485049     0.0047567      0.00481923     
+
+
+Dataset:       T20.N0.1K.D100K.txt           MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          41                       0.0796674      0.0834559      0.0773556      0.0801596      
+Set 2          86                       13.8839        13.8694        13.8519        13.8684        
+Set 3          11                       5.03777        5.01754        5.01597        5.02376        
+
+
+Dataset:       T20.N0.1K.D100K.txt           MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          9                        0.101372       0.098232       0.0943263      0.0979768      
+Set 2          3                        0.67333        0.671117       0.67404        0.672829       
+
+
+Dataset:       T20.N0.1K.D100K.txt           MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.0943548      0.09512        0.0947636      0.0947462      
+
+
+Dataset:       T20.N0.5K.D1K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00128575     0.00132823     0.0013268      0.00131359     
+
+
+Dataset:       T20.N0.5K.D1K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00134362     0.00128518     0.00134733     0.00132538     
+
+
+Dataset:       T20.N0.5K.D1K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00128632     0.00132566     0.00139038     0.00133412     
+
+
+Dataset:       T20.N0.5K.D10K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0199536      0.0197521      0.020097       0.0199342      
+
+
+Dataset:       T20.N0.5K.D10K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0207675      0.020156       0.0227897      0.0212377      
+
+
+Dataset:       T20.N0.5K.D10K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0200739      0.0203587      0.0198581      0.0200969      
+
+
+Dataset:       T20.N0.5K.D100K.txt           MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.497585       0.503704       0.494177       0.498489       
+
+
+Dataset:       T20.N0.5K.D100K.txt           MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.500064       0.51101        0.506341       0.505805       
+
+
+Dataset:       T20.N0.5K.D100K.txt           MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.49935        0.503172       0.499417       0.500646       
+
+
+Dataset:       T20.N1K.D1K.txt               MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00255325     0.00259858     0.00259117     0.002581       
+
+
+Dataset:       T20.N1K.D1K.txt               MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00254669     0.00253586     0.00251619     0.00253291     
+
+
+Dataset:       T20.N1K.D1K.txt               MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00256095     0.00256694     0.00252104     0.00254964     
+
+
+Dataset:       T20.N1K.D10K.txt              MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0435287      0.0406162      0.0404894      0.0415448      
+
+
+Dataset:       T20.N1K.D10K.txt              MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0441354      0.039507       0.0400743      0.0412389      
+
+
+Dataset:       T20.N1K.D10K.txt              MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0395814      0.0452908      0.0401319      0.041668       
+
+
+Dataset:       T20.N1K.D100K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.07399        1.08238        1.07627        1.07755        
+
+
+Dataset:       T20.N1K.D100K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.08273        1.07538        1.08161        1.07991        
+
+
+Dataset:       T20.N1K.D100K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.06408        1.06319        1.09454        1.07394        
+
+
+Dataset:       T25.N0.1K.D1K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          54                       0.000445878    0.000434475    0.000401404    0.000427252    
+Set 2          264                      0.283592       0.285143       0.286814       0.285183       
+Set 3          209                      0.428061       0.429206       0.433871       0.430379       
+Set 4          28                       0.0811039      0.080426       0.08001        0.0805133      
+
+
+Dataset:       T25.N0.1K.D1K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          20                       0.000464124    0.000556207    0.000506317    0.000508883    
+Set 2          13                       0.0375228      0.0402633      0.0391398      0.0389753      
+Set 3          1                        0.00728828     0.00644129     0.00647008     0.00673322     
+
+
+Dataset:       T25.N0.1K.D1K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          5                        0.000558773    0.000471536    0.000506887    0.000512399    
+
+
+Dataset:       T25.N0.1K.D10K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          55                       0.00473389     0.00384613     0.00452521     0.00436841     
+Set 2          264                      2.41609        2.417          2.40783        2.41364        
+Set 3          211                      3.58492        3.57696        3.58228        3.58139        
+Set 4          24                       0.727042       0.727242       0.7289         0.727728       
+
+
+Dataset:       T25.N0.1K.D10K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          19                       0.00504236     0.00547141     0.00490551     0.00513976     
+Set 2          13                       0.305068       0.306237       0.31319        0.308165       
+Set 3          1                        0.0375533      0.0354114      0.0360796      0.0363481      
+
+
+Dataset:       T25.N0.1K.D10K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          5                        0.00512674     0.00537391     0.00521113     0.00523726     
+
+
+Dataset:       T25.N0.1K.D100K.txt           MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          54                       0.0719004      0.0741597      0.0805973      0.0755525      
+Set 2          268                      24.0766        24.3051        24.0853        24.1556        
+Set 3          215                      38.1262        38.09          41.5303        39.2488        
+Set 4          26                       8.18947        8.11802        8.83399        8.38049        
+
+
+Dataset:       T25.N0.1K.D100K.txt           MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          19                       0.129635       0.13325        0.127667       0.130184       
+Set 2          13                       3.5199         3.5243         3.52151        3.5219         
+Set 3          1                        0.371161       0.378229       0.374161       0.374517       
+
+
+Dataset:       T25.N0.1K.D100K.txt           MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          5                        0.123178       0.134962       0.140756       0.132965       
+
+
+Dataset:       T25.N0.5K.D1K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.00139636     0.00142002     0.00142658     0.00141432     
+
+
+Dataset:       T25.N0.5K.D1K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00136586     0.00137299     0.00200788     0.00158224     
+
+
+Dataset:       T25.N0.5K.D1K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00208286     0.00136871     0.00237393     0.00194183     
+
+
+Dataset:       T25.N0.5K.D10K.txt            MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.0218309      0.0284609      0.0212131      0.023835       
+
+
+Dataset:       T25.N0.5K.D10K.txt            MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0346163      0.0223732      0.0214982      0.0261626      
+
+
+Dataset:       T25.N0.5K.D10K.txt            MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0211362      0.0229177      0.021074       0.0217093      
+
+
+Dataset:       T25.N0.5K.D100K.txt           MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          3                        0.605726       0.598771       0.584558       0.596352       
+
+
+Dataset:       T25.N0.5K.D100K.txt           MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.592302       0.597693       0.59918        0.596392       
+
+
+Dataset:       T25.N0.5K.D100K.txt           MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.592276       0.605684       0.595901       0.597954       
+
+
+Dataset:       T25.N1K.D1K.txt               MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.003319       0.00264847     0.00259658     0.00285468     
+
+
+Dataset:       T25.N1K.D1K.txt               MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00340709     0.00272772     0.00260799     0.00291427     
+
+
+Dataset:       T25.N1K.D1K.txt               MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.00368078     0.00358385     0.00365141     0.00363868     
+
+
+Dataset:       T25.N1K.D10K.txt              MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0487983      0.0457946      0.0464933      0.0470287      
+
+
+Dataset:       T25.N1K.D10K.txt              MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0479863      0.0480514      0.0456067      0.0472148      
+
+
+Dataset:       T25.N1K.D10K.txt              MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        0.0452019      0.0516227      0.0442394      0.0470213      
+
+
+Dataset:       T25.N1K.D100K.txt             MinSupport: 20   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.43811        1.44349        1.4259         1.43583        
+
+
+Dataset:       T25.N1K.D100K.txt             MinSupport: 40   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.50922        1.43664        1.4709         1.47225        
+
+
+Dataset:       T25.N1K.D100K.txt             MinSupport: 60   
+Itemset:       Itemsets generated:      Run 1:         Run 2:         Run 3:         Avg:           
+
+Set 1          0                        1.47467        1.47001        1.47143        1.47203        
+
+
