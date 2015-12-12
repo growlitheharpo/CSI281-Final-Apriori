@@ -61,7 +61,7 @@ int testingMain()
 		{
 			currentFile = "datasets\\" + DATASET_LIST[i];
 			loadData(transactions, transactionSizeInfo, currentFile);
-			currentMinSupport = (transactionSizeInfo.sizeJ * MINIMUM_SUPPORT_LIST[j]) / 100;
+			currentMinSupport = (transactionSizeInfo.sizeI * MINIMUM_SUPPORT_LIST[j]) / 100;
 
 			for (int k = 0; k < NUM_OF_TRIALS; k++)
 			{
